@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - King's Auto Spa Ltd</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .sidebar { min-height: 100vh; background-color: #212529; color: white; }
+    .sidebar .nav-link { color: rgba(255,255,255,0.75); margin-bottom: 5px; border-radius: 6px; }
+    .sidebar .nav-link.active, .sidebar .nav-link:hover { color: white; background-color: #0d6efd; }
+    .metric-card { cursor: pointer; transition: transform 0.2s; }
+    .metric-card:hover { transform: translateY(-3px); }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+    .calendar-day-col { min-height: 260px; background: #ffffff; border: 1px solid #dee2e6; border-radius: 8px; padding: 8px; }
+    .cal-booking-item { font-size: 0.8rem; border-radius: 4px; padding: 5px; margin-bottom: 6px; border-left: 4px solid #0d6efd; background: #e7f1ff; }
+    .cal-booking-done { background: #e9ecef !important; border-left-color: #6c757d !important; color: #6c757d !important; text-decoration: line-through; }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- 侧边导航栏 -->
+    <nav class="col-md-3 col-lg-2 d-md-block sidebar p-3 collapse">
+      <h4 class="fw-bold text-center py-3 border-bottom border-secondary">🚗 King's Admin</h4>
+      <div class="p-2 mb-3 bg-secondary bg-opacity-25 rounded text-center small" id="adminBadge">Loading...</div>
+
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a class="nav-link active" id="tab-btn-dashboard" href="javascript:void(0)" onclick="switchTab('dashboard')">📊 运营看板 (Overview)</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab-btn-products" href="javascript:void(0)" onclick="switchTab('products')">📦 商品与库存 (Products)</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab-btn-bookings" href="javascript:void(0)" onclick="switchTab('bookings')">📅 洗车预约日历 (Bookings)</a></li>
+        <li class="nav-item"><a class="nav-link" id="tab-btn-orders" href="javascript:void(0)" onclick="switchTab('orders')">🛍️ 总订单管理 (Orders)</a></li>
+
+        <!-- 员工注册审批模块 (仅老板 ADMIN 可见，员工账号绝对不可见) -->
+        <li class="nav-item mt-2" id="ownerApprovalTab" style="display: none;">
+          <a class="nav-link position-relative text-warning border border-warning" id="tab-btn-staff" href="javascript:void(0)" onclick="switchTab('staff')">
+            ✉️ 员工审批
+            <span class="badge bg-danger rounded-pill ms-1" id="pendingStaffBadge">0</span>
+          </a>
+        </li>
+
+        <hr class="border-secondary my-3">
+        <li class="nav-item"><a class="nav-link text-info" href="index.html">🏠 返回客户主站</a></li>
+        <li class="nav-item mt-2"><a class="nav-link text-danger border border-danger text-center" href="javascript:void(0)" onclick="adminLogout()">登出后台</a></li>
+      </ul>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+
+      <!-- 1. 运营看板 -->
+      <section id="tab-dashboard">
+        <h3 class="fw-bold mb-4">今日营业概况</h3>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="card bg-primary text-white p-3 shadow-sm border-0 metric-card" onclick="switchTab('bookings')">
+              <div class="d-flex justify-content-between"><h5>今日洗车预约</h5><span>📅 点击跳转</span></div>
+              <h2 class="fw-bold mb-0" id="statTodayBookings">0 单</h2>
+              <small class="text-white-50" id="statCompletedBookings">0 单已施工完成</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-success text-white p-3 shadow-sm border-0 metric-card" onclick="switchTab('orders')">
+              <div class="d-flex justify-content-between"><h5>待发货/自提订单</h5><span>🛍️ 点击跳转</span></div>
+              <h2 class="fw-bold mb-0" id="statPendingOrders">0 单</h2>
+              <small class="text-white-50">点击进入总订单中心统一处理</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-warning text-dark p-3 shadow-sm border-0 metric-card" onclick="switchTab('products')">
+              <div class="d-flex justify-content-between"><h5>库存预警</h5><span>📦 点击跳转</span></div>
+              <h2 class="fw-bold mb-0" id="statLowStockCount">0 种商品</h2>
+              <small class="text-truncate d-block" id="statLowStockNames">库存正常</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. 商品与库存管理 -->
+      <section id="tab-products" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="fw-bold mb-0">汽车用品与库存管理</h3>
+          <button class="btn btn-primary fw-bold" data-bs-toggle="modal" data-bs-target="#addProductModal">+ 上架新商品 (含照片)</button>
+        </div>
+        <div class="card shadow-sm border-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+              <tr>
+                <th>商品图片</th>
+                <th>商品名称</th>
+                <th>定价 (CAD)</th>
+                <th>库存调整</th>
+                <th>当前状态</th>
+                <th>上下架操作</th>
+              </tr>
+              </thead>
+              <tbody id="adminProductsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 洗车预约管理与排班日历 -->
+      <section id="tab-bookings" style="display:none;">
+        <h3 class="fw-bold mb-3">洗车预约管理与排班日历</h3>
+        <div class="card p-3 shadow-sm border-0 mb-4">
+          <h5 class="fw-bold mb-3">📅 未来 7 天预约时间占用看板</h5>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-white fw-bold">预约登记列表</div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+              <tr>
+                <th>客户</th>
+                <th>车型 / 车牌</th>
+                <th>预约套餐</th>
+                <th>预约到店时间</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody id="adminBookingsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 总订单管理中心 -->
+      <section id="tab-orders" style="display:none;">
+        <h3 class="fw-bold mb-3">商城总订单管理中心</h3>
+        <div class="card shadow-sm border-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+              <tr>
+                <th>订单号 / 时间</th>
+                <th>客户信息</th>
+                <th>购买商品</th>
+                <th>金额 / 支付方式</th>
+                <th>履约方式</th>
+                <th>处理操作</th>
+              </tr>
+              </thead>
+              <tbody id="adminOrdersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 员工申请审批中心 (仅老板 ADMIN 可见) -->
+      <section id="tab-staff" style="display:none;">
+        <h3 class="fw-bold mb-3">👔 员工注册申请审批中心</h3>
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-header bg-warning bg-opacity-25 fw-bold">待审批员工名单</div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+              <tr>
+                <th>申请人姓名</th>
+                <th>申请邮箱</th>
+                <th>指定工位号</th>
+                <th>申请提交时间</th>
+                <th>审批操作</th>
+              </tr>
+              </thead>
+              <tbody id="pendingStaffTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border-0">
+          <div class="card-header bg-light fw-bold">已批准正式员工列表</div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+              <tr>
+                <th>员工姓名</th>
+                <th>登录邮箱</th>
+                <th>工位号</th>
+                <th>账号状态</th>
+                <th>管理</th>
+              </tr>
+              </thead>
+              <tbody id="approvedStaffTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- 上架新商品 Modal -->
+<div class="modal fade" id="addProductModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">上架新商品</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form onsubmit="handleAddNewProduct(event)">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label fw-bold">商品名称 *</label>
+            <input type="text" class="form-control" id="newProdName" placeholder="例如：德国进口去油膜清洁湿巾" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">定价 ($ CAD) *</label>
+            <input type="number" step="0.01" class="form-control" id="newProdPrice" placeholder="24.99" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">初始库存数量 *</label>
+            <input type="number" class="form-control" id="newProdStock" placeholder="20" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold">选择商品照片 (本地文件上传) *</label>
+            <input type="file" class="form-control" id="newProdFile" accept="image/*">
+            <small class="text-muted">也可以在下方直接填入在线图片链接：</small>
+            <input type="url" class="form-control mt-1" id="newProdUrl" placeholder="https://example.com/photo.jpg">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="submit" class="btn btn-primary fw-bold">确认上架到商城</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let currentUser = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    currentUser = JSON.parse(localStorage.getItem('apex_user'));
+    if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'STAFF')) {
+      alert('⚠️ 访问拒绝：仅老板或员工账号有权访问此后台！');
+      window.location.href = 'index.html';
+      return;
+    }
+
+    // 显示身份徽章
+    const isOwner = (currentUser.role === 'ADMIN');
+    document.getElementById('adminBadge').innerHTML = `
+            <div>👤 <strong>${currentUser.name}</strong></div>
+            <div class="text-warning small">${isOwner ? '👑 超级管理员 (Owner)' : `🛠️ 车行员工 (${currentUser.station || 'Staff'})`}</div>
+        `;
+
+    // 核心权限隔离：只有老板才显示“员工审批”选项卡
+    if (isOwner) {
+      document.getElementById('ownerApprovalTab').style.display = 'block';
+    }
+
+    refreshAllAdminData();
+  });
+
+  function adminLogout() {
+    localStorage.removeItem('apex_user');
+    window.location.href = 'index.html';
+  }
+
+  function switchTab(tabId) {
+    // 安全拦截：非老板用户阻止切换到员工审批页面
+    if (tabId === 'staff' && currentUser.role !== 'ADMIN') {
+      alert('⚠️ 权限不足：员工无权进行账号审批操作！');
+      return;
+    }
+
+    document.querySelectorAll('main > section').forEach(sec => sec.style.display = 'none');
+    document.getElementById('tab-' + tabId).style.display = 'block';
+    document.querySelectorAll('.sidebar .nav-link').forEach(link => link.classList.remove('active'));
+    const btn = document.getElementById('tab-btn-' + tabId);
+    if (btn) btn.classList.add('active');
+
+    refreshAllAdminData();
+  }
+
+  function refreshAllAdminData() {
+    renderDashboardMetrics();
+    renderAdminProducts();
+    renderAdminBookingsAndCalendar();
+    renderAdminOrders();
+    if (currentUser && currentUser.role === 'ADMIN') {
+      renderStaffApprovalModule();
+    }
+  }
+
+  // 1. 运营看板
+  function renderDashboardMetrics() {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
+    const todayBookings = bookings.filter(b => b.date === todayStr);
+    const doneToday = todayBookings.filter(b => b.status === 'COMPLETED').length;
+
+    document.getElementById('statTodayBookings').innerText = `${todayBookings.length} 单`;
+    document.getElementById('statCompletedBookings').innerText = `${doneToday} 单已施工完成`;
+
+    const orders = JSON.parse(localStorage.getItem('apex_all_orders') || "[]");
+    const pendingOrders = orders.filter(o => o.status !== 'COMPLETED').length;
+    document.getElementById('statPendingOrders').innerText = `${pendingOrders} 单`;
+
+    const products = JSON.parse(localStorage.getItem('apex_products') || "[]");
+    const lowStock = products.filter(p => p.stock <= 3);
+    document.getElementById('statLowStockCount').innerText = `${lowStock.length} 种商品`;
+    document.getElementById('statLowStockNames').innerText = lowStock.length > 0 ? lowStock.map(p => p.name).join(', ') : '库存正常';
+  }
+
+  // 2. 商品管理
+  function renderAdminProducts() {
+    const products = JSON.parse(localStorage.getItem('apex_products') || "[]");
+    const tbody = document.getElementById('adminProductsTable');
+    tbody.innerHTML = products.map(p => `
+            <tr>
+                <td><img src="${p.img}" style="width:50px; height:50px; object-fit:cover;" class="rounded border"></td>
+                <td class="fw-bold">${p.name}</td>
+                <td>$${parseFloat(p.price).toFixed(2)}</td>
+                <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-outline-secondary btn-sm px-2" onclick="changeStock(${p.id}, -1)">-</button>
+                        <span class="fw-bold ${p.stock <= 3 ? 'text-danger' : ''}">${p.stock} 件</span>
+                        <button class="btn btn-outline-secondary btn-sm px-2" onclick="changeStock(${p.id}, 1)">+</button>
+                    </div>
+                </td>
+                <td>
+                    <span class="badge ${p.status === 'ACTIVE' ? (p.stock > 0 ? 'bg-success' : 'bg-warning text-dark') : 'bg-secondary'}">
+                        ${p.status === 'ACTIVE' ? (p.stock > 0 ? '在售中' : '缺货中') : '已下架'}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-sm ${p.status === 'ACTIVE' ? 'btn-outline-danger' : 'btn-outline-success'}" onclick="toggleProductStatus(${p.id})">
+                        ${p.status === 'ACTIVE' ? '下架商品' : '重新上架'}
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+  }
+
+  function changeStock(prodId, delta) {
+    let products = JSON.parse(localStorage.getItem('apex_products') || "[]");
+    const p = products.find(i => i.id === prodId);
+    if (p) {
+      p.stock = Math.max(0, p.stock + delta);
+      localStorage.setItem('apex_products', JSON.stringify(products));
+      refreshAllAdminData();
+    }
+  }
+
+  function toggleProductStatus(prodId) {
+    let products = JSON.parse(localStorage.getItem('apex_products') || "[]");
+    const p = products.find(i => i.id === prodId);
+    if (p) {
+      p.status = (p.status === 'ACTIVE') ? 'INACTIVE' : 'ACTIVE';
+      localStorage.setItem('apex_products', JSON.stringify(products));
+      refreshAllAdminData();
+    }
+  }
+
+  function handleAddNewProduct(event) {
+    event.preventDefault();
+    const name = document.getElementById('newProdName').value.trim();
+    const price = parseFloat(document.getElementById('newProdPrice').value);
+    const stock = parseInt(document.getElementById('newProdStock').value);
+    const fileInput = document.getElementById('newProdFile');
+    const urlInput = document.getElementById('newProdUrl').value.trim();
+
+    const finalizeSave = (imgSrc) => {
+      let products = JSON.parse(localStorage.getItem('apex_products') || "[]");
+      products.unshift({
+        id: Date.now(),
+        name,
+        price,
+        stock,
+        status: "ACTIVE",
+        img: imgSrc || "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=400&q=80"
+      });
+      localStorage.setItem('apex_products', JSON.stringify(products));
+
+      bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();
+      event.target.reset();
+      alert('新商品上架成功，前台商城已实时同步！');
+      refreshAllAdminData();
+    };
+
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => finalizeSave(e.target.result);
+      reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      finalizeSave(urlInput);
+    }
+  }
+
+  // 3. 预约与日历
+  function renderAdminBookingsAndCalendar() {
+    const bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
+    const tbody = document.getElementById('adminBookingsTable');
+    tbody.innerHTML = bookings.map(b => `
+            <tr>
+                <td><strong>${b.name}</strong><br><small class="text-muted">${b.phone}</small></td>
+                <td><span class="badge bg-light text-dark border">${b.carModel || 'N/A'}</span><br><code>${b.carPlate || 'N/A'}</code></td>
+                <td>${b.pkg}</td>
+                <td><strong>${b.date}</strong> ${b.time}</td>
+                <td><span class="badge ${b.status === 'COMPLETED' ? 'bg-secondary' : 'bg-warning text-dark'}">${b.status === 'COMPLETED' ? '已施工完成' : '待到店'}</span></td>
+                <td>
+                    ${b.status !== 'COMPLETED' ? `<button class="btn btn-success btn-sm" onclick="completeBooking(${b.id})">标记完成</button>` : `<button class="btn btn-sm btn-outline-secondary" disabled>已归档</button>`}
+                </td>
+            </tr>
+        `).join('');
+
+    const grid = document.getElementById('calendarGrid');
+    grid.innerHTML = '';
+    for (let i = 0; i < 7; i++) {
+      const d = new Date();
+      d.setDate(d.getDate() + i);
+      const dateStr = d.toISOString().split('T')[0];
+      const dayBookings = bookings.filter(b => b.date === dateStr);
+
+      grid.innerHTML += `
+                <div class="calendar-day-col">
+                    <div class="fw-bold border-bottom pb-1 mb-2 text-center ${i === 0 ? 'text-primary' : ''}">
+                        ${dateStr.slice(5)} ${i === 0 ? '(今天)' : ''}
+                    </div>
+                    ${dayBookings.length === 0 ? '<div class="text-muted text-center small mt-4">空闲无排班</div>' : dayBookings.map(b => `
+                        <div class="cal-booking-item ${b.status === 'COMPLETED' ? 'cal-booking-done' : ''}">
+                            <strong>⏰ ${b.time}</strong><br>
+                            ${b.name} (${b.carModel || 'Car'})<br>
+                            <small>${b.pkg.split('(')[0]}</small>${b.status === 'COMPLETED' ? '<div><span class="badge bg-secondary">✓ 已完成</span></div>' : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+    }
+  }
+
+  function completeBooking(bookingId) {
+    let bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
+    const target = bookings.find(b => b.id === bookingId);
+    if (target) {
+      target.status = 'COMPLETED';
+      localStorage.setItem('apex_bookings', JSON.stringify(bookings));
+      refreshAllAdminData();
+    }
+  }
+
+  // 4. 总订单处理
+  function renderAdminOrders() {
+    const orders = JSON.parse(localStorage.getItem('apex_all_orders') || "[]");
+    const tbody = document.getElementById('adminOrdersTable');
+    tbody.innerHTML = orders.map(o => `
+            <tr>
+                <td><strong>${o.orderId}</strong><br><small class="text-muted">${o.date}</small></td>
+                <td>${o.customerName}<br><small class="text-muted">${o.customerEmail}</small></td>
+                <td>${o.items.map(i => `<div>${i.name} ×${i.qty}</div>`).join('')}</td>
+                <td><strong class="text-danger">$${o.total.toFixed(2)}</strong><br><small class="badge bg-light text-dark border">${o.paymentMethod}</small></td>
+                <td><span class="badge bg-info text-dark">${o.delivery}</span><br><small>${o.address}</small></td>
+                <td>
+                    ${o.status !== 'COMPLETED' ? `<button class="btn btn-primary btn-sm" onclick="completeOrder('${o.orderId}')">标记已发货/自提</button>` : `<span class="text-success small fw-bold">✓ 订单已完成</span>`}
+                </td>
+            </tr>
+        `).join('');
+  }
+
+  function completeOrder(orderId) {
+    let orders = JSON.parse(localStorage.getItem('apex_all_orders') || "[]");
+    const o = orders.find(item => item.orderId === orderId);
+    if (o) {
+      o.status = 'COMPLETED';
+      localStorage.setItem('apex_all_orders', JSON.stringify(orders));
+      refreshAllAdminData();
+    }
+  }
+
+  // 5. 老板专用：员工审批流 (Employee Approval Flow)
+  function renderStaffApprovalModule() {
+    const pending = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
+    const approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
+
+    // 更新侧边栏小红标徽章
+    document.getElementById('pendingStaffBadge').innerText = pending.length;
+
+    // 待审批列表
+    const pendingTbody = document.getElementById('pendingStaffTable');
+    if (pending.length === 0) {
+      pendingTbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">暂无待审批的员工申请</td></tr>`;
+    } else {
+      pendingTbody.innerHTML = pending.map(s => `
+                <tr>
+                    <td class="fw-bold">${s.name}</td>
+                    <td>${s.email}</td>
+                    <td><span class="badge bg-warning text-dark">${s.station}</span></td>
+                    <td><small class="text-muted">${s.appliedAt}</small></td>
+                    <td>
+                        <button class="btn btn-success btn-sm me-2" onclick="approveStaff(${s.id})">Approve (批准)</button>
+                        <button class="btn btn-outline-danger btn-sm" onclick="rejectStaff(${s.id})">Reject (拒绝)</button>
+                    </td>
+                </tr>
+            `).join('');
+    }
+
+    // 已批准员工列表
+    const approvedTbody = document.getElementById('approvedStaffTable');
+    if (approved.length === 0) {
+      approvedTbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-3">尚未添加任何正式员工</td></tr>`;
+    } else {
+      approvedTbody.innerHTML = approved.map(s => `
+                <tr>
+                    <td class="fw-bold">${s.name}</td>
+                    <td>${s.email}</td>
+                    <td><span class="badge bg-info text-dark">${s.station}</span></td>
+                    <td><span class="badge bg-success">正常 (Active)</span></td>
+                    <td>
+                        <button class="btn btn-outline-danger btn-sm" onclick="removeApprovedStaff('${s.email}')">注销账号</button>
+                    </td>
+                </tr>
+            `).join('');
+    }
+  }
+
+  function approveStaff(staffId) {
+    let pending = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
+    let approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
+
+    const targetIndex = pending.findIndex(s => s.id === staffId);
+    if (targetIndex !== -1) {
+      const target = pending.splice(targetIndex, 1)[0];
+      approved.push(target);
+      localStorage.setItem('apex_pending_staff', JSON.stringify(pending));
+      localStorage.setItem('apex_approved_staff', JSON.stringify(approved));
+      alert(`✅ 已批准员工 [${target.name} - 工位: ${target.station}]，该员工现在可凭工位密码登录后台！`);
+      refreshAllAdminData();
+    }
+  }
+
+  function rejectStaff(staffId) {
+    let pending = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
+    pending = pending.filter(s => s.id !== staffId);
+    localStorage.setItem('apex_pending_staff', JSON.stringify(pending));
+    alert('已拒绝该员工申请');
+    refreshAllAdminData();
+  }
+
+  function removeApprovedStaff(email) {
+    if (confirm(`确定要注销员工 (${email}) 的后台权限吗？`)) {
+      let approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
+      approved = approved.filter(s => s.email !== email);
+      localStorage.setItem('apex_approved_staff', JSON.stringify(approved));
+      refreshAllAdminData();
+    }
+  }
+</script>
+</body>
+</html>
