@@ -6,7 +6,6 @@
     <title>King's Auto Spa Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* 导航栏统一紧凑单行排版，中英文一致 */
         .nav-link-custom {
             font-size: 0.95rem;
             font-weight: 600;
@@ -35,15 +34,23 @@
         .time-badge-label { font-size: 0.8rem; color: #6c757d; font-weight: 600; margin-bottom: 2px; display: block; }
         .prod-card-img { height: 180px; object-fit: cover; width: 100%; }
         .receipt-card { border: 2px dashed #0d6efd; background-color: #f8fbff; }
+
+        /* 隐藏谷歌翻译原生的顶部横幅和下拉框 */
+        #google_translate_element { display: none !important; }
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
     </style>
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
+
+<!-- 隐藏的谷歌原生翻译挂载节点 -->
+<div id="google_translate_element"></div>
 
 <!-- 顶部导航栏 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
     <div class="container-fluid px-lg-4">
         <a class="navbar-brand fw-bold fs-4 d-flex align-items-center" href="javascript:void(0)" onclick="showPage('home')">
-            <span class="me-2">🚗</span> <span data-i18n="brand_name">King's Auto Spa Ltd</span>
+            <span class="me-2">🚗</span> <span>King's Auto Spa Ltd</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -51,29 +58,30 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-center gap-1">
                 <li class="nav-item">
-                    <a class="nav-link-custom nav-active" id="nav-btn-home" href="javascript:void(0)" onclick="showPage('home')" data-i18n="nav_home">Home</a>
+                    <a class="nav-link-custom nav-active" id="nav-btn-home" href="javascript:void(0)" onclick="showPage('home')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link-custom" id="nav-btn-services" href="javascript:void(0)" onclick="showPage('services')" data-i18n="nav_services">Wash & Booking</a>
+                    <a class="nav-link-custom" id="nav-btn-services" href="javascript:void(0)" onclick="showPage('services')">Wash & Booking</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link-custom" id="nav-btn-shop" href="javascript:void(0)" onclick="showPage('shop')" data-i18n="nav_shop">Parts & Shop</a>
+                    <a class="nav-link-custom" id="nav-btn-shop" href="javascript:void(0)" onclick="showPage('shop')">Parts & Shop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link-custom position-relative" id="nav-btn-cart" href="javascript:void(0)" onclick="showPage('cart')">
-                        🛒 <span data-i18n="nav_cart">Cart</span>
+                        🛒 <span>Cart</span>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCountBadge">0</span>
                     </a>
                 </li>
-                <li class="nav-item ms-lg-1">
-                    <button class="btn btn-outline-warning btn-sm fw-bold px-3 py-1" onclick="toggleLanguage()" id="langToggleBtn">
-                        中文 (Chinese)
+                <!-- 全站自动中英翻译按钮 (不翻译自身标签) -->
+                <li class="nav-item ms-lg-1 notranslate">
+                    <button class="btn btn-outline-warning btn-sm fw-bold px-3 py-1" onclick="toggleAutoTranslate()" id="langToggleBtn">
+                        中文 (Translate)
                     </button>
                 </li>
                 <!-- 用户状态区 -->
-                <li class="nav-item ms-lg-1" id="authNavArea">
-                    <button class="btn btn-primary btn-sm fw-bold px-3 py-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal" data-i18n="nav_login_btn">
-                        👤 Login / Register
+                <li class="nav-item ms-lg-1 notranslate" id="authNavArea">
+                    <button class="btn btn-primary btn-sm fw-bold px-3 py-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
+                        👤 Login / 登录
                     </button>
                 </li>
             </ul>
@@ -91,17 +99,17 @@
         <div class="carousel-inner">
             <div class="carousel-item active bg-primary bg-gradient text-white">
                 <div class="carousel-caption">
-                    <span class="badge bg-warning text-dark fs-6 mb-2" data-i18n="promo_tag">Monthly Special</span>
-                    <h1 class="display-5 fw-bold" data-i18n="promo_title">20% OFF Ceramic Coating & Detailing</h1>
-                    <p class="lead" data-i18n="promo_desc">Premium German-imported coating for lasting high-gloss paint protection</p>
-                    <button class="btn btn-warning btn-lg fw-bold px-4 mt-2" onclick="showPage('services')" data-i18n="hero_btn">Book Service Now</button>
+                    <span class="badge bg-warning text-dark fs-6 mb-2">Monthly Special</span>
+                    <h1 class="display-5 fw-bold">20% OFF Ceramic Coating & Detailing</h1>
+                    <p class="lead">Premium German-imported coating for lasting high-gloss paint protection</p>
+                    <button class="btn btn-warning btn-lg fw-bold px-4 mt-2" onclick="showPage('services')">Book Service Now</button>
                 </div>
             </div>
             <div class="carousel-item bg-dark text-white">
                 <div class="carousel-caption">
-                    <h1 class="display-5 fw-bold" data-i18n="about_title">10 Years of Premium Auto Care</h1>
-                    <p class="lead" data-i18n="about_desc">Certified master detailers dedicated to hand-wash precision and detail excellence</p>
-                    <button class="btn btn-primary btn-lg fw-bold px-4 mt-2" onclick="showPage('services')" data-i18n="hero_btn">Book Service Now</button>
+                    <h1 class="display-5 fw-bold">10 Years of Premium Auto Care</h1>
+                    <p class="lead">Certified master detailers dedicated to hand-wash precision and detail excellence</p>
+                    <button class="btn btn-primary btn-lg fw-bold px-4 mt-2" onclick="showPage('services')">Book Service Now</button>
                 </div>
             </div>
         </div>
@@ -112,41 +120,40 @@
     <div class="container my-5">
         <section class="mb-5">
             <div class="text-center mb-4">
-                <h2 class="fw-bold" data-i18n="gallery_title">Facility & Working Environment</h2>
-                <p class="text-muted" data-i18n="gallery_subtitle">Dust-free workshop, high-grade tools, and comfortable customer lounge</p>
+                <h2 class="fw-bold">Facility & Working Environment</h2>
+                <p class="text-muted">Dust-free workshop, high-grade tools, and comfortable customer lounge</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4 col-sm-6">
                     <div class="card border-0 shadow-sm overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=600&q=80" class="gallery-img">
-                        <div class="card-body p-2 text-center text-muted small" data-i18n="g_1">High-Pressure Rinse & Detailing Bay</div>
+                        <div class="card-body p-2 text-center text-muted small">High-Pressure Rinse & Detailing Bay</div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="card border-0 shadow-sm overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" class="gallery-img">
-                        <div class="card-body p-2 text-center text-muted small" data-i18n="g_2">Precision Multi-Stage Paint Polishing Bay</div>
+                        <div class="card-body p-2 text-center text-muted small">Precision Multi-Stage Paint Polishing Bay</div>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="card border-0 shadow-sm overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=600&q=80" class="gallery-img">
-                        <div class="card-body p-2 text-center text-muted small" data-i18n="g_3">VIP Customer Waiting Lounge</div>
+                        <div class="card-body p-2 text-center text-muted small">VIP Customer Waiting Lounge</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 更新后的店铺地址与 Google 地图定位 (4451 Number 3 Rd #220) -->
         <section class="p-4 bg-white rounded shadow-sm mb-5">
             <div class="row align-items-center g-4">
                 <div class="col-lg-5">
-                    <h3 class="fw-bold mb-3" data-i18n="location_title">📍 Location & Business Hours</h3>
+                    <h3 class="fw-bold mb-3">📍 Location & Business Hours</h3>
                     <p class="mb-2"><strong>Address:</strong> 4451 Number 3 Rd #220, Richmond, BC V6X 2C3</p>
                     <p class="mb-2"><strong>Phone:</strong> 604-555-0199</p>
                     <p class="mb-2"><strong>Email:</strong> contact@kingsautospa.ca</p>
                     <p class="mb-3"><strong>Hours:</strong> Mon - Sun: 9:00 AM - 6:30 PM</p>
-                    <a href="https://maps.google.com/?q=4451+Number+3+Rd+%23220,+Richmond,+BC+V6X+2C3" target="_blank" class="btn btn-primary fw-bold" data-i18n="open_maps_btn">Open in Google Maps</a>
+                    <a href="https://maps.google.com/?q=4451+Number+3+Rd+%23220,+Richmond,+BC+V6X+2C3" target="_blank" class="btn btn-primary fw-bold">Open in Google Maps</a>
                 </div>
                 <div class="col-lg-7">
                     <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
@@ -162,8 +169,8 @@
 <div id="page-services" class="page-section">
     <div class="container my-5">
         <div class="text-center mb-5">
-            <h1 class="fw-bold" data-i18n="pkg_main_title">Car Wash Packages & Pricing</h1>
-            <p class="text-muted" data-i18n="pkg_main_sub">Transparent pricing — choose the best care for your vehicle</p>
+            <h1 class="fw-bold">Car Wash Packages & Pricing</h1>
+            <p class="text-muted">Transparent pricing — choose the best care for your vehicle</p>
         </div>
 
         <div class="row g-4 mb-5">
@@ -223,8 +230,8 @@
 
         <!-- 预约表单 -->
         <div id="booking-form-anchor" class="p-4 p-md-5 bg-white rounded shadow">
-            <h3 class="fw-bold mb-2 text-center" data-i18n="form_title">Online Appointment Booking</h3>
-            <p class="text-center text-muted mb-4" data-i18n="form_desc">No prepayment required. Pay after service. Instant booking sync!</p>
+            <h3 class="fw-bold mb-2 text-center">Online Appointment Booking</h3>
+            <p class="text-center text-muted mb-4">No prepayment required. Pay after service. Instant booking sync!</p>
             <form onsubmit="handleBookingSubmit(event)">
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -429,21 +436,21 @@
     </div>
 </footer>
 
-<!-- ==================== 登录 / 注册 / 员工注册 模态框 ==================== -->
-<div class="modal fade" id="authModal" tabindex="-1">
+<!-- ==================== 登录/注册 模态框 (双语固定显示 notranslate) ==================== -->
+<div class="modal fade notranslate" id="authModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-bottom-0 pb-0">
                 <ul class="nav nav-pills w-100 justify-content-center gap-1">
                     <li class="nav-item">
-                        <button class="nav-link active fw-bold px-3 py-1" data-bs-toggle="pill" data-bs-target="#login-pane">Login</button>
+                        <button class="nav-link active fw-bold px-3 py-1" data-bs-toggle="pill" data-bs-target="#login-pane">Login / 登录</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link fw-bold px-3 py-1" data-bs-toggle="pill" data-bs-target="#register-pane">Register</button>
+                        <button class="nav-link fw-bold px-3 py-1" data-bs-toggle="pill" data-bs-target="#register-pane">Register / 注册</button>
                     </li>
                     <li class="nav-item">
                         <button class="nav-link fw-bold px-3 py-1 text-warning border border-warning" data-bs-toggle="pill" data-bs-target="#employee-pane">
-                            👔 Employee Only
+                            👔 Employee Only / 员工注册
                         </button>
                     </li>
                 </ul>
@@ -455,63 +462,65 @@
                     <div class="tab-pane fade show active" id="login-pane">
                         <form onsubmit="handleLogin(event)">
                             <div class="mb-3">
-                                <label class="form-label small fw-bold">Email Address</label>
+                                <label class="form-label small fw-bold">Email Address / 电子邮箱</label>
                                 <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small fw-bold">Password</label>
+                                <label class="form-label small fw-bold">Password / 密码</label>
                                 <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Log In</button>
+                            <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Log In / 登录账户</button>
                         </form>
                     </div>
 
-                    <!-- 2. 普通客户注册 (含确认密码与系统欢迎信) -->
+                    <!-- 2. 普通客户注册 -->
                     <div class="tab-pane fade" id="register-pane">
                         <form onsubmit="handleRegister(event)">
                             <div class="mb-3">
-                                <label class="form-label small fw-bold">Full Name</label>
+                                <label class="form-label small fw-bold">Full Name / 姓名</label>
                                 <input type="text" class="form-control" id="regName" placeholder="e.g. Alex" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small fw-bold">Email Address</label>
+                                <label class="form-label small fw-bold">Email Address / 电子邮箱</label>
                                 <input type="email" class="form-control" id="regEmail" placeholder="name@example.com" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small fw-bold">Password</label>
+                                <label class="form-label small fw-bold">Password / 密码</label>
                                 <input type="password" class="form-control" id="regPassword" placeholder="••••••••" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small fw-bold">Confirm Password</label>
+                                <label class="form-label small fw-bold">Confirm Password / 再次确认密码</label>
                                 <input type="password" class="form-control" id="regConfirmPassword" placeholder="••••••••" required>
                             </div>
-                            <button type="submit" class="btn btn-success w-100 fw-bold py-2">Create Customer Account</button>
+                            <button type="submit" class="btn btn-success w-100 fw-bold py-2">Create Customer Account / 创建客户账户</button>
                         </form>
                     </div>
 
-                    <!-- 3. 员工注册 (Employee Only: 工位号 + 工位密码) -->
+                    <!-- 3. 员工注册 -->
                     <div class="tab-pane fade" id="employee-pane">
                         <div class="alert alert-warning py-2 small mb-3">
-                            ⚠️ <strong>Staff Registration Notice:</strong> Submissions require owner approval before backend access is granted.
+                            ⚠️️ <strong>Staff Registration Notice / 员工注册须知:</strong><br>
+                            Submissions require owner approval before backend access is granted.<br>
+                            提交后需车行老板批准后方可生效登录。
                         </div>
                         <form onsubmit="handleEmployeeRegister(event)">
                             <div class="mb-2">
-                                <label class="form-label small fw-bold">Staff Full Name</label>
+                                <label class="form-label small fw-bold">Staff Full Name / 员工姓名</label>
                                 <input type="text" class="form-control" id="empName" placeholder="e.g. John Doe" required>
                             </div>
                             <div class="mb-2">
-                                <label class="form-label small fw-bold">Staff Email Address</label>
+                                <label class="form-label small fw-bold">Staff Email / 员工工作邮箱</label>
                                 <input type="email" class="form-control" id="empEmail" placeholder="staff@example.com" required>
                             </div>
                             <div class="mb-2">
-                                <label class="form-label small fw-bold">Station Number (工位号)</label>
+                                <label class="form-label small fw-bold">Station Number / 工位编号</label>
                                 <input type="text" class="form-control" id="empStation" placeholder="e.g. Bay-02" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label small fw-bold">Station Password (工位密码/登录密码)</label>
+                                <label class="form-label small fw-bold">Station Password / 工位登录密码</label>
                                 <input type="password" class="form-control" id="empPassword" placeholder="••••••••" required>
                             </div>
-                            <button type="submit" class="btn btn-warning w-100 fw-bold py-2">Submit Staff Application</button>
+                            <button type="submit" class="btn btn-warning w-100 fw-bold py-2">Submit Staff Application / 提交员工申请</button>
                         </form>
                     </div>
                 </div>
@@ -521,8 +530,47 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- 引入谷歌自动翻译引擎脚本 -->
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'zh-CN,en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script>
-    // 预设商品
+    // 全站一键中英自动切换核心逻辑
+    let isChineseActive = false;
+
+    function toggleAutoTranslate() {
+        const select = document.querySelector('.goog-te-combo');
+        const toggleBtn = document.getElementById('langToggleBtn');
+
+        if (!select) {
+            alert("Translation service is initializing, please try again in a moment.");
+            return;
+        }
+
+        if (!isChineseActive) {
+            select.value = 'zh-CN';
+            select.dispatchEvent(new Event('change'));
+            isChineseActive = true;
+            toggleBtn.innerText = "English (Original)";
+        } else {
+            select.value = 'en';
+            select.dispatchEvent(new Event('change'));
+            isChineseActive = false;
+            toggleBtn.innerText = "中文 (Translate)";
+        }
+    }
+
+    // 基础数据与逻辑初始化
     const defaultProducts = [
         { id: 1, name: "Premium Solid Car Vent Fragrance Clip", price: 19.99, stock: 42, status: "ACTIVE", img: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=400&q=80" },
         { id: 2, name: "All-Weather Premium Frameless Wiper Blades", price: 34.99, stock: 2, status: "ACTIVE", img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=400&q=80" },
@@ -597,7 +645,7 @@
             let btnHtml = '';
 
             if (isOffShelf) {
-                btnHtml = `<button class="btn btn-secondary btn-sm w-100 disabled">Off Shelf (已下架)</button>`;
+                btnHtml = `<button class="btn btn-secondary btn-sm w-100 disabled">Off Shelf</button>`;
             } else if (isOutOfStock) {
                 btnHtml = `<button class="btn btn-secondary btn-sm w-100 disabled">Out of Stock</button>`;
             } else if (!user) {
@@ -870,7 +918,6 @@
             `).join('');
     }
 
-    // ================= 认证系统 (用户、员工申请、老板) =================
     function handleLogin(event) {
         event.preventDefault();
         const email = document.getElementById('loginEmail').value.trim();
@@ -878,24 +925,19 @@
 
         let userObj = null;
 
-        // 老板账号
         if (email === 'boss@kingsautospa.ca' && pwd === '123456') {
             userObj = { name: "Boss (Owner)", email, role: "ADMIN" };
         } else {
-            // 检查已批准的员工
             const staffList = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
             const staff = staffList.find(s => s.email === email && s.password === pwd);
             if (staff) {
                 userObj = { name: staff.name, email: staff.email, station: staff.station, role: "STAFF" };
             } else {
-                // 检查待审批员工
                 const pendingStaff = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
                 if (pendingStaff.some(s => s.email === email)) {
-                    alert('⏳ Your staff account is still pending owner approval!');
+                    alert('⏳ Your staff account is still pending owner approval!\n您的员工账号仍在等待老板审批中！');
                     return;
                 }
-
-                // 检查客户账号
                 const registered = JSON.parse(localStorage.getItem('apex_registered_users') || "[]");
                 const found = registered.find(u => u.email === email && u.password === pwd);
                 if (found) userObj = { name: found.name, email: found.email, role: "CUSTOMER" };
@@ -913,11 +955,10 @@
                 updateCartBadge();
             }
         } else {
-            alert('Invalid Email or Password');
+            alert('Invalid Email or Password / 邮箱或密码错误');
         }
     }
 
-    // 客户注册 (密码双重确认 + 模拟英文邮件通知)
     function handleRegister(event) {
         event.preventDefault();
         const name = document.getElementById('regName').value.trim();
@@ -926,13 +967,13 @@
         const confirmPwd = document.getElementById('regConfirmPassword').value.trim();
 
         if (pwd !== confirmPwd) {
-            alert('⚠️ Password confirmation does not match! Please verify your password.');
+            alert('⚠️ Password confirmation does not match! / 两次密码输入不一致！');
             return;
         }
 
         let registered = JSON.parse(localStorage.getItem('apex_registered_users') || "[]");
         if (registered.some(u => u.email === email) || email.includes('kingsautospa.ca')) {
-            alert('This email address is already registered!');
+            alert('This email address is already registered! / 该邮箱已被注册！');
             return;
         }
 
@@ -940,20 +981,18 @@
         localStorage.setItem('apex_registered_users', JSON.stringify(registered));
         localStorage.setItem('apex_user', JSON.stringify({ name, email, role: "CUSTOMER" }));
 
-        // 弹出模拟发送的官方英文欢迎信
         alert(
-            `📧 [King's Auto Spa Ltd] - Registration Welcome Email
+            `📧 [King's Auto Spa Ltd] - Registration Confirmation Email
 --------------------------------------------------
 To: ${email}
 Subject: Welcome to King's Auto Spa Ltd!
 
 Dear ${name},
 
-Your customer account has been successfully created.
-You can now log in, schedule your vehicle detailing appointments, and order auto parts anytime with full order tracking.
+Your customer account has been created successfully.
+You can now book appointments and place orders anytime.
 
-Thank you for choosing King's Auto Spa Ltd!
-Store Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
+Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
         );
 
         bootstrap.Modal.getInstance(document.getElementById('authModal')).hide();
@@ -961,7 +1000,6 @@ Store Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
         renderShopProducts();
     }
 
-    // 员工注册提交 (放入 pending 队列等待老板批准)
     function handleEmployeeRegister(event) {
         event.preventDefault();
         const name = document.getElementById('empName').value.trim();
@@ -980,7 +1018,7 @@ Store Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
         pending.push({ id: Date.now(), name, email, station, password: pwd, appliedAt: new Date().toLocaleString() });
         localStorage.setItem('apex_pending_staff', JSON.stringify(pending));
 
-        alert(`✅ Staff application submitted for station [${station}]!\n\nThe owner has been notified via internal notice. You can log in once approved by the owner.`);
+        alert(`✅ Staff application submitted for station [${station}]!\n\nThe owner has been notified. You can log in once approved.`);
         bootstrap.Modal.getInstance(document.getElementById('authModal')).hide();
         event.target.reset();
     }
@@ -998,18 +1036,18 @@ Store Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
                             👤 ${user.name}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end shadow">
-                            ${isStaffOrAdmin ? `<li><a class="dropdown-item text-warning fw-bold" href="admin.html">🛠️ Backend Portal</a></li><li><hr class="dropdown-divider"></li>` : ''}
-                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showPage('orders')">📦 My Orders</a></li>
-                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showPage('cart')">🛒 My Cart</a></li>
+                            ${isStaffOrAdmin ? `<li><a class="dropdown-item text-warning fw-bold" href="admin.html">🛠️ Backend Portal / 后台</a></li><li><hr class="dropdown-divider"></li>` : ''}
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showPage('orders')">📦 My Orders / 我的订单</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="showPage('cart')">🛒 My Cart / 购物车</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="handleLogout()">Logout</a></li>
+                            <li><a class="dropdown-item text-danger" href="javascript:void(0)" onclick="handleLogout()">Logout / 退出</a></li>
                         </ul>
                     </div>
                 `;
         } else {
             authArea.innerHTML = `
-                    <button class="btn btn-primary btn-sm fw-bold px-3 py-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal" data-i18n="nav_login_btn">
-                        👤 Login / Register
+                    <button class="btn btn-primary btn-sm fw-bold px-3 py-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
+                        👤 Login / 登录
                     </button>
                 `;
         }
@@ -1020,89 +1058,6 @@ Store Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
         checkCurrentUser();
         renderShopProducts();
         showPage('home');
-    }
-
-    // ================= 中英文语言切换字典 =================
-    let currentLang = 'en';
-    const i18nDict = {
-        en: {
-            brand_name: "King's Auto Spa Ltd",
-            nav_home: "Home",
-            nav_services: "Wash & Booking",
-            nav_shop: "Parts & Shop",
-            nav_cart: "Cart",
-            nav_login_btn: "👤 Login / Register",
-            promo_tag: "Monthly Special",
-            promo_title: "20% OFF Ceramic Coating & Detailing",
-            promo_desc: "Premium German-imported coating for lasting high-gloss paint protection",
-            hero_btn: "Book Service Now",
-            about_title: "10 Years of Premium Auto Care",
-            about_desc: "Certified master detailers dedicated to hand-wash precision and detail excellence",
-            gallery_title: "Facility & Working Environment",
-            gallery_subtitle: "Dust-free workshop, high-grade tools, and comfortable customer lounge",
-            g_1: "High-Pressure Rinse & Detailing Bay",
-            g_2: "Precision Multi-Stage Paint Polishing Bay",
-            g_3: "VIP Customer Waiting Lounge",
-            open_maps_btn: "Open in Google Maps",
-            location_title: "📍 Location & Business Hours",
-            pkg_main_title: "Car Wash Packages & Pricing",
-            pkg_main_sub: "Transparent pricing — choose the best care for your vehicle",
-            form_title: "Online Appointment Booking",
-            form_desc: "No prepayment required. Pay after service. Instant booking sync!"
-        },
-        zh: {
-            brand_name: "King's Auto Spa Ltd",
-            nav_home: "首页",
-            nav_services: "洗车服务 & 在线预约",
-            nav_shop: "用品商城",
-            nav_cart: "购物车",
-            nav_login_btn: "👤 登录 / 注册",
-            promo_tag: "本月限时特惠",
-            promo_title: "全车深度镀晶封釉享 8 折优惠",
-            promo_desc: "引进德国进口养护原液，长效保护爱车漆面光泽",
-            hero_btn: "立即预约服务",
-            about_title: "专注高端汽美养护 10 年",
-            about_desc: "我们拥有认证汽美技师团队，坚持手工精洗与无微不至的细节把控",
-            gallery_title: "专业施工车间与店内环境",
-            gallery_subtitle: "无尘恒温车间、专业汽美设备、宽敞舒适的客户休息区",
-            g_1: "高压雾化清洗与无尘施工区",
-            g_2: "专业级漆面微距抛光车间",
-            g_3: "VIP 客户茶歇与全景等候室",
-            open_maps_btn: "在 Google Maps 中导航",
-            location_title: "📍 来店地址与营业时间",
-            pkg_main_title: "洗车服务套餐明细",
-            pkg_main_sub: "清晰透明定价，选择最契合您爱车的护理方案",
-            form_title: "在线预约洗车登记",
-            form_desc: "无需在线预付，到店洗车验收合格后再付款。预约即时同步！"
-        }
-    };
-
-    function toggleLanguage() {
-        currentLang = (currentLang === 'en') ? 'zh' : 'en';
-        document.getElementById('langToggleBtn').innerText = (currentLang === 'en') ? '中文 (Chinese)' : 'English';
-
-        document.querySelectorAll('[data-i18n]').forEach(elem => {
-            const key = elem.getAttribute('data-i18n');
-            if (i18nDict[currentLang] && i18nDict[currentLang][key]) {
-                elem.innerText = i18nDict[currentLang][key];
-            }
-        });
-
-        if (currentLang === 'zh') {
-            document.getElementById('custName').placeholder = "例如：张三 / Alex";
-            document.getElementById('custPhone').placeholder = "例如：604-555-0199";
-            document.getElementById('custEmail').placeholder = "name@example.com";
-            document.getElementById('custCarModel').placeholder = "例如：Tesla Model 3";
-            document.getElementById('custPlate').placeholder = "例如：BC-AB123C";
-        } else {
-            document.getElementById('custName').placeholder = "e.g. Alex Smith";
-            document.getElementById('custPhone').placeholder = "e.g. 604-555-0199";
-            document.getElementById('custEmail').placeholder = "name@example.com";
-            document.getElementById('custCarModel').placeholder = "e.g. Tesla Model 3";
-            document.getElementById('custPlate').placeholder = "e.g. BC-AB123C";
-        }
-        renderShopProducts();
-        checkCurrentUser();
     }
 </script>
 </body>
