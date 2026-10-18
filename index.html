@@ -3,54 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>King's Auto Spa Ltd</title>
+    <title>Pit Lane Car Detailing | Premium Hand Car Wash & Auto Detailing, Richmond BC</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        :root {
+            --pl-dark: #0f1115;
+            --pl-card-dark: #181b22;
+            --pl-gold: #f59e0b;
+            --pl-gold-hover: #d97706;
+            --pl-border: #2a2f3a;
+        }
+        body {
+            background-color: #f6f7f9;
+            color: #1a1e24;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        /* 顶部导航栏：黑金高定质感，紧凑不折行 */
+        .navbar-custom {
+            background-color: var(--pl-dark);
+            border-bottom: 1px solid var(--pl-border);
+        }
         .nav-link-custom {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 600;
-            padding: 6px 14px !important;
+            padding: 6px 13px !important;
             border-radius: 20px;
             transition: all 0.2s ease;
-            color: rgba(255, 255, 255, 0.8) !important;
+            color: rgba(255, 255, 255, 0.78) !important;
             text-decoration: none;
             white-space: nowrap;
             display: inline-block;
         }
         .nav-link-custom:hover {
             color: #ffffff !important;
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.1);
         }
         .nav-link-custom.nav-active {
-            color: #0d6efd !important;
-            background-color: #ffffff !important;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            color: var(--pl-dark) !important;
+            background-color: var(--pl-gold) !important;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
         }
-        .carousel-item { height: 380px; background-color: #1a1e21; }
-        .carousel-item .carousel-caption { top: 50%; transform: translateY(-50%); bottom: initial; }
-        .gallery-img { height: 220px; object-fit: cover; width: 100%; border-radius: 8px; }
+        /* Hero 横幅区 (仿 kingsautospabc.com 风格) */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(15,17,21,0.92) 0%, rgba(24,27,34,0.85) 100%),
+            url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #ffffff;
+            padding: 85px 0 75px;
+            border-bottom: 3px solid var(--pl-gold);
+        }
+        .hero-pill {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.45);
+            color: #fbbf24;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 18px;
+        }
+        .craft-number {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--pl-gold);
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .service-row-item {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 18px 20px;
+            transition: all 0.2s ease;
+        }
+        .service-row-item:hover {
+            border-color: var(--pl-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+        }
+        .membership-card {
+            border-radius: 14px;
+            transition: transform 0.25s ease;
+        }
+        .membership-card:hover {
+            transform: translateY(-5px);
+        }
+        .dont-do-card {
+            background-color: var(--pl-dark);
+            color: #ffffff;
+            border-radius: 14px;
+            border-left: 4px solid var(--pl-gold);
+        }
         .page-section { display: none; }
         .active-section { display: block; }
         .time-badge-label { font-size: 0.8rem; color: #6c757d; font-weight: 600; margin-bottom: 2px; display: block; }
-        .prod-card-img { height: 180px; object-fit: cover; width: 100%; }
+        .prod-card-img { height: 185px; object-fit: cover; width: 100%; }
         .receipt-card { border: 2px dashed #0d6efd; background-color: #f8fbff; }
-
-        /* 隐藏谷歌翻译原生的顶部横幅和下拉框 */
-        #google_translate_element { display: none !important; }
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0px !important; }
     </style>
 </head>
-<body class="bg-light d-flex flex-column min-vh-100">
-
-<!-- 隐藏的谷歌原生翻译挂载节点 -->
-<div id="google_translate_element"></div>
+<body class="d-flex flex-column min-vh-100">
 
 <!-- 顶部导航栏 -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top shadow-sm py-2">
     <div class="container-fluid px-lg-4">
-        <a class="navbar-brand fw-bold fs-4 d-flex align-items-center" href="javascript:void(0)" onclick="showPage('home')">
-            <span class="me-2">🚗</span> <span>King's Auto Spa Ltd</span>
+        <a class="navbar-brand fw-bold fs-4 d-flex align-items-center text-white" href="javascript:void(0)" onclick="showPage('home')">
+            <span class="me-2">🏎️</span>
+            <span>Pit Lane <span class="text-warning">Car Detailing</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -61,10 +121,16 @@
                     <a class="nav-link-custom nav-active" id="nav-btn-home" href="javascript:void(0)" onclick="showPage('home')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link-custom" id="nav-btn-services" href="javascript:void(0)" onclick="showPage('services')">Wash & Booking</a>
+                    <a class="nav-link-custom" id="nav-btn-services" href="javascript:void(0)" onclick="showPage('services')">Services & Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-custom" id="nav-btn-membership" href="javascript:void(0)" onclick="showPage('membership')">Memberships</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link-custom" id="nav-btn-shop" href="javascript:void(0)" onclick="showPage('shop')">Parts & Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link-custom" id="nav-btn-booking" href="javascript:void(0)" onclick="showPage('booking')">Book a Bay</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link-custom position-relative" id="nav-btn-cart" href="javascript:void(0)" onclick="showPage('cart')">
@@ -72,16 +138,14 @@
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCountBadge">0</span>
                     </a>
                 </li>
-                <!-- 全站自动中英翻译按钮 (不翻译自身标签) -->
                 <li class="nav-item ms-lg-1 notranslate">
                     <button class="btn btn-outline-warning btn-sm fw-bold px-3 py-1" onclick="toggleAutoTranslate()" id="langToggleBtn">
-                        中文 (Translate)
+                        中文
                     </button>
                 </li>
-                <!-- 用户状态区 -->
                 <li class="nav-item ms-lg-1 notranslate" id="authNavArea">
-                    <button class="btn btn-primary btn-sm fw-bold px-3 py-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
-                        👤 Login / 登录
+                    <button class="btn btn-warning btn-sm fw-bold px-3 py-1 text-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
+                        👤 Login / Register
                     </button>
                 </li>
             </ul>
@@ -89,75 +153,145 @@
     </div>
 </nav>
 
-<!-- 1. 主页面 -->
+<!-- ==================== 1. 首页 (HOME PAGE - 融合 kingsautospabc.com 风格) ==================== -->
 <div id="page-home" class="page-section active-section">
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active bg-primary bg-gradient text-white">
-                <div class="carousel-caption">
-                    <span class="badge bg-warning text-dark fs-6 mb-2">Monthly Special</span>
-                    <h1 class="display-5 fw-bold">20% OFF Ceramic Coating & Detailing</h1>
-                    <p class="lead">Premium German-imported coating for lasting high-gloss paint protection</p>
-                    <button class="btn btn-warning btn-lg fw-bold px-4 mt-2" onclick="showPage('services')">Book Service Now</button>
+    <!-- Hero Banner -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="hero-pill">
+                        <span>Indoor Bay · Hand Work Only · English & 中文 · Open 7 Days</span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-3">More than a car wash.</h1>
+                    <h3 class="fw-normal text-warning mb-3">Precision hand detailing, car wash memberships & auto accessories</h3>
+                    <p class="lead text-white-50 mb-4">
+                        We work out of an indoor bay on No. 3 Road in Richmond. Two-bucket hand wash, keys back in 20 to 30 minutes. No harsh brush machines, no shortcuts — daily drivers and weekend cars get the same meticulous attention.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-warning btn-lg fw-bold text-dark px-4" onclick="showPage('booking')">Book a Bay →</button>
+                        <button class="btn btn-outline-light btn-lg fw-bold px-4" onclick="showPage('membership')">View Memberships</button>
+                        <button class="btn btn-outline-info btn-lg fw-bold px-4" onclick="showPage('shop')">Browse Parts Shop</button>
+                    </div>
                 </div>
             </div>
-            <div class="carousel-item bg-dark text-white">
-                <div class="carousel-caption">
-                    <h1 class="display-5 fw-bold">10 Years of Premium Auto Care</h1>
-                    <p class="lead">Certified master detailers dedicated to hand-wash precision and detail excellence</p>
-                    <button class="btn btn-primary btn-lg fw-bold px-4 mt-2" onclick="showPage('services')">Book Service Now</button>
-                </div>
-            </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
-    </div>
+    </section>
 
     <div class="container my-5">
+        <!-- 四大主打核心项目 (Complete care for a cleaner, healthier, shinier vehicle) -->
         <section class="mb-5">
-            <div class="text-center mb-4">
-                <h2 class="fw-bold">Facility & Working Environment</h2>
-                <p class="text-muted">Dust-free workshop, high-grade tools, and comfortable customer lounge</p>
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+                <div>
+                    <span class="text-warning fw-bold text-uppercase small">What We Do</span>
+                    <h2 class="fw-bold mb-0">Complete care for a cleaner, healthier, shinier vehicle</h2>
+                </div>
+                <button class="btn btn-link text-dark fw-bold p-0" onclick="showPage('services')">View all 11 services →</button>
             </div>
             <div class="row g-4">
-                <div class="col-md-4 col-sm-6">
-                    <div class="card border-0 shadow-sm overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=600&q=80" class="gallery-img">
-                        <div class="card-body p-2 text-center text-muted small">High-Pressure Rinse & Detailing Bay</div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <div class="fs-2 mb-2">🧽</div>
+                        <h5 class="fw-bold">Manual Car Wash</h5>
+                        <p class="text-muted small flex-grow-1">Two-bucket hand wash over body, wheels and arches. Blown dry and microfiber towel finished, keys back in 20 to 30 minutes.</p>
+                        <a href="javascript:void(0)" class="fw-bold text-primary text-decoration-none small" onclick="quickBookService('Manual Car Wash ($35)')">Book this service →</a>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card border-0 shadow-sm overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" class="gallery-img">
-                        <div class="card-body p-2 text-center text-muted small">Precision Multi-Stage Paint Polishing Bay</div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <div class="fs-2 mb-2">💨</div>
+                        <h5 class="fw-bold">Interior Steam Cleaning</h5>
+                        <p class="text-muted small flex-grow-1">High-temp steam and extraction through cabin carpets, seats and vents. Odours and stains treated directly at the source.</p>
+                        <a href="javascript:void(0)" class="fw-bold text-primary text-decoration-none small" onclick="quickBookService('Interior Steam Shampoo ($150)')">Book this service →</a>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card border-0 shadow-sm overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=600&q=80" class="gallery-img">
-                        <div class="card-body p-2 text-center text-muted small">VIP Customer Waiting Lounge</div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <div class="fs-2 mb-2">✨</div>
+                        <h5 class="fw-bold">Polish, Wax & Scratch</h5>
+                        <p class="text-muted small flex-grow-1">Swirls and light scratches machined out panel by panel, followed by hand-applied wax or ceramic sealant for deep gloss.</p>
+                        <a href="javascript:void(0)" class="fw-bold text-primary text-decoration-none small" onclick="quickBookService('Polish & Wax ($160)')">Book this service →</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card h-100 border-0 shadow-sm p-3">
+                        <div class="fs-2 mb-2">🛡️</div>
+                        <h5 class="fw-bold">Tinting & Wheel Repair</h5>
+                        <p class="text-muted small flex-grow-1">Window film fitted within BC legal limits, curb rash wheel refinishing, headlight restoration and ceramic protection.</p>
+                        <a href="javascript:void(0)" class="fw-bold text-primary text-decoration-none small" onclick="quickBookService('Ceramic Coating & Protection ($299)')">Book this service →</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="p-4 bg-white rounded shadow-sm mb-5">
+        <!-- 为什么选择我们：01-04 匠心标准 (Driven by craft. Built on trust.) -->
+        <section class="py-5 px-4 bg-white rounded-4 shadow-sm mb-5">
+            <div class="text-center mb-5">
+                <span class="badge bg-dark text-warning px-3 py-2 mb-2">Why Choose Pit Lane</span>
+                <h2 class="fw-bold">A shop that still does the work by hand</h2>
+                <p class="text-muted">Get the car clean, put right what can be put right, then protect it.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number">01. HAND WORK ONLY</span>
+                    <h5 class="fw-bold">No Brush Machines</h5>
+                    <p class="text-muted small">Every vehicle is washed by hand with pH-neutral snow foam and clean microfiber mitts to prevent swirl marks.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number">02. PRICE BEFORE WORK</span>
+                    <h5 class="fw-bold">Transparent Quotes</h5>
+                    <p class="text-muted small">Every car is inspected before a number is given. You hear the exact price before the work starts, never after.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number">03. FAST TURNAROUND</span>
+                    <h5 class="fw-bold">20 to 30 Mins Wash</h5>
+                    <p class="text-muted small">Efficient team coordination ensures a thorough hand wash in 20–30 minutes without pushing your car aside.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number">04. TWO LANGUAGES</span>
+                    <h5 class="fw-bold">English & 中文 Service</h5>
+                    <p class="text-muted small">Come in speaking either English or Chinese. The quote, the explanation and the receipt read clearly in both.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 四不原则 (Four things we will not do - 复刻 kingsautospabc.com 经典板块) -->
+        <section class="mb-5">
+            <div class="row g-4 align-items-stretch">
+                <div class="col-md-6">
+                    <div class="dont-do-card p-4 h-100">
+                        <h5 class="fw-bold text-warning mb-2">✗ We will not polish a dirty car</h5>
+                        <p class="text-white-50 small mb-0">Nothing gets polished, waxed or coated until the paint is fully decontaminated and tree sap or road tar are dissolved off. Skipping that saves an hour and ruins the paint.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dont-do-card p-4 h-100">
+                        <h5 class="fw-bold text-warning mb-2">✗ We will not promise what paint cannot give</h5>
+                        <p class="text-white-50 small mb-0">A deep scratch through the clear coat will not vanish by magic. We inspect paint depth first and tell you honestly at the counter how much better it can get.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 门店地址与 Google Map (Pit Lane Car Detailing: 4551 No. 3 Rd #195) -->
+        <section class="p-4 bg-white rounded-4 shadow-sm">
             <div class="row align-items-center g-4">
                 <div class="col-lg-5">
-                    <h3 class="fw-bold mb-3">📍 Location & Business Hours</h3>
-                    <p class="mb-2"><strong>Address:</strong> 4451 Number 3 Rd #220, Richmond, BC V6X 2C3</p>
-                    <p class="mb-2"><strong>Phone:</strong> 604-555-0199</p>
-                    <p class="mb-2"><strong>Email:</strong> contact@kingsautospa.ca</p>
-                    <p class="mb-3"><strong>Hours:</strong> Mon - Sun: 9:00 AM - 6:30 PM</p>
-                    <a href="https://maps.google.com/?q=4451+Number+3+Rd+%23220,+Richmond,+BC+V6X+2C3" target="_blank" class="btn btn-primary fw-bold">Open in Google Maps</a>
+                    <span class="text-warning fw-bold small text-uppercase">Visit Our Indoor Bay</span>
+                    <h3 class="fw-bold mb-3">📍 Location & Contact</h3>
+                    <p class="mb-2"><strong>Shop:</strong> Pit Lane Hand Carwash & Detail</p>
+                    <p class="mb-2"><strong>Address:</strong> #195 - 4551 No. 3 Road, Richmond, BC V6X 2C3</p>
+                    <p class="mb-2"><strong>Telephone:</strong> (604) 303-8885</p>
+                    <p class="mb-2"><strong>Email:</strong> info@pitlanedetailing.ca</p>
+                    <p class="mb-3"><strong>Hours:</strong> Open 7 Days · Mon–Fri 10am–6pm | Sat–Sun 9am–6pm</p>
+                    <div class="d-flex gap-2">
+                        <a href="https://maps.google.com/?q=4551+Number+3+Rd+%23195,+Richmond,+BC+V6X+2C3" target="_blank" class="btn btn-dark fw-bold">Open in Google Maps</a>
+                        <button class="btn btn-warning fw-bold text-dark" onclick="showPage('booking')">Book a Bay →</button>
+                    </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
-                        <iframe src="https://maps.google.com/maps?q=4451+Number+3+Rd+%23220,+Richmond,+BC+V6X+2C3&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://maps.google.com/maps?q=4551+Number+3+Rd+%23195,+Richmond,+BC+V6X+2C3&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -165,73 +299,226 @@
     </div>
 </div>
 
-<!-- 2. 洗车服务与预约页面 -->
+<!-- ==================== 2. 完整服务与报价页面 (SERVICES PAGE - 复刻 11 项全清单) ==================== -->
 <div id="page-services" class="page-section">
     <div class="container my-5">
         <div class="text-center mb-5">
-            <h1 class="fw-bold">Car Wash Packages & Pricing</h1>
-            <p class="text-muted">Transparent pricing — choose the best care for your vehicle</p>
+            <span class="badge bg-warning text-dark px-3 py-1 mb-2">Hand Work Only</span>
+            <h1 class="fw-bold">The Full List of Detailing Services</h1>
+            <p class="text-muted">Book one service on its own or combine several in a single visit</p>
+        </div>
+
+        <div class="row g-3 mb-5">
+            <!-- 1 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Manual Car Wash <span class="text-muted fs-6">手洗全车</span></h5>
+                        <p class="text-muted small mb-1">Two-bucket hand wash over body, wheels and arches, blown dry and towel finished, glass in and out.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 20 to 30 mins</span>
+                        <span class="badge bg-primary ms-1">From $35</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Manual Car Wash ($35)')">Select →</button>
+                </div>
+            </div>
+            <!-- 2 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Full Interior & Exterior Detail <span class="text-muted fs-6">内外全车精洗</span></h5>
+                        <p class="text-muted small mb-1">Complete exterior hand wash plus deep cabin vacuum, mat wash, console sanitization and leather care.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 1.5 to 2.5 hrs</span>
+                        <span class="badge bg-primary ms-1">From $89</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Full Interior & Exterior Detail ($89)')">Select →</button>
+                </div>
+            </div>
+            <!-- 3 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Interior Steam Shampoo <span class="text-muted fs-6">内部蒸汽清洗</span></h5>
+                        <p class="text-muted small mb-1">Steam and extraction through carpets, seats, mats and headliner, vents by hand, odours treated at source.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 3 to 5 hrs</span>
+                        <span class="badge bg-primary ms-1">From $150</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Interior Steam Shampoo ($150)')">Select →</button>
+                </div>
+            </div>
+            <!-- 4 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Polish & Wax <span class="text-muted fs-6">抛光打蜡</span></h5>
+                        <p class="text-muted small mb-1">Machine polish for deep gloss restoration, followed by hand-applied carnauba/ceramic wax protection.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 3 to 6 hrs</span>
+                        <span class="badge bg-primary ms-1">From $160</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Polish & Wax ($160)')">Select →</button>
+                </div>
+            </div>
+            <!-- 5 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Scratch Removal <span class="text-muted fs-6">去花痕与太阳纹</span></h5>
+                        <p class="text-muted small mb-1">Light scratches, swirls and wash marks machined out panel by panel, paint depth checked first.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ Half day to 2 days</span>
+                        <span class="badge bg-primary ms-1">From $180</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Scratch Removal ($180)')">Select →</button>
+                </div>
+            </div>
+            <!-- 6 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Tree Sap & Tar Cleaning <span class="text-muted fs-6">清理树胶、柏油</span></h5>
+                        <p class="text-muted small mb-1">Sap, road tar and industrial overspray dissolved and lifted off paint and glass, never scrubbed in.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 1 to 3 hrs</span>
+                        <span class="badge bg-primary ms-1">From $75</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Tree Sap & Tar Cleaning ($75)')">Select →</button>
+                </div>
+            </div>
+            <!-- 7 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Headlight Restoration <span class="text-muted fs-6">大灯翻新</span></h5>
+                        <p class="text-muted small mb-1">Yellowed, hazy lenses wet-sanded back, machine polished and UV-sealed so light gets out at night.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 1 to 2 hrs</span>
+                        <span class="badge bg-primary ms-1">From $65</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Headlight Restoration ($65)')">Select →</button>
+                </div>
+            </div>
+            <!-- 8 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Engine Bay Cleaning <span class="text-muted fs-6">发动机舱清洁</span></h5>
+                        <p class="text-muted small mb-1">Engine bay safely degreased and plastics dressed, with sensitive electronics covered before spraying.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 1 to 2 hrs</span>
+                        <span class="badge bg-primary ms-1">From $60</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Engine Bay Cleaning ($60)')">Select →</button>
+                </div>
+            </div>
+            <!-- 9 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Wheel Repair & Refinishing <span class="text-muted fs-6">轮圈修复</span></h5>
+                        <p class="text-muted small mb-1">Curb rash repaired, primed and refinished so the alloy wheel matches the rest of the set.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ 1 to 2 days</span>
+                        <span class="badge bg-primary ms-1">From $120 / wheel</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Wheel Repair ($120)')">Select →</button>
+                </div>
+            </div>
+            <!-- 10 -->
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1">Ceramic Coating & Tinting <span class="text-muted fs-6">纳米镀晶与贴膜</span></h5>
+                        <p class="text-muted small mb-1">Multi-year graphene/ceramic paint protection or heat-rejecting window tint within BC legal limits.</p>
+                        <span class="badge bg-light text-secondary border">⏱️ Half day to 1 day</span>
+                        <span class="badge bg-primary ms-1">From $299</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="quickBookService('Ceramic Coating & Protection ($299)')">Select →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 3. 月度会员套餐页 (MEMBERSHIP PAGE - 复刻 kingsautospabc.com) ==================== -->
+<div id="page-membership" class="page-section">
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <span class="badge bg-warning text-dark px-3 py-1 mb-2">Wash More. Save More.</span>
+            <h1 class="fw-bold">Car Wash Membership Plans</h1>
+            <p class="text-muted">Flexible monthly upkeep plans for every driver — keep your car spotless all month long</p>
         </div>
 
         <div class="row g-4 mb-5">
+            <!-- Basic Plan -->
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-header bg-white text-center py-3">
-                        <h4 class="fw-bold mb-0">Exterior Express Wash</h4>
-                    </div>
-                    <div class="card-body text-center d-flex flex-column">
-                        <h2 class="text-primary fw-bold mb-3">$29.99</h2>
-                        <ul class="list-unstyled text-secondary text-start mb-4 flex-grow-1">
-                            <li>✓ pH-neutral foam pre-soak</li>
-                            <li>✓ High-pressure undercarriage rinse</li>
-                            <li>✓ Wheel cleaning & tire shine</li>
-                            <li>✓ Microfiber streak-free dry</li>
+                <div class="card h-100 shadow-sm border-0 membership-card p-3">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h4 class="fw-bold">Basic Membership</h4>
+                        <p class="text-muted small">Essential Routine Care</p>
+                        <h2 class="fw-bold my-3">$29 <span class="fs-6 text-muted fw-normal">/ month</span></h2>
+                        <ul class="list-unstyled text-start text-secondary mb-4 flex-grow-1 lh-lg">
+                            <li>✓ 4 exterior hand washes per month</li>
+                            <li>✓ Standard microfiber dry & tire shine</li>
+                            <li>✓ Member-only pricing on detailing</li>
+                            <li>✓ Cancel anytime, no long-term lock</li>
                         </ul>
-                        <a href="#booking-form-anchor" class="btn btn-outline-primary fw-bold" onclick="selectPackage('Exterior Express Wash ($29.99)')">Select Package</a>
+                        <button class="btn btn-outline-dark fw-bold w-100 py-2" onclick="quickBookService('Membership: Basic Plan ($29/mo)')">Choose Basic</button>
                     </div>
                 </div>
             </div>
+
+            <!-- Premium Plan (Most Popular) -->
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-primary">
-                    <div class="card-header bg-primary text-white text-center py-3">
-                        <span class="badge bg-warning text-dark mb-1">Most Popular</span>
-                        <h4 class="fw-bold mb-0">Full Interior & Exterior Detail</h4>
-                    </div>
-                    <div class="card-body text-center d-flex flex-column">
-                        <h2 class="text-primary fw-bold mb-3">$89.99</h2>
-                        <ul class="list-unstyled text-secondary text-start mb-4 flex-grow-1">
-                            <li>✓ All Exterior Express items</li>
-                            <li>✓ Deep cabin vacuum & floor mat wash</li>
-                            <li>✓ Interior console sanitation</li>
-                            <li>✓ Leather conditioning treatment</li>
+                <div class="card h-100 shadow border-warning membership-card p-3" style="border-width: 2px;">
+                    <div class="card-body d-flex flex-column text-center">
+                        <div><span class="badge bg-warning text-dark mb-2">MOST POPULAR</span></div>
+                        <h4 class="fw-bold">Premium Membership</h4>
+                        <p class="text-muted small">Frequent Commuter Choice</p>
+                        <h2 class="fw-bold text-primary my-3">$49 <span class="fs-6 text-muted fw-normal">/ month</span></h2>
+                        <ul class="list-unstyled text-start text-secondary mb-4 flex-grow-1 lh-lg">
+                            <li>✓ <strong>Unlimited</strong> exterior hand washes</li>
+                            <li>✓ Monthly interior vacuum & wipe-down</li>
+                            <li>✓ Priority bay booking access</li>
+                            <li>✓ 10% OFF all additional detailing services</li>
+                            <li>✓ Cancel anytime</li>
                         </ul>
-                        <a href="#booking-form-anchor" class="btn btn-primary fw-bold" onclick="selectPackage('Full Interior & Exterior Detail ($89.99)')">Select Package</a>
+                        <button class="btn btn-warning fw-bold text-dark w-100 py-2" onclick="quickBookService('Membership: Premium Plan ($49/mo)')">Choose Premium</button>
                     </div>
                 </div>
             </div>
+
+            <!-- VIP Plan -->
             <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-header bg-white text-center py-3">
-                        <h4 class="fw-bold mb-0">Ceramic Coating Pro</h4>
-                    </div>
-                    <div class="card-body text-center d-flex flex-column">
-                        <h2 class="text-primary fw-bold mb-3">$199.99</h2>
-                        <ul class="list-unstyled text-secondary text-start mb-4 flex-grow-1">
-                            <li>✓ All Full Detail items</li>
-                            <li>✓ Iron deposit & tar decontamination</li>
-                            <li>✓ Professional 3-stage polishing</li>
-                            <li>✓ Dual-layer graphene/ceramic coat</li>
+                <div class="card h-100 shadow-sm border-0 membership-card bg-dark text-white p-3">
+                    <div class="card-body d-flex flex-column text-center">
+                        <div><span class="badge bg-secondary mb-2">ROYAL TREATMENT</span></div>
+                        <h4 class="fw-bold text-warning">VIP All-Access</h4>
+                        <p class="text-white-50 small">Complete Inside & Out Upkeep</p>
+                        <h2 class="fw-bold text-white my-3">$79 <span class="fs-6 text-white-50 fw-normal">/ month</span></h2>
+                        <ul class="list-unstyled text-start text-white-50 mb-4 flex-grow-1 lh-lg">
+                            <li>✓ <strong>Unlimited</strong> washes (exterior & interior)</li>
+                            <li>✓ Top priority bay reservation</li>
+                            <li>✓ 15% OFF all additional services & parts</li>
+                            <li>✓ Quarterly wax / protection boost</li>
+                            <li>✓ Cancel anytime</li>
                         </ul>
-                        <a href="#booking-form-anchor" class="btn btn-outline-primary fw-bold" onclick="selectPackage('Ceramic Coating Pro ($199.99)')">Select Package</a>
+                        <button class="btn btn-outline-warning fw-bold w-100 py-2" onclick="quickBookService('Membership: VIP Plan ($79/mo)')">Choose VIP</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 预约表单 -->
-        <div id="booking-form-anchor" class="p-4 p-md-5 bg-white rounded shadow">
-            <h3 class="fw-bold mb-2 text-center">Online Appointment Booking</h3>
-            <p class="text-center text-muted mb-4">No prepayment required. Pay after service. Instant booking sync!</p>
+        <div class="alert alert-light border shadow-sm text-center p-4 rounded-3">
+            <h5 class="fw-bold mb-1">🎟️ The Unlimited Washing Pass (1 Month to 1 Year) is also available!</h5>
+            <p class="text-muted small mb-0">Prices shown are the plan outline and are confirmed at the counter. Call <strong>(604) 303-8885</strong> or book a bay online to activate your pass today.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 4. 在线预约页面 (BOOK A BAY PAGE) ==================== -->
+<div id="page-booking" class="page-section">
+    <div class="container my-5" style="max-width: 860px;">
+        <div class="p-4 p-md-5 bg-white rounded-4 shadow">
+            <div class="text-center mb-4">
+                <span class="badge bg-warning text-dark mb-2">Book a Bay · Contact</span>
+                <h2 class="fw-bold">Tell Us the Car and the Job</h2>
+                <p class="text-muted">No prepayment required. Quoted and confirmed before work begins. Instant confirmation email sent upon booking!</p>
+            </div>
+
             <form onsubmit="handleBookingSubmit(event)">
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -240,7 +527,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Phone Number *</label>
-                        <input type="tel" class="form-control" id="custPhone" placeholder="e.g. 604-555-0199" required>
+                        <input type="tel" class="form-control" id="custPhone" placeholder="e.g. 604-303-8885" required>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-bold">Email (For Confirmation) *</label>
@@ -248,20 +535,31 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label fw-bold">Vehicle Model *</label>
-                        <input type="text" class="form-control" id="custCarModel" placeholder="e.g. Tesla Model 3" required>
+                        <input type="text" class="form-control" id="custCarModel" placeholder="e.g. Porsche Macan" required>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label fw-bold">License Plate *</label>
-                        <input type="text" class="form-control" id="custPlate" placeholder="e.g. BC-AB123C" required>
+                        <input type="text" class="form-control" id="custPlate" placeholder="e.g. BC-PL888" required>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label fw-bold">Select Package *</label>
+                        <label class="form-label fw-bold">What Needs Doing (Select Service / Plan) *</label>
                         <select class="form-select" id="servicePackageSelect" required>
-                            <option value="Exterior Express Wash ($29.99)">Exterior Express Wash ($29.99)</option>
-                            <option value="Full Interior & Exterior Detail ($89.99)" selected>Full Interior & Exterior Detail ($89.99)</option>
-                            <option value="Ceramic Coating Pro ($199.99)">Ceramic Coating Pro ($199.99)</option>
+                            <option value="Manual Car Wash ($35)">Manual Car Wash ($35)</option>
+                            <option value="Full Interior & Exterior Detail ($89)" selected>Full Interior & Exterior Detail ($89)</option>
+                            <option value="Interior Steam Shampoo ($150)">Interior Steam Shampoo ($150)</option>
+                            <option value="Polish & Wax ($160)">Polish & Wax ($160)</option>
+                            <option value="Scratch Removal ($180)">Scratch Removal ($180)</option>
+                            <option value="Tree Sap & Tar Cleaning ($75)">Tree Sap & Tar Cleaning ($75)</option>
+                            <option value="Headlight Restoration ($65)">Headlight Restoration ($65)</option>
+                            <option value="Engine Bay Cleaning ($60)">Engine Bay Cleaning ($60)</option>
+                            <option value="Wheel Repair ($120)">Wheel Repair ($120)</option>
+                            <option value="Ceramic Coating & Protection ($299)">Ceramic Coating & Protection ($299)</option>
+                            <option value="Membership: Basic Plan ($29/mo)">Membership: Basic Plan ($29/mo)</option>
+                            <option value="Membership: Premium Plan ($49/mo)">Membership: Premium Plan ($49/mo)</option>
+                            <option value="Membership: VIP Plan ($79/mo)">Membership: VIP Plan ($79/mo)</option>
                         </select>
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label fw-bold d-flex justify-content-between align-items-center">
                             <span>Appointment Date & Time *</span>
@@ -275,7 +573,7 @@
                             <div class="col-3">
                                 <span class="time-badge-label">⏰ Hour</span>
                                 <select class="form-select" id="bookingHour" required>
-                                    <option value="09">09</option><option value="10">10</option><option value="11">11</option>
+                                    <option value="09">09</option><option value="10" selected>10</option><option value="11">11</option>
                                     <option value="12">12</option><option value="13">13</option><option value="14">14</option>
                                     <option value="15">15</option><option value="16">16</option><option value="17">17</option>
                                 </select>
@@ -288,8 +586,14 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Additional Notes (Optional)</label>
+                        <input type="text" class="form-control" id="custNotes" placeholder="Any specific stains, pet hair, or areas needing special attention?">
+                    </div>
+
                     <div class="col-12 text-center mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg px-5 fw-bold">Confirm & Submit Booking</button>
+                        <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold text-dark">Send Booking Request</button>
                     </div>
                 </div>
             </form>
@@ -297,15 +601,16 @@
     </div>
 </div>
 
-<!-- 3. 用品商城页面 -->
+<!-- ==================== 5. 汽车用品商城页面 (PARTS & SHOP PAGE) ==================== -->
 <div id="page-shop" class="page-section">
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
             <div>
-                <h2 class="fw-bold mb-0">Car Parts & Accessories</h2>
-                <p class="text-muted mb-0">Genuine items in stock — in-store pickup or postal delivery available</p>
+                <span class="text-warning fw-bold small text-uppercase">Pit Lane Pro Shop</span>
+                <h2 class="fw-bold mb-0">Car Care Products & Accessories</h2>
+                <p class="text-muted mb-0">Professional-grade detailing supplies & accessories — pickup at #195 - 4551 No. 3 Rd or postal delivery</p>
             </div>
-            <button class="btn btn-outline-primary fw-bold" onclick="showPage('cart')">
+            <button class="btn btn-dark fw-bold" onclick="showPage('cart')">
                 🛒 View Cart (<span id="shopCartBadge">0</span>)
             </button>
         </div>
@@ -313,7 +618,7 @@
     </div>
 </div>
 
-<!-- 4. 购物车页面 -->
+<!-- ==================== 6. 购物车页面 (SHOPPING CART) ==================== -->
 <div id="page-cart" class="page-section">
     <div class="container my-5">
         <h2 class="fw-bold mb-4">🛒 Shopping Cart</h2>
@@ -336,13 +641,13 @@
             <button class="btn btn-outline-secondary" onclick="showPage('shop')">← Continue Shopping</button>
             <div class="d-flex align-items-center gap-3">
                 <div class="fs-5">Selected Total: <span class="text-danger fw-bold fs-4" id="cartSelectedTotal">$0.00</span></div>
-                <button class="btn btn-danger btn-lg fw-bold px-4" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                <button class="btn btn-warning btn-lg fw-bold text-dark px-4" onclick="proceedToCheckout()">Proceed to Checkout</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 5. 订单确认与支付 -->
+<!-- ==================== 7. 结算与支付页面 (CHECKOUT) ==================== -->
 <div id="page-checkout" class="page-section">
     <div class="container my-5" style="max-width: 800px;">
         <div class="card shadow border-0 p-4">
@@ -357,7 +662,7 @@
                     <h5 class="fw-bold">Fulfillment Method</h5>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="deliveryMethod" id="deliverySelf" value="In-Store Pickup" checked onchange="toggleAddressField(false)">
-                        <label class="form-check-label" for="deliverySelf">In-Store Pickup</label>
+                        <label class="form-check-label" for="deliverySelf">In-Store Pickup (#195 - 4551 No. 3 Rd)</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="deliveryMethod" id="deliveryShip" value="Postal Delivery" onchange="toggleAddressField(true)">
@@ -403,7 +708,7 @@
     </div>
 </div>
 
-<!-- 6. 订单收据页面 -->
+<!-- ==================== 8. 电子收据页面 (RECEIPT) ==================== -->
 <div id="page-receipt" class="page-section">
     <div class="container my-5" style="max-width: 650px;">
         <div class="card receipt-card p-4 shadow-sm text-center">
@@ -420,7 +725,7 @@
     </div>
 </div>
 
-<!-- 7. 我的历史订单页面 -->
+<!-- ==================== 9. 客户历史订单页 (MY ORDERS) ==================== -->
 <div id="page-orders" class="page-section">
     <div class="container my-5">
         <h2 class="fw-bold mb-4">📦 My Orders & Receipts</h2>
@@ -429,14 +734,15 @@
 </div>
 
 <!-- 底部页脚 -->
-<footer class="bg-dark text-white text-center py-4 mt-auto">
-    <div class="container">
-        <p class="mb-1">📍 Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3 | Phone: 604-555-0199</p>
-        <p class="mb-0 text-secondary">© 2026 King's Auto Spa Ltd. All Rights Reserved.</p>
+<footer class="bg-dark text-white py-4 mt-auto border-top border-secondary">
+    <div class="container text-center">
+        <p class="fw-bold mb-1">🏎️ Pit Lane Car Detailing (Pit Lane Hand Carwash & Detail)</p>
+        <p class="small text-white-50 mb-1">📍 #195 - 4551 No. 3 Road, Richmond, BC V6X 2C3 | 📞 (604) 303-8885 | ✉️ info@pitlanedetailing.ca</p>
+        <p class="small text-secondary mb-0">© 2026 Pit Lane Car Detailing. All Rights Reserved.</p>
     </div>
 </footer>
 
-<!-- ==================== 登录/注册 模态框 (双语固定显示 notranslate) ==================== -->
+<!-- ==================== 登录/注册/员工申请 模态框 (中英双语固定对照 notranslate) ==================== -->
 <div class="modal fade notranslate" id="authModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
@@ -450,7 +756,7 @@
                     </li>
                     <li class="nav-item">
                         <button class="nav-link fw-bold px-3 py-1 text-warning border border-warning" data-bs-toggle="pill" data-bs-target="#employee-pane">
-                            👔 Employee Only / 员工注册
+                            👔 Employee Only / 员工通道
                         </button>
                     </li>
                 </ul>
@@ -458,7 +764,7 @@
             </div>
             <div class="modal-body p-4">
                 <div class="tab-content">
-                    <!-- 1. 用户/员工/老板 登录 -->
+                    <!-- 登录 -->
                     <div class="tab-pane fade show active" id="login-pane">
                         <form onsubmit="handleLogin(event)">
                             <div class="mb-3">
@@ -469,11 +775,11 @@
                                 <label class="form-label small fw-bold">Password / 密码</label>
                                 <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Log In / 登录账户</button>
+                            <button type="submit" class="btn btn-dark w-100 fw-bold py-2">Log In / 登录账户</button>
                         </form>
                     </div>
 
-                    <!-- 2. 普通客户注册 -->
+                    <!-- 客户注册 -->
                     <div class="tab-pane fade" id="register-pane">
                         <form onsubmit="handleRegister(event)">
                             <div class="mb-3">
@@ -496,25 +802,25 @@
                         </form>
                     </div>
 
-                    <!-- 3. 员工注册 -->
+                    <!-- 员工申请 -->
                     <div class="tab-pane fade" id="employee-pane">
                         <div class="alert alert-warning py-2 small mb-3">
-                            ⚠️️ <strong>Staff Registration Notice / 员工注册须知:</strong><br>
-                            Submissions require owner approval before backend access is granted.<br>
-                            提交后需车行老板批准后方可生效登录。
+                            ⚠️ <strong>Employee Registration / 员工注册须知:</strong><br>
+                            Submissions require owner approval before backend access is activated.<br>
+                            提交后需老板在后台批准后方可凭工位密码登录。
                         </div>
                         <form onsubmit="handleEmployeeRegister(event)">
                             <div class="mb-2">
                                 <label class="form-label small fw-bold">Staff Full Name / 员工姓名</label>
-                                <input type="text" class="form-control" id="empName" placeholder="e.g. John Doe" required>
+                                <input type="text" class="form-control" id="empName" placeholder="e.g. Yuanpeng" required>
                             </div>
                             <div class="mb-2">
-                                <label class="form-label small fw-bold">Staff Email / 员工工作邮箱</label>
-                                <input type="email" class="form-control" id="empEmail" placeholder="staff@example.com" required>
+                                <label class="form-label small fw-bold">Staff Email / 员工邮箱</label>
+                                <input type="email" class="form-control" id="empEmail" placeholder="staff@pitlane.ca" required>
                             </div>
                             <div class="mb-2">
                                 <label class="form-label small fw-bold">Station Number / 工位编号</label>
-                                <input type="text" class="form-control" id="empStation" placeholder="e.g. Bay-02" required>
+                                <input type="text" class="form-control" id="empStation" placeholder="e.g. Bay-01" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label small fw-bold">Station Password / 工位登录密码</label>
@@ -530,52 +836,13 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- 引入谷歌自动翻译引擎脚本 -->
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            includedLanguages: 'zh-CN,en',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
-        }, 'google_translate_element');
-    }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 <script>
-    // 全站一键中英自动切换核心逻辑
-    let isChineseActive = false;
-
-    function toggleAutoTranslate() {
-        const select = document.querySelector('.goog-te-combo');
-        const toggleBtn = document.getElementById('langToggleBtn');
-
-        if (!select) {
-            alert("Translation service is initializing, please try again in a moment.");
-            return;
-        }
-
-        if (!isChineseActive) {
-            select.value = 'zh-CN';
-            select.dispatchEvent(new Event('change'));
-            isChineseActive = true;
-            toggleBtn.innerText = "English (Original)";
-        } else {
-            select.value = 'en';
-            select.dispatchEvent(new Event('change'));
-            isChineseActive = false;
-            toggleBtn.innerText = "中文 (Translate)";
-        }
-    }
-
-    // 基础数据与逻辑初始化
+    // 初始化预设汽美用品商城数据
     const defaultProducts = [
-        { id: 1, name: "Premium Solid Car Vent Fragrance Clip", price: 19.99, stock: 42, status: "ACTIVE", img: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=400&q=80" },
-        { id: 2, name: "All-Weather Premium Frameless Wiper Blades", price: 34.99, stock: 2, status: "ACTIVE", img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=400&q=80" },
-        { id: 3, name: "Plush Microfiber Drying Towels (3-Pack)", price: 14.99, stock: 25, status: "ACTIVE", img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=400&q=80" },
-        { id: 4, name: "Custom 3D All-Weather Waterproof Floor Mats", price: 139.00, stock: 15, status: "ACTIVE", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=80" }
+        { id: 1, name: "pH-Neutral High Foam Car Wash Shampoo (1L)", price: 24.99, stock: 35, status: "ACTIVE", img: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=400&q=80" },
+        { id: 2, name: "Plush Edgetless Microfiber Drying Towels (3-Pack)", price: 16.99, stock: 28, status: "ACTIVE", img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=400&q=80" },
+        { id: 3, name: "Ceramic Graphene Quick Detailer Spray (500ml)", price: 29.99, stock: 2, status: "ACTIVE", img: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=400&q=80" },
+        { id: 4, name: "Custom 3D All-Weather Waterproof Floor Mats", price: 139.00, stock: 12, status: "ACTIVE", img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=80" }
     ];
 
     if (!localStorage.getItem('apex_products')) {
@@ -585,6 +852,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('bookingDate').setAttribute('min', today);
+        document.getElementById('bookingDate').value = today;
         checkCurrentUser();
         renderShopProducts();
         updateCartBadge();
@@ -606,8 +874,18 @@
         if (pageId === 'orders') renderUserOrders();
     }
 
-    function selectPackage(pkgValue) {
-        document.getElementById('servicePackageSelect').value = pkgValue;
+    // 从服务页或会员页一键带参跳转到预约页
+    function quickBookService(serviceName) {
+        const select = document.getElementById('servicePackageSelect');
+        if (select) {
+            for (let opt of select.options) {
+                if (opt.value === serviceName || opt.text.includes(serviceName.split('(')[0].trim())) {
+                    select.value = opt.value;
+                    break;
+                }
+            }
+        }
+        showPage('booking');
     }
 
     function handleBookingSubmit(event) {
@@ -622,6 +900,7 @@
             pkg: document.getElementById('servicePackageSelect').value,
             date: document.getElementById('bookingDate').value,
             time: `${document.getElementById('bookingHour').value}:${document.getElementById('bookingMinute').value}`,
+            notes: document.getElementById('custNotes').value.trim(),
             status: "PENDING"
         };
 
@@ -629,11 +908,12 @@
         bookings.push(newBooking);
         localStorage.setItem('apex_bookings', JSON.stringify(bookings));
 
-        alert(`✅ Booking Confirmed!\n\nDear ${newBooking.name}, a confirmation email has been sent to ${newBooking.email}.\nVehicle: ${newBooking.carModel} (${newBooking.carPlate})\nTime: ${newBooking.date} ${newBooking.time}`);
+        alert(`✅ Bay Booking Confirmed!\n\nDear ${newBooking.name}, a confirmation email has been sent to ${newBooking.email}.\nShop: Pit Lane Car Detailing (#195 - 4551 No. 3 Rd)\nVehicle: ${newBooking.carModel} (${newBooking.carPlate})\nService: ${newBooking.pkg}\nTime: ${newBooking.date} ${newBooking.time}`);
         event.target.reset();
         showPage('home');
     }
 
+    // 商城渲染与购物车逻辑
     function renderShopProducts() {
         const grid = document.getElementById('shopProductGrid');
         const products = JSON.parse(localStorage.getItem('apex_products') || "[]");
@@ -645,30 +925,30 @@
             let btnHtml = '';
 
             if (isOffShelf) {
-                btnHtml = `<button class="btn btn-secondary btn-sm w-100 disabled">Off Shelf</button>`;
+                btnHtml = `<button class="btn btn-secondary btn-sm w-100 disabled">${isChineseActive ? '已下架' : 'Off Shelf'}</button>`;
             } else if (isOutOfStock) {
-                btnHtml = `<button class="btn btn-secondary btn-sm w-100 disabled">Out of Stock</button>`;
+                btnHtml = `<button class="btn btn-secondary btn-sm w-100 disabled">${isChineseActive ? '已售罄' : 'Out of Stock'}</button>`;
             } else if (!user) {
-                btnHtml = `<button class="btn btn-outline-primary btn-sm w-100" onclick="promptLogin()">Login to Buy</button>`;
+                btnHtml = `<button class="btn btn-outline-dark btn-sm w-100 fw-bold" onclick="promptLogin()">${isChineseActive ? '登录后购买' : 'Login to Buy'}</button>`;
             } else {
                 btnHtml = `
                         <div class="d-flex gap-2">
-                            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="addToCart(${p.id})">Add to Cart</button>
-                            <button class="btn btn-danger btn-sm flex-fill" onclick="buyNow(${p.id})">Buy Now</button>
+                            <button class="btn btn-outline-dark btn-sm flex-fill fw-bold" onclick="addToCart(${p.id})">${isChineseActive ? '加入购物车' : 'Add to Cart'}</button>
+                            <button class="btn btn-warning btn-sm flex-fill fw-bold text-dark" onclick="buyNow(${p.id})">${isChineseActive ? '立即购买' : 'Buy Now'}</button>
                         </div>
                     `;
             }
 
             return `
                     <div class="col-md-3 col-sm-6">
-                        <div class="card h-100 shadow-sm">
-                            <img src="${p.img}" class="prod-card-img" alt="${p.name}">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="${p.img}" class="prod-card-img rounded-top" alt="${p.name}">
                             <div class="card-body d-flex flex-column">
                                 <h6 class="fw-bold mb-1">${p.name}</h6>
-                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
                                     <span class="text-danger fw-bold fs-5">$${parseFloat(p.price).toFixed(2)}</span>
                                     <span class="badge ${p.stock <= 3 ? 'bg-warning text-dark' : 'bg-light text-secondary'} border">
-                                        Stock: ${p.stock}
+                                        ${isChineseActive ? '库存' : 'Stock'}: ${p.stock}
                                     </span>
                                 </div>
                                 <div class="mt-auto">${btnHtml}</div>
@@ -680,7 +960,7 @@
     }
 
     function promptLogin() {
-        alert('Please login to continue purchase!');
+        alert(isChineseActive ? '请先登录您的账户后再进行购买！' : 'Please login to your account to purchase items!');
         new bootstrap.Modal(document.getElementById('authModal')).show();
     }
 
@@ -712,13 +992,13 @@
         let cart = getCart();
         const existing = cart.find(i => i.id === prodId);
         if (existing) {
-            if (existing.qty + 1 > prod.stock) return alert('Reached available stock limit');
+            if (existing.qty + 1 > prod.stock) return alert('Reached maximum stock available');
             existing.qty++;
         } else {
             cart.push({ id: prod.id, name: prod.name, price: prod.price, img: prod.img, qty: 1, selected: true });
         }
         saveCart(cart);
-        alert('Added to cart!');
+        alert(isChineseActive ? '已成功加入购物车！' : 'Added to cart!');
     }
 
     function buyNow(prodId) {
@@ -738,7 +1018,7 @@
         tbody.innerHTML = cart.map((item, index) => `
                 <tr>
                     <td style="width: 40px;" class="ps-3">
-                        <input class="form-check-input cart-item-check" type="checkbox" ${item.selected ? 'checked' : ''} onchange="toggleCartItem(${index}, this.checked)">
+                        <input class="form-check-input" type="checkbox" ${item.selected ? 'checked' : ''} onchange="toggleCartItem(${index}, this.checked)">
                     </td>
                     <td style="width: 80px;">
                         <img src="${item.img}" style="width:60px; height:60px; object-fit:cover;" class="rounded">
@@ -789,7 +1069,7 @@
         if (newQty <= 0) {
             cart.splice(index, 1);
         } else {
-            if (prod && newQty > prod.stock) return alert('Only ' + prod.stock + ' items in stock');
+            if (prod && newQty > prod.stock) return alert('Only ' + prod.stock + ' items left in stock');
             cart[index].qty = newQty;
         }
         saveCart(cart);
@@ -812,7 +1092,7 @@
     function proceedToCheckout() {
         const cart = getCart();
         const selectedItems = cart.filter(i => i.selected);
-        if (selectedItems.length === 0) return alert('Please select at least one item!');
+        if (selectedItems.length === 0) return alert('Please select at least one item to checkout!');
 
         const listElem = document.getElementById('checkoutItemsList');
         listElem.innerHTML = selectedItems.map(i => `
@@ -840,7 +1120,7 @@
         const cart = getCart();
         const selectedItems = cart.filter(i => i.selected);
         const delivery = document.querySelector('input[name="deliveryMethod"]:checked').value;
-        const address = delivery === 'Postal Delivery' ? (document.getElementById('shippingAddress').value || "No detailed address") : "In-Store Pickup";
+        const address = delivery === 'Postal Delivery' ? (document.getElementById('shippingAddress').value || "No detailed address") : "In-Store Pickup (#195 - 4551 No. 3 Rd)";
         const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
         const total = selectedItems.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
@@ -852,7 +1132,7 @@
         localStorage.setItem('apex_products', JSON.stringify(products));
 
         const orderRecord = {
-            orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+            orderId: 'PL-' + Math.floor(100000 + Math.random() * 900000),
             customerName: user.name,
             customerEmail: user.email,
             items: selectedItems,
@@ -901,7 +1181,7 @@
         }
 
         container.innerHTML = myOrders.map(o => `
-                <div class="card mb-3 shadow-sm">
+                <div class="card mb-3 shadow-sm border-0">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
                         <div><strong>Order: ${o.orderId}</strong> | <small class="text-muted">${o.date}</small></div>
                         <span class="badge ${o.status === 'COMPLETED' ? 'bg-success' : 'bg-warning text-dark'}">${o.status}</span>
@@ -918,6 +1198,7 @@
             `).join('');
     }
 
+    // ================= 权限认证 (老板 / 员工 / 客户) =================
     function handleLogin(event) {
         event.preventDefault();
         const email = document.getElementById('loginEmail').value.trim();
@@ -925,8 +1206,9 @@
 
         let userObj = null;
 
-        if (email === 'boss@kingsautospa.ca' && pwd === '123456') {
-            userObj = { name: "Boss (Owner)", email, role: "ADMIN" };
+        // 支持 boss@pitlane.ca 或 boss@kingsautospa.ca 登录老板后台
+        if ((email === 'boss@pitlane.ca' || email === 'boss@kingsautospa.ca') && pwd === '123456') {
+            userObj = { name: "Anson (Owner)", email, role: "ADMIN" };
         } else {
             const staffList = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
             const staff = staffList.find(s => s.email === email && s.password === pwd);
@@ -935,7 +1217,7 @@
             } else {
                 const pendingStaff = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
                 if (pendingStaff.some(s => s.email === email)) {
-                    alert('⏳ Your staff account is still pending owner approval!\n您的员工账号仍在等待老板审批中！');
+                    alert('⏳ Your staff account is still pending owner approval!\n您的员工账号仍在等待老板批准中！');
                     return;
                 }
                 const registered = JSON.parse(localStorage.getItem('apex_registered_users') || "[]");
@@ -967,12 +1249,12 @@
         const confirmPwd = document.getElementById('regConfirmPassword').value.trim();
 
         if (pwd !== confirmPwd) {
-            alert('⚠️ Password confirmation does not match! / 两次密码输入不一致！');
+            alert('⚠️ Password confirmation does not match! / 两次输入的密码不一致！');
             return;
         }
 
         let registered = JSON.parse(localStorage.getItem('apex_registered_users') || "[]");
-        if (registered.some(u => u.email === email) || email.includes('kingsautospa.ca')) {
+        if (registered.some(u => u.email === email) || email === 'boss@pitlane.ca') {
             alert('This email address is already registered! / 该邮箱已被注册！');
             return;
         }
@@ -982,17 +1264,18 @@
         localStorage.setItem('apex_user', JSON.stringify({ name, email, role: "CUSTOMER" }));
 
         alert(
-            `📧 [King's Auto Spa Ltd] - Registration Confirmation Email
+            `📧 [Pit Lane Car Detailing] - Welcome Email
 --------------------------------------------------
 To: ${email}
-Subject: Welcome to King's Auto Spa Ltd!
+Subject: Welcome to Pit Lane Car Detailing!
 
 Dear ${name},
 
-Your customer account has been created successfully.
-You can now book appointments and place orders anytime.
+Your customer account has been successfully created.
+You can now book indoor detailing bays, manage memberships, and order car care products online.
 
-Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
+Location: #195 - 4551 No. 3 Road, Richmond, BC V6X 2C3
+Tel: (604) 303-8885`
         );
 
         bootstrap.Modal.getInstance(document.getElementById('authModal')).hide();
@@ -1011,14 +1294,14 @@ Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
         let approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
 
         if (pending.some(s => s.email === email) || approved.some(s => s.email === email)) {
-            alert('This employee email has already been registered or is pending approval!');
+            alert('This employee email has already been submitted or registered!');
             return;
         }
 
         pending.push({ id: Date.now(), name, email, station, password: pwd, appliedAt: new Date().toLocaleString() });
         localStorage.setItem('apex_pending_staff', JSON.stringify(pending));
 
-        alert(`✅ Staff application submitted for station [${station}]!\n\nThe owner has been notified. You can log in once approved.`);
+        alert(`✅ Staff application submitted for station [${station}]!\n\nThe owner has received your application notification. You can log in once approved.`);
         bootstrap.Modal.getInstance(document.getElementById('authModal')).hide();
         event.target.reset();
     }
@@ -1032,11 +1315,11 @@ Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
             const isStaffOrAdmin = (user.role === 'ADMIN' || user.role === 'STAFF');
             authArea.innerHTML = `
                     <div class="dropdown">
-                        <button class="btn btn-outline-light btn-sm dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
+                        <button class="btn btn-warning btn-sm dropdown-toggle fw-bold text-dark" type="button" data-bs-toggle="dropdown">
                             👤 ${user.name}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end shadow">
-                            ${isStaffOrAdmin ? `<li><a class="dropdown-item text-warning fw-bold" href="admin.html">🛠️ Backend Portal / 后台</a></li><li><hr class="dropdown-divider"></li>` : ''}
+                            ${isStaffOrAdmin ? `<li><a class="dropdown-item text-primary fw-bold" href="admin.html">🛠️ Admin Portal / 管理后台</a></li><li><hr class="dropdown-divider"></li>` : ''}
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="showPage('orders')">📦 My Orders / 我的订单</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="showPage('cart')">🛒 My Cart / 购物车</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -1046,8 +1329,8 @@ Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
                 `;
         } else {
             authArea.innerHTML = `
-                    <button class="btn btn-primary btn-sm fw-bold px-3 py-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
-                        👤 Login / 登录
+                    <button class="btn btn-warning btn-sm fw-bold px-3 py-1 text-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
+                        👤 Login / Register
                     </button>
                 `;
         }
@@ -1058,6 +1341,104 @@ Address: 4451 Number 3 Rd #220, Richmond, BC V6X 2C3`
         checkCurrentUser();
         renderShopProducts();
         showPage('home');
+    }
+
+    // ================= 本地零延迟中英双语切换引擎 =================
+    let isChineseActive = false;
+
+    const autoTranslateMap = {
+        "Home": "首页",
+        "Services & Pricing": "服务与报价",
+        "Memberships": "洗车会员",
+        "Parts & Shop": "汽美商城",
+        "Book a Bay": "预约工位",
+        "Cart": "购物车",
+        "Indoor Bay · Hand Work Only · English & 中文 · Open 7 Days": "室内无尘工位 · 纯手工精洗 · 中英双语服务 · 七天营业",
+        "More than a car wash.": "不止于洗车，更是匠心养护。",
+        "Precision hand detailing, car wash memberships & auto accessories": "专业手工精洗、月度洗车会员与精选汽美用品中心",
+        "We work out of an indoor bay on No. 3 Road in Richmond. Two-bucket hand wash, keys back in 20 to 30 minutes. No harsh brush machines, no shortcuts — daily drivers and weekend cars get the same meticulous attention.": "我们位于列治文 3 号路室内专业工位。坚持两桶水纯手工精洗，20 至 30 分钟高效交车。绝不使用伤漆滚刷机，无论是日常代步车还是周末跑车，都享有同样极致的细节呵护。",
+        "Book a Bay →": "立即预约工位 →",
+        "View Memberships": "查看会员计划",
+        "Browse Parts Shop": "浏览汽美商城",
+        "What We Do": "核心业务",
+        "Complete care for a cleaner, healthier, shinier vehicle": "全方位呵护，让爱车更洁净、健康、闪耀",
+        "View all 11 services →": "查看全部 11 项服务明细 →",
+        "Manual Car Wash": "纯手工全车精洗",
+        "Interior Steam Cleaning": "内饰高温蒸汽杀菌清洁",
+        "Polish, Wax & Scratch": "镜面抛光、打蜡与去划痕",
+        "Tinting & Wheel Repair": "防晒贴膜、镀晶与轮毂修复",
+        "Book this service →": "预约此项服务 →",
+        "Why Choose Pit Lane": "为什么选择 Pit Lane",
+        "A shop that still does the work by hand": "一家依然坚持纯手工匠心施工的车行",
+        "Get the car clean, put right what can be put right, then protect it.": "洗净车身、还原瑕疵、长效保护——二十年如一日的专业标准。",
+        "01. HAND WORK ONLY": "01. 坚持纯手工",
+        "No Brush Machines": "拒绝机器滚刷伤漆",
+        "02. PRICE BEFORE WORK": "02. 施工前透明报价",
+        "Transparent Quotes": "先看车报价再施工",
+        "03. FAST TURNAROUND": "03. 高效准时交车",
+        "20 to 30 Mins Wash": "20 至 30 分钟快速手洗",
+        "04. TWO LANGUAGES": "04. 中英双语无障碍",
+        "English & 中文 Service": "中英文报价与沟通",
+        "✗ We will not polish a dirty car": "✗ 我们绝不在未深度清洁的车漆上直接抛光",
+        "✗ We will not promise what paint cannot give": "✗ 我们绝不夸大承诺车漆无法达到的效果",
+        "Visit Our Indoor Bay": "欢迎莅临室内施工车间",
+        "📍 Location & Contact": "📍 门店地址与联系方式",
+        "Open in Google Maps": "在 Google Maps 中导航",
+        "The Full List of Detailing Services": "全套汽美与精洗服务价目表",
+        "Book one service on its own or combine several in a single visit": "可单独预约单项服务，也可在一次到店中组合多项护理",
+        "Car Wash Membership Plans": "月度洗车会员计划",
+        "Flexible monthly upkeep plans for every driver — keep your car spotless all month long": "洗得越多省得越多，灵活的月度养护方案让爱车时刻保持巅峰状态",
+        "Basic Membership": "基础月度会员 (Basic)",
+        "Premium Membership": "尊享月度会员 (Premium)",
+        "VIP All-Access": "VIP 全能无限次会员",
+        "Choose Basic": "选择基础会员",
+        "Choose Premium": "选择尊享会员",
+        "Choose VIP": "选择 VIP 会员",
+        "Tell Us the Car and the Job": "在线预约洗车与汽美工位",
+        "No prepayment required. Quoted and confirmed before work begins. Instant confirmation email sent upon booking!": "无需在线预付，到店看车确认后再付款。提交后将立即发送预约确认邮件！",
+        "Your Name *": "您的姓名 *",
+        "Phone Number *": "联系电话 *",
+        "Email (For Confirmation) *": "电子邮箱 (接收预约确认信) *",
+        "Vehicle Model *": "车辆品牌与型号 *",
+        "License Plate *": "车牌号码 *",
+        "What Needs Doing (Select Service / Plan) *": "选择需要预约的服务或会员套餐 *",
+        "Appointment Date & Time *": "期望预约日期与时间 *",
+        "Additional Notes (Optional)": "额外备注说明 (选填)",
+        "Send Booking Request": "确认并提交工位预约",
+        "Car Care Products & Accessories": "专业汽美用品与车载配件商城",
+        "Shopping Cart": "我的购物车",
+        "Select All Items": "全选所有商品",
+        "← Continue Shopping": "← 继续选购商品",
+        "Proceed to Checkout": "去结算",
+        "Confirm & Place Order": "确认并提交订单",
+        "Order Summary": "订单商品明细",
+        "Fulfillment Method": "取货与配送方式",
+        "Select Payment Method": "选择支付方式",
+        "Confirm & Pay Now": "确认并立即付款",
+        "📦 My Orders & Receipts": "📦 我的订单与电子收据"
+    };
+
+    const reverseTranslateMap = {};
+    Object.keys(autoTranslateMap).forEach(k => { reverseTranslateMap[autoTranslateMap[k]] = k; });
+
+    function toggleAutoTranslate() {
+        isChineseActive = !isChineseActive;
+        const currentMap = isChineseActive ? autoTranslateMap : reverseTranslateMap;
+        document.getElementById('langToggleBtn').innerText = isChineseActive ? "EN" : "中文";
+
+        function translateNode(node) {
+            if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('notranslate')) return;
+            if (node.nodeType === Node.TEXT_NODE) {
+                let t = node.nodeValue.trim();
+                if (t && currentMap[t]) {
+                    node.nodeValue = node.nodeValue.replace(t, currentMap[t]);
+                }
+            } else {
+                node.childNodes.forEach(child => translateNode(child));
+            }
+        }
+        translateNode(document.body);
+        renderShopProducts();
     }
 </script>
 </body>
