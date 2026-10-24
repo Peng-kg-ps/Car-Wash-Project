@@ -1,0 +1,191 @@
+:root {
+    --pl-dark: #0f1115;
+    --pl-card-dark: #181b22;
+    --pl-gold: #f59e0b;
+    --pl-gold-hover: #d97706;
+    --pl-border: #2a2f3a;
+}
+
+body {
+    background-color: #f6f7f9;
+    color: #1a1e24;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 顶部导航栏 */
+.navbar-custom {
+    background-color: var(--pl-dark);
+    border-bottom: 1px solid var(--pl-border);
+}
+
+.nav-link-custom {
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 6px 14px !important;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.nav-link-custom:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.nav-link-custom.nav-active {
+    color: var(--pl-dark) !important;
+    background-color: var(--pl-gold) !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+}
+
+/* 首页顶部滚动轮播横幅 */
+.hero-slide {
+    min-height: 440px;
+    padding: 70px 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid var(--pl-gold);
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-slide-1 {
+    background-image: linear-gradient(135deg, rgba(15,17,21,0.92) 0%, rgba(24,27,34,0.82) 100%),
+    url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80');
+}
+
+.hero-slide-2 {
+    background-image: linear-gradient(135deg, rgba(15,23,42,0.94) 0%, rgba(30,41,59,0.86) 100%),
+    url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1600&q=80');
+}
+
+.hero-slide-3 {
+    background-image: linear-gradient(135deg, rgba(20,20,20,0.93) 0%, rgba(45,35,15,0.85) 100%),
+    url('https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=1600&q=80');
+}
+
+.hero-pill {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.18);
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    color: #fbbf24;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* 卡片与图片展示 */
+.service-img-top {
+    height: 175px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.showcase-img {
+    height: 230px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.craft-number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--pl-gold);
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.dont-do-card {
+    background-color: var(--pl-dark);
+    color: #ffffff;
+    border-radius: 14px;
+    border-left: 4px solid var(--pl-gold);
+}
+
+.review-card {
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+}
+
+.service-row-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 18px 20px;
+    transition: all 0.2s ease;
+}
+
+.service-row-item:hover {
+    border-color: var(--pl-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.prod-card-img {
+    height: 185px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.receipt-card {
+    border: 2px dashed #0d6efd;
+    background-color: #f8fbff;
+}
+
+/* 管理后台与排班日历 */
+.sidebar {
+    min-height: 100vh;
+    background-color: var(--pl-dark);
+    color: white;
+    border-right: 1px solid var(--pl-border);
+}
+
+.sidebar .nav-link {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 6px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+    color: var(--pl-dark);
+    background-color: var(--pl-gold);
+    font-weight: 700;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+}
+
+.calendar-day-col {
+    min-height: 260px;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.cal-booking-item {
+    font-size: 0.82rem;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-left: 4px solid var(--pl-gold);
+    background: #fffbeb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.cal-booking-done {
+    background: #e9ecef !important;
+    border-left-color: #6c757d !important;
+    color: #6c757d !important;
+}

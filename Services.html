@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services, Memberships & Booking | Pit Lane Car Detailing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<div id="sharedNavbar"></div>
+
+<div class="container my-5">
+    <!-- 1. 全套汽美服务价目表 (明天找经理核对后可直接在此修改数字) -->
+    <section class="mb-5">
+        <div class="text-center mb-5">
+            <span class="badge bg-warning text-dark px-3 py-1 mb-2" data-zh="纯手工匠心施工">Hand Work Only</span>
+            <h1 class="fw-bold" data-zh="全套汽美与精洗服务价目表">The Full List of Detailing Services</h1>
+            <p class="text-muted" data-zh="可单独预约单项服务，也可在一次到店中组合多项护理">Book one service on its own or combine several in a single visit</p>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1" data-zh="纯手工全车精洗 (Manual Car Wash)">Manual Car Wash</h5>
+                        <p class="text-muted small mb-1" data-zh="车身、轮毂与轮拱两桶水手洗，无接触吹干与毛巾收水，含全车内外玻璃清洁。">Two-bucket hand wash over body, wheels and arches, blown dry and towel finished, glass in and out.</p>
+                        <span class="badge bg-light text-secondary border" data-zh="⏱️ 20 至 30 分钟">⏱️ 20 to 30 mins</span>
+                        <span class="badge bg-primary ms-1" data-zh="$35 起">From $35</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="selectServiceAndScroll('Manual Car Wash ($35)')" data-zh="选择此项 →">Select →</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1" data-zh="内外全车深度精洗 (Full Detail)">Full Interior & Exterior Detail</h5>
+                        <p class="text-muted small mb-1" data-zh="包含全车外观手洗、座舱深度吸尘、脚垫刷洗、中控杀菌清洁与真皮座椅护理。">Complete exterior hand wash plus deep cabin vacuum, mat wash, console sanitization and leather care.</p>
+                        <span class="badge bg-light text-secondary border" data-zh="⏱️ 1.5 至 2.5 小时">⏱️ 1.5 to 2.5 hrs</span>
+                        <span class="badge bg-primary ms-1" data-zh="$89 起">From $89</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="selectServiceAndScroll('Full Interior & Exterior Detail ($89)')" data-zh="选择此项 →">Select →</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1" data-zh="内饰高温蒸汽深层洗护 (Interior Steam)">Interior Steam Shampoo</h5>
+                        <p class="text-muted small mb-1" data-zh="地毯、座椅、脚垫与顶棚高温蒸汽抽洗，出风口手工精洗，从源头根除车内异味。">Steam and extraction through carpets, seats, mats and headliner, vents by hand, odours treated at source.</p>
+                        <span class="badge bg-light text-secondary border" data-zh="⏱️ 3 至 5 小时">⏱️ 3 to 5 hrs</span>
+                        <span class="badge bg-primary ms-1" data-zh="$150 起">From $150</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="selectServiceAndScroll('Interior Steam Shampoo ($150)')" data-zh="选择此项 →">Select →</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1" data-zh="全车机器抛光与手工打蜡 (Polish & Wax)">Polish & Wax</h5>
+                        <p class="text-muted small mb-1" data-zh="全车机器镜面抛光恢复漆面深邃光泽，随后手工涂装棕榈蜡或陶瓷封体保护层。">Machine polish for deep gloss restoration, followed by hand-applied carnauba/ceramic wax protection.</p>
+                        <span class="badge bg-light text-secondary border" data-zh="⏱️ 3 至 6 小时">⏱️ 3 to 6 hrs</span>
+                        <span class="badge bg-primary ms-1" data-zh="$160 起">From $160</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="selectServiceAndScroll('Polish & Wax ($160)')" data-zh="选择此项 →">Select →</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1" data-zh="漆面去划痕与太阳纹修复 (Scratch Removal)">Scratch Removal</h5>
+                        <p class="text-muted small mb-1" data-zh="施工前先测漆膜厚度，逐块钣金精细研磨去除浅划痕、太阳纹与洗车纹。">Light scratches, swirls and wash marks machined out panel by panel, paint depth checked first.</p>
+                        <span class="badge bg-light text-secondary border" data-zh="⏱️ 半天至 2 天">⏱️ Half day to 2 days</span>
+                        <span class="badge bg-primary ms-1" data-zh="$180 起">From $180</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="selectServiceAndScroll('Scratch Removal ($180)')" data-zh="选择此项 →">Select →</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="service-row-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="fw-bold mb-1" data-zh="纳米石墨烯镀晶与隔热贴膜 (Ceramic & Tint)">Ceramic Coating & Tinting</h5>
+                        <p class="text-muted small mb-1" data-zh="多年期高硬度纳米陶瓷/石墨烯车漆镀晶，或符合 BC 省法规的高隔热防晒窗膜。">Multi-year graphene/ceramic paint protection or heat-rejecting window tint within BC legal limits.</p>
+                        <span class="badge bg-light text-secondary border" data-zh="⏱️ 半天至 1 天">⏱️ Half day to 1 day</span>
+                        <span class="badge bg-primary ms-1" data-zh="$299 起">From $299</span>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm fw-bold ms-3 text-nowrap" onclick="selectServiceAndScroll('Ceramic Coating & Protection ($299)')" data-zh="选择此项 →">Select →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 月度洗车会员计划 -->
+    <section id="membership-section" class="mb-5 pt-3">
+        <div class="text-center mb-5">
+            <span class="badge bg-warning text-dark px-3 py-1 mb-2" data-zh="洗得越多 · 省得越多">Wash More. Save More.</span>
+            <h2 class="fw-bold" data-zh="月度洗车会员计划">Car Wash Membership Plans</h2>
+            <p class="text-muted" data-zh="灵活的月度洗护方案，让您的爱车全年保持一尘不染">Flexible monthly upkeep plans for every driver — keep your car spotless all month long</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 p-3">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h4 class="fw-bold" data-zh="基础月度会员 (Basic)">Basic Membership</h4>
+                        <p class="text-muted small" data-zh="日常基础清洁之选">Essential Routine Care</p>
+                        <h2 class="fw-bold my-3">$29 <span class="fs-6 text-muted fw-normal" data-zh="/ 每月">/ month</span></h2>
+                        <ul class="list-unstyled text-start text-secondary mb-4 flex-grow-1 lh-lg">
+                            <li data-zh="✓ 每月包含 4 次纯手工外观精洗">✓ 4 exterior hand washes per month</li>
+                            <li data-zh="✓ 标配超细纤维毛巾收水与轮胎上光">✓ Standard microfiber dry & tire shine</li>
+                            <li data-zh="✓ 享受会员专属深度美容折扣价">✓ Member-only pricing on detailing</li>
+                            <li data-zh="✓ 随时可取消，无长期捆绑合约">✓ Cancel anytime, no long-term lock</li>
+                        </ul>
+                        <button class="btn btn-outline-dark fw-bold w-100 py-2" onclick="selectServiceAndScroll('Membership: Basic Plan ($29/mo)')" data-zh="选择基础会员">Choose Basic</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow border-warning p-3" style="border-width: 2px;">
+                    <div class="card-body d-flex flex-column text-center">
+                        <div><span class="badge bg-warning text-dark mb-2" data-zh="店长力荐 · 最受欢迎">MOST POPULAR</span></div>
+                        <h4 class="fw-bold" data-zh="尊享月度会员 (Premium)">Premium Membership</h4>
+                        <p class="text-muted small" data-zh="高频通勤车主首选">Frequent Commuter Choice</p>
+                        <h2 class="fw-bold text-primary my-3">$49 <span class="fs-6 text-muted fw-normal" data-zh="/ 每月">/ month</span></h2>
+                        <ul class="list-unstyled text-start text-secondary mb-4 flex-grow-1 lh-lg">
+                            <li class="fw-bold text-dark" data-zh="✓ 不限次数纯手工外观精洗">✓ Unlimited exterior hand washes</li>
+                            <li data-zh="✓ 每月赠送内饰吸尘与擦拭护理">✓ Monthly interior vacuum & wipe-down</li>
+                            <li data-zh="✓ 享受优先工位预约通道">✓ Priority bay booking access</li>
+                            <li data-zh="✓ 全店深度美容项目享 9 折优惠">✓ 10% OFF all additional detailing services</li>
+                        </ul>
+                        <button class="btn btn-warning fw-bold text-dark w-100 py-2" onclick="selectServiceAndScroll('Membership: Premium Plan ($49/mo)')" data-zh="选择尊享会员">Choose Premium</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 bg-dark text-white p-3">
+                    <div class="card-body d-flex flex-column text-center">
+                        <div><span class="badge bg-secondary mb-2" data-zh="皇室尊享">ROYAL TREATMENT</span></div>
+                        <h4 class="fw-bold text-warning" data-zh="VIP 全能无限次会员">VIP All-Access</h4>
+                        <p class="text-white-50 small" data-zh="内外全方位无忧养护">Complete Inside & Out Upkeep</p>
+                        <h2 class="fw-bold text-white my-3">$79 <span class="fs-6 text-white-50 fw-normal" data-zh="/ 每月">/ month</span></h2>
+                        <ul class="list-unstyled text-start text-white-50 mb-4 flex-grow-1 lh-lg">
+                            <li class="fw-bold text-warning" data-zh="✓ 不限次数全车精洗（含外观与内饰）">✓ Unlimited washes (exterior & interior)</li>
+                            <li data-zh="✓ 最高优先级专属工位预约权">✓ Top priority bay reservation</li>
+                            <li data-zh="✓ 所有美容项目与商城用品享 85 折">✓ 15% OFF all additional services & parts</li>
+                            <li data-zh="✓ 每季度免费赠送一次手工打蜡/封体护理">✓ Quarterly wax / protection boost</li>
+                        </ul>
+                        <button class="btn btn-outline-warning fw-bold w-100 py-2" onclick="selectServiceAndScroll('Membership: VIP Plan ($79/mo)')" data-zh="选择 VIP 会员">Choose VIP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 在线工位预约表单 (提交后实时同步至后台排班日历) -->
+    <section id="booking-section" class="pt-3">
+        <div class="p-4 p-md-5 bg-white rounded-4 shadow mx-auto" style="max-width: 860px;">
+            <div class="text-center mb-4">
+                <span class="badge bg-warning text-dark mb-2" data-zh="在线预约工位">Book a Bay Online</span>
+                <h2 class="fw-bold" data-zh="填写车辆与预约信息">Tell Us the Car and the Job</h2>
+                <p class="text-muted" data-zh="无需在线预付，到店看车确认后再付款。提交后将立即发送预约确认信并同步至技师排班日历！">
+                    No prepayment required. Quoted and confirmed before work begins. Instant confirmation email sent upon booking!
+                </p>
+            </div>
+
+            <form onsubmit="handleBookingSubmit(event)">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold" data-zh="您的姓名 *">Your Name *</label>
+                        <input type="text" class="form-control" id="custName" placeholder="e.g. Alex Smith" data-ph-zh="例如：Alex / 张三" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold" data-zh="联系电话 *">Phone Number *</label>
+                        <input type="tel" class="form-control" id="custPhone" placeholder="e.g. 604-303-8885" data-ph-zh="例如：604-303-8885" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold" data-zh="电子邮箱 (接收预约确认信) *">Email (For Confirmation) *</label>
+                        <input type="email" class="form-control" id="custEmail" placeholder="name@example.com" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold" data-zh="车辆品牌与型号 *">Vehicle Model *</label>
+                        <input type="text" class="form-control" id="custCarModel" placeholder="e.g. Porsche Macan" data-ph-zh="例如：保时捷 Macan" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold" data-zh="车牌号码 *">License Plate *</label>
+                        <input type="text" class="form-control" id="custPlate" placeholder="e.g. BC-PL888" data-ph-zh="例如：BC-PL888" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold" data-zh="选择需要预约的服务或会员套餐 *">What Needs Doing (Select Service / Plan) *</label>
+                        <select class="form-select" id="servicePackageSelect" required>
+                            <option value="Manual Car Wash ($35)" data-zh="纯手工全车精洗 ($35)">Manual Car Wash ($35)</option>
+                            <option value="Full Interior & Exterior Detail ($89)" data-zh="内外全车深度精洗 ($89)" selected>Full Interior & Exterior Detail ($89)</option>
+                            <option value="Interior Steam Shampoo ($150)" data-zh="内饰高温蒸汽深层洗护 ($150)">Interior Steam Shampoo ($150)</option>
+                            <option value="Polish & Wax ($160)" data-zh="全车机器抛光与手工打蜡 ($160)">Polish & Wax ($160)</option>
+                            <option value="Scratch Removal ($180)" data-zh="漆面去划痕与太阳纹修复 ($180)">Scratch Removal ($180)</option>
+                            <option value="Ceramic Coating & Protection ($299)" data-zh="纳米石墨烯镀晶与隔热贴膜 ($299)">Ceramic Coating & Protection ($299)</option>
+                            <option value="Membership: Basic Plan ($29/mo)" data-zh="月度会员：基础套餐 ($29/月)">Membership: Basic Plan ($29/mo)</option>
+                            <option value="Membership: Premium Plan ($49/mo)" data-zh="月度会员：尊享无限次套餐 ($49/月)">Membership: Premium Plan ($49/mo)</option>
+                            <option value="Membership: VIP Plan ($79/mo)" data-zh="月度会员：VIP 全能无限次套餐 ($79/月)">Membership: VIP Plan ($79/mo)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold d-flex justify-content-between align-items-center">
+                            <span data-zh="期望预约日期与具体时间 *">Appointment Date & Time *</span>
+                            <span class="badge bg-light text-secondary border fw-normal" data-zh="年-月-日">YYYY-MM-DD</span>
+                        </label>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <span class="small text-muted d-block" data-zh="📅 选择日期">📅 Date</span>
+                                <input type="date" class="form-control" id="bookingDate" required>
+                            </div>
+                            <div class="col-3">
+                                <span class="small text-muted d-block" data-zh="⏰ 小时">⏰ Hour</span>
+                                <select class="form-select" id="bookingHour" required>
+                                    <option value="09">09</option><option value="10" selected>10</option><option value="11">11</option>
+                                    <option value="12">12</option><option value="13">13</option><option value="14">14</option>
+                                    <option value="15">15</option><option value="16">16</option><option value="17">17</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <span class="small text-muted d-block" data-zh="⏱️ 分钟">⏱️ Minute</span>
+                                <select class="form-select" id="bookingMinute" required>
+                                    <option value="00">00</option><option value="15">15</option><option value="30">30</option><option value="45">45</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-bold" data-zh="额外备注说明 (选填)">Additional Notes (Optional)</label>
+                        <input type="text" class="form-control" id="custNotes" placeholder="Any specific stains, pet hair, or areas needing special attention?" data-ph-zh="是否有特殊污渍、宠物毛发或需要重点处理的部位？">
+                    </div>
+
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold text-dark" data-zh="确认并提交工位预约">Send Booking Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<div id="sharedFooter"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="app.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        initSharedLayout('services');
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('bookingDate');
+        dateInput.setAttribute('min', today);
+        dateInput.value = today;
+
+        // 如果客户已登录，自动帮客户填入姓名与邮箱，提升预约体验
+        prefillUserInfo();
+    });
+
+    function onUserStatusChanged() {
+        prefillUserInfo();
+    }
+
+    function prefillUserInfo() {
+        const user = JSON.parse(localStorage.getItem('apex_user'));
+        if (user) {
+            if (!document.getElementById('custName').value) document.getElementById('custName').value = user.name;
+            if (!document.getElementById('custEmail').value) document.getElementById('custEmail').value = user.email;
+        }
+    }
+
+    function selectServiceAndScroll(val) {
+        const sel = document.getElementById('servicePackageSelect');
+        if (sel) sel.value = val;
+        document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleBookingSubmit(event) {
+        event.preventDefault();
+        const newBooking = {
+            id: Date.now(),
+            name: document.getElementById('custName').value.trim(),
+            phone: document.getElementById('custPhone').value.trim(),
+            email: document.getElementById('custEmail').value.trim(),
+            carModel: document.getElementById('custCarModel').value.trim(),
+            carPlate: document.getElementById('custPlate').value.trim(),
+            pkg: document.getElementById('servicePackageSelect').value,
+            date: document.getElementById('bookingDate').value,
+            time: `${document.getElementById('bookingHour').value}:${document.getElementById('bookingMinute').value}`,
+            notes: document.getElementById('custNotes').value.trim(),
+            status: "PENDING"
+        };
+
+        const bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
+        bookings.push(newBooking);
+        localStorage.setItem('apex_bookings', JSON.stringify(bookings));
+
+        alert(isZh()
+            ? `✅ 工位预约成功！\n\n尊敬的 ${newBooking.name}，确认邮件已发送至 ${newBooking.email}。\n预约日期：${newBooking.date}\n预约时间：${newBooking.time}\n车辆信息：${newBooking.carModel} (${newBooking.carPlate})\n预约项目：${newBooking.pkg}`
+            : `✅ Bay Booking Confirmed!\n\nDear ${newBooking.name}, a confirmation email has been sent to ${newBooking.email}.\nDate: ${newBooking.date} at ${newBooking.time}\nVehicle: ${newBooking.carModel} (${newBooking.carPlate})\nService: ${newBooking.pkg}`
+        );
+
+        event.target.reset();
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
+</html>
