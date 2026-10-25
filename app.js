@@ -1,55 +1,50 @@
-// 1. 复刻店内商标 SVG（黑底 + 双交叉黑白格子旗 + 红色方程式赛车）
+// 1. 店内商标高清矢量 SVG（纯英文字符，移除中文注释防止编码报错）
 const PIT_LANE_LOGO_SVG = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 64" width="66" height="38" style="border-radius:6px; border:1px solid #334155; background:#050505; flex-shrink:0;">
-    <!-- 交叉旗杆 -->
-    <line x1="34" y1="30" x2="54" y2="8" stroke="#e2e8f0" stroke-width="2"/>
-    <line x1="62" y1="30" x2="42" y2="8" stroke="#e2e8f0" stroke-width="2"/>
-    <!-- 左侧黑白格子旗 -->
-    <g transform="translate(22, 6) rotate(-12)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 64" width="68" height="40" style="border-radius:6px; border:1px solid #dc2626; background:#050505; flex-shrink:0;">
+    <line x1="34" y1="30" x2="54" y2="6" stroke="#e2e8f0" stroke-width="2.2"/>
+    <line x1="62" y1="30" x2="42" y2="6" stroke="#e2e8f0" stroke-width="2.2"/>
+    <g transform="translate(20, 5) rotate(-14)">
         <rect x="0" y="0" width="20" height="13" fill="#ffffff" stroke="#94a3b8" stroke-width="0.6"/>
-        <rect x="0" y="0" width="5" height="4.3" fill="#000"/>
-        <rect x="10" y="0" width="5" height="4.3" fill="#000"/>
-        <rect x="5" y="4.3" width="5" height="4.3" fill="#000"/>
-        <rect x="15" y="4.3" width="5" height="4.3" fill="#000"/>
-        <rect x="0" y="8.6" width="5" height="4.4" fill="#000"/>
-        <rect x="10" y="8.6" width="5" height="4.4" fill="#000"/>
+        <rect x="0" y="0" width="5" height="4.3" fill="#000000"/>
+        <rect x="10" y="0" width="5" height="4.3" fill="#000000"/>
+        <rect x="5" y="4.3" width="5" height="4.3" fill="#000000"/>
+        <rect x="15" y="4.3" width="5" height="4.3" fill="#000000"/>
+        <rect x="0" y="8.6" width="5" height="4.4" fill="#000000"/>
+        <rect x="10" y="8.6" width="5" height="4.4" fill="#000000"/>
     </g>
-    <!-- 右侧黑白格子旗 -->
-    <g transform="translate(54, 4) rotate(12)">
+    <g transform="translate(54, 3) rotate(14)">
         <rect x="0" y="0" width="20" height="13" fill="#ffffff" stroke="#94a3b8" stroke-width="0.6"/>
-        <rect x="0" y="0" width="5" height="4.3" fill="#000"/>
-        <rect x="10" y="0" width="5" height="4.3" fill="#000"/>
-        <rect x="5" y="4.3" width="5" height="4.3" fill="#000"/>
-        <rect x="15" y="4.3" width="5" height="4.3" fill="#000"/>
-        <rect x="0" y="8.6" width="5" height="4.4" fill="#000"/>
-        <rect x="10" y="8.6" width="5" height="4.4" fill="#000"/>
+        <rect x="0" y="0" width="5" height="4.3" fill="#000000"/>
+        <rect x="10" y="0" width="5" height="4.3" fill="#000000"/>
+        <rect x="5" y="4.3" width="5" height="4.3" fill="#000000"/>
+        <rect x="15" y="4.3" width="5" height="4.3" fill="#000000"/>
+        <rect x="0" y="8.6" width="5" height="4.4" fill="#000000"/>
+        <rect x="10" y="8.6" width="5" height="4.4" fill="#000000"/>
     </g>
-    <!-- 红色方程式赛车主体 -->
     <path d="M10 48 L10 35 L22 35 L25 41 L46 36 L60 31 L84 41 L98 44 L100 49 L10 49 Z" fill="#dc2626" stroke="#ffffff" stroke-width="1"/>
-    <!-- 赛车座舱与防滚架 -->
     <path d="M46 36 L54 27 L63 32 Z" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
-    <!-- 尾翼与前鼻翼纹理 -->
     <rect x="8" y="32" width="12" height="4" fill="#b91c1c" stroke="#ffffff" stroke-width="0.8"/>
     <path d="M84 44 L102 44 L104 49 L84 49 Z" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
-    <!-- 后轮 -->
     <circle cx="26" cy="49" r="9" fill="#111827" stroke="#e2e8f0" stroke-width="2"/>
     <circle cx="26" cy="49" r="4" fill="#94a3b8"/>
-    <!-- 前轮 -->
     <circle cx="76" cy="49" r="9" fill="#111827" stroke="#e2e8f0" stroke-width="2"/>
     <circle cx="76" cy="49" r="4" fill="#94a3b8"/>
 </svg>`;
 
-// 2. 自动将该商标注入为浏览器顶部标签页图标 (Favicon)
+// 2. 安全注入浏览器标签页图标 (Favicon)
 function injectFavicon() {
-    const svgBase64 = btoa(PIT_LANE_LOGO_SVG.trim());
-    let link = document.querySelector("link[rel~='icon']");
-    if (!link) {
-        link = document.createElement('link');
-        link.rel = 'icon';
-        document.head.appendChild(link);
+    try {
+        let link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.head.appendChild(link);
+        }
+        link.type = 'image/svg+xml';
+        link.href = 'data:image/svg+xml;utf8,' + encodeURIComponent(PIT_LANE_LOGO_SVG.trim());
+    } catch (e) {
+        console.warn('Favicon injection skipped:', e);
     }
-    link.type = 'image/svg+xml';
-    link.href = 'data:image/svg+xml;base64,' + svgBase64;
 }
 
 function isZh() {
@@ -144,7 +139,6 @@ function initSharedLayout(activePage) {
                 </div>
                 <div class="modal-body p-4">
                     <div class="tab-content">
-                        <!-- 员工/经理/老板登录 -->
                         <div class="tab-pane fade show active" id="login-pane">
                             <p class="text-white-50 small text-center mb-3">
                                 Internal portal for Pit Lane Owner, Manager & Approved Staff Only.<br>
@@ -163,7 +157,6 @@ function initSharedLayout(activePage) {
                             </form>
                         </div>
 
-                        <!-- 新员工工位申请 -->
                         <div class="tab-pane fade" id="employee-pane">
                             <div class="alert bg-primary bg-opacity-25 text-info border-primary py-2 small mb-3">
                                 ℹ️ <strong>Employee Only / 员工须知:</strong><br>
@@ -297,7 +290,7 @@ function checkCurrentUser() {
         `;
     } else {
         authArea.innerHTML = `
-            <button class="btn btn-outline-danger btn-sm fw-bold px-3 py-1 text-white" data-bs-toggle="modal" data-bs-target="#authModal">
+            <button class="btn btn-danger btn-sm fw-bold px-3 py-1 text-white shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
                 🔒 Staff Login
             </button>
         `;
