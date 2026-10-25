@@ -1,30 +1,42 @@
 :root {
-    --pl-dark: #0f1115;
-    --pl-card-dark: #181b22;
-    --pl-gold: #f59e0b;
-    --pl-gold-hover: #d97706;
-    --pl-border: #2a2f3a;
+    --pl-bg-black: #080a0f;
+    --pl-panel-black: #111520;
+    --pl-card-black: #161b2a;
+    --pl-red: #dc2626;
+    --pl-red-dark: #991b1b;
+    --pl-blue: #1d4ed8;
+    --pl-blue-light: #2563eb;
+    --pl-border: #262f45;
+    --pl-text: #f1f5f9;
+    --pl-muted: #94a3b8;
 }
 
 body {
-    background-color: #f6f7f9;
-    color: #1a1e24;
+    background-color: var(--pl-bg-black);
+    color: var(--pl-text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* 顶部导航栏 */
+/* 顶部导航栏：黑底红蓝流光边 */
 .navbar-custom {
-    background-color: var(--pl-dark);
-    border-bottom: 1px solid var(--pl-border);
+    background-color: #05070b;
+    border-bottom: 2px solid var(--pl-red);
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.18);
+}
+
+.brand-title-red {
+    color: #ef4444;
+    font-weight: 900;
+    letter-spacing: 1.5px;
 }
 
 .nav-link-custom {
-    font-size: 0.92rem;
+    font-size: 0.94rem;
     font-weight: 600;
-    padding: 6px 14px !important;
+    padding: 7px 15px !important;
     border-radius: 20px;
     transition: all 0.2s ease;
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: rgba(255, 255, 255, 0.82) !important;
     text-decoration: none;
     white-space: nowrap;
     display: inline-block;
@@ -32,117 +44,217 @@ body {
 
 .nav-link-custom:hover {
     color: #ffffff !important;
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(37, 99, 235, 0.25);
 }
 
 .nav-link-custom.nav-active {
-    color: var(--pl-dark) !important;
-    background-color: var(--pl-gold) !important;
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+    color: #ffffff !important;
+    background: linear-gradient(135deg, var(--pl-red) 0%, var(--pl-blue) 100%) !important;
+    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
 }
 
-/* 首页顶部滚动轮播横幅 */
+/* 首页滚动横幅 */
 .hero-slide {
-    min-height: 440px;
-    padding: 70px 0;
+    min-height: 460px;
+    padding: 75px 0;
     display: flex;
     align-items: center;
-    border-bottom: 3px solid var(--pl-gold);
+    border-bottom: 3px solid var(--pl-blue-light);
     background-size: cover;
     background-position: center;
 }
 
 .hero-slide-1 {
-    background-image: linear-gradient(135deg, rgba(15,17,21,0.92) 0%, rgba(24,27,34,0.82) 100%),
+    background-image: linear-gradient(135deg, rgba(8,10,15,0.94) 0%, rgba(29,78,216,0.55) 100%),
     url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80');
 }
 
 .hero-slide-2 {
-    background-image: linear-gradient(135deg, rgba(15,23,42,0.94) 0%, rgba(30,41,59,0.86) 100%),
+    background-image: linear-gradient(135deg, rgba(8,10,15,0.94) 0%, rgba(185,28,28,0.6) 100%),
     url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1600&q=80');
 }
 
 .hero-slide-3 {
-    background-image: linear-gradient(135deg, rgba(20,20,20,0.93) 0%, rgba(45,35,15,0.85) 100%),
+    background-image: linear-gradient(135deg, rgba(8,10,15,0.95) 0%, rgba(30,58,138,0.65) 100%),
     url('https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=1600&q=80');
 }
 
 .hero-pill {
     display: inline-block;
-    background: rgba(245, 158, 11, 0.18);
-    border: 1px solid rgba(245, 158, 11, 0.5);
-    color: #fbbf24;
+    background: rgba(220, 38, 38, 0.2);
+    border: 1px solid #ef4444;
+    color: #fca5a5;
     padding: 6px 16px;
     border-radius: 30px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 16px;
 }
 
-/* 卡片与图片展示 */
+/* 深色卡片系统 (黑红蓝搭配) */
+.dark-panel {
+    background-color: var(--pl-panel-black);
+    border: 1px solid var(--pl-border);
+    border-radius: 14px;
+    color: var(--pl-text);
+}
+
+.dark-card {
+    background-color: var(--pl-card-black);
+    border: 1px solid var(--pl-border);
+    border-radius: 12px;
+    color: var(--pl-text);
+    transition: all 0.22s ease;
+}
+
+.dark-card:hover {
+    border-color: var(--pl-red);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.2);
+}
+
+.dark-card-blue:hover {
+    border-color: var(--pl-blue-light);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+}
+
 .service-img-top {
-    height: 175px;
+    height: 180px;
     object-fit: cover;
     width: 100%;
+    border-bottom: 2px solid var(--pl-red);
 }
 
 .showcase-img {
-    height: 230px;
+    height: 220px;
     object-fit: cover;
     width: 100%;
+    border-bottom: 2px solid var(--pl-blue-light);
 }
 
 .craft-number {
     font-size: 0.85rem;
     font-weight: 800;
-    color: var(--pl-gold);
+    color: #ef4444;
     letter-spacing: 1px;
     display: block;
     margin-bottom: 6px;
 }
 
 .dont-do-card {
-    background-color: var(--pl-dark);
+    background: linear-gradient(135deg, #131826 0%, #1e1118 100%);
     color: #ffffff;
     border-radius: 14px;
-    border-left: 4px solid var(--pl-gold);
+    border: 1px solid #3b1d26;
+    border-left: 5px solid var(--pl-red);
 }
 
-.review-card {
-    background: #ffffff;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
+/* 价目表专属红蓝表格样式 (复刻店内展板) */
+.tier-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #b91c1c, #dc2626);
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 900;
+    border-radius: 8px;
+    flex-shrink: 0;
 }
 
-.service-row-item {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 18px 20px;
-    transition: all 0.2s ease;
+.price-tag-red {
+    color: #f87171;
+    font-weight: 800;
+    font-size: 1.45rem;
 }
 
-.service-row-item:hover {
-    border-color: var(--pl-gold);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+.table-matrix {
+    color: #ffffff;
+    border-collapse: separate;
+    border-spacing: 3px;
 }
 
-.prod-card-img {
-    height: 185px;
-    object-fit: cover;
-    width: 100%;
+.table-matrix th, .table-matrix td {
+    padding: 12px 10px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    border-radius: 4px;
 }
 
-.receipt-card {
-    border: 2px dashed #0d6efd;
-    background-color: #f8fbff;
+.col-tier-name {
+    background-color: #161c2d;
+    text-align: left !important;
+    font-weight: 700;
+    border-left: 4px solid var(--pl-red) !important;
 }
 
-/* 管理后台与排班日历 */
+.col-blue-head {
+    background: linear-gradient(180deg, #1e40af, #1d4ed8);
+    color: #ffffff;
+}
+
+.col-blue-cell {
+    background-color: #172554;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #93c5fd;
+}
+
+.col-red-head {
+    background: linear-gradient(180deg, #991b1b, #dc2626);
+    color: #ffffff;
+}
+
+.col-red-cell {
+    background-color: #450a0a;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fca5a5;
+}
+
+.col-gold-head {
+    background: linear-gradient(180deg, #92400e, #b45309);
+    color: #ffffff;
+}
+
+.col-gold-cell {
+    background-color: #3b180c;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fcd34d;
+}
+
+.other-service-box {
+    background-color: #0f172a;
+    border: 1px solid #1e3a8a;
+    border-left: 4px solid #3b82f6;
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+/* 深色输入框与表单 */
+.form-control-dark, .form-select-dark {
+    background-color: #0c101a !important;
+    border: 1px solid #2e3a54 !important;
+    color: #ffffff !important;
+}
+
+.form-control-dark::placeholder {
+    color: #64748b !important;
+}
+
+.form-control-dark:focus, .form-select-dark:focus {
+    border-color: var(--pl-blue-light) !important;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25) !important;
+}
+
+/* 管理后台日历样式 */
 .sidebar {
     min-height: 100vh;
-    background-color: var(--pl-dark);
+    background-color: #05070b;
     color: white;
     border-right: 1px solid var(--pl-border);
 }
@@ -155,21 +267,21 @@ body {
 }
 
 .sidebar .nav-link.active, .sidebar .nav-link:hover {
-    color: var(--pl-dark);
-    background-color: var(--pl-gold);
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--pl-red), var(--pl-blue));
     font-weight: 700;
 }
 
 .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 12px;
 }
 
 .calendar-day-col {
     min-height: 260px;
-    background: #ffffff;
-    border: 1px solid #dee2e6;
+    background: var(--pl-card-black);
+    border: 1px solid var(--pl-border);
     border-radius: 10px;
     padding: 10px;
 }
@@ -179,13 +291,14 @@ body {
     border-radius: 6px;
     padding: 8px;
     margin-bottom: 8px;
-    border-left: 4px solid var(--pl-gold);
-    background: #fffbeb;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--pl-red);
+    background: #1e293b;
+    color: #f8fafc;
 }
 
 .cal-booking-done {
-    background: #e9ecef !important;
-    border-left-color: #6c757d !important;
-    color: #6c757d !important;
+    background: #0f172a !important;
+    border-left-color: #475569 !important;
+    color: #64748b !important;
+    text-decoration: line-through;
 }
