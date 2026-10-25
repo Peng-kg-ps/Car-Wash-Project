@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Staff & Admin Portal | PIT LANE Hand Car Wash & Detailing</title>
+  <title>Booking Calendar & Admin | PIT LANE Hand Car Wash & Detailing</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,133 +11,224 @@
 
 <div class="container-fluid">
   <div class="row">
-    <!-- 左侧管理栏 -->
+    <!-- 左侧管理导航栏 (全中英双语) -->
     <nav class="col-md-3 col-lg-2 d-md-block sidebar p-3 collapse">
       <div class="text-center py-3 border-bottom border-secondary mb-3">
         <div class="brand-title-red fs-4">PIT LANE</div>
-        <small class="text-white-50">Admin & Bay Schedule</small>
+        <small class="text-white-50">预约管理系统 / Admin Portal</small>
       </div>
       <div class="p-2 mb-3 dark-panel text-center small" id="adminBadge">Loading...</div>
 
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link active" id="tab-btn-bookings" href="javascript:void(0)" onclick="switchTab('bookings')">
-            📅 预约排班日历 (Schedule)
+          <a class="nav-link active" href="javascript:void(0)">
+            📅 预约日历 (Booking Calendar)
           </a>
         </li>
-        <li class="nav-item mt-2" id="ownerApprovalTab" style="display: none;">
-          <a class="nav-link position-relative text-warning border border-warning" id="tab-btn-staff" href="javascript:void(0)" onclick="switchTab('staff')">
-            ✉️ 员工审批 (Staff Approval)
-            <span class="badge bg-danger rounded-pill ms-1" id="pendingStaffBadge">0</span>
-          </a>
-        </li>
-
         <hr class="border-secondary my-3">
         <li class="nav-item">
           <a class="nav-link text-info" href="index.html">🏠 返回门店主页 (Main Site)</a>
         </li>
         <li class="nav-item mt-2">
-          <a class="nav-link text-danger border border-danger text-center" href="javascript:void(0)" onclick="adminLogout()">登出后台 (Logout)</a>
+          <a class="nav-link text-danger border border-danger text-center" href="javascript:void(0)" onclick="adminLogout()">
+            登出后台 (Logout)
+          </a>
         </li>
       </ul>
     </nav>
 
-    <!-- 右侧主内容区 -->
+    <!-- 右侧主内容区 (全中英双语) -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
 
-      <!-- 顶部今日统计概览 -->
+      <!-- 顶部：每日 / 每周 / 每月 统计卡片 -->
       <div class="row g-3 mb-4">
-        <div class="col-md-4">
+        <div class="col-md-3 col-sm-6">
           <div class="dark-panel p-3 border-danger">
-            <h6 class="text-danger fw-bold mb-1">📅 今日预约总数 (Today's Bookings)</h6>
-            <h2 class="fw-bold text-white mb-0" id="statTodayBookings">0 单</h2>
+            <h6 class="text-danger fw-bold mb-1">📅 今日预约 (Today's Bookings)</h6>
+            <h3 class="fw-bold text-white mb-0" id="statTodayBookings">0 单 / Bookings</h3>
+            <small class="text-white-50" id="statTodayDone">0 已完成 / Completed</small>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3 col-sm-6">
           <div class="dark-panel p-3 border-primary">
-            <h6 class="text-info fw-bold mb-1">⏳ 待到店施工 (Pending Bays)</h6>
-            <h2 class="fw-bold text-white mb-0" id="statPendingBookings">0 单</h2>
+            <h6 class="text-info fw-bold mb-1">📆 本周预约 (This Week)</h6>
+            <h3 class="fw-bold text-white mb-0" id="statWeekBookings">0 单 / Bookings</h3>
+            <small class="text-white-50" id="statWeekDone">0 已完成 / Completed</small>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3 col-sm-6">
+          <div class="dark-panel p-3 border-warning">
+            <h6 class="text-warning fw-bold mb-1">🗓️ 本月预约 (This Month)</h6>
+            <h3 class="fw-bold text-white mb-0" id="statMonthBookings">0 单 / Bookings</h3>
+            <small class="text-white-50" id="statMonthDone">0 已完成 / Completed</small>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
           <div class="dark-panel p-3 border-success">
-            <h6 class="text-success fw-bold mb-1">✓ 今日已交车 (Completed Today)</h6>
-            <h2 class="fw-bold text-white mb-0" id="statCompletedBookings">0 单</h2>
+            <h6 class="text-success fw-bold mb-1">⏳ 待完成检查 (Pending Check)</h6>
+            <h3 class="fw-bold text-white mb-0" id="statPendingAll">0 单 / Pending</h3>
+            <small class="text-white-50">可随时修改项目或标记完成</small>
           </div>
         </div>
       </div>
 
-      <!-- 1. 工位预约排班日历与明细表 -->
-      <section id="tab-bookings">
-        <div class="dark-panel p-3 mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="fw-bold text-white mb-0">📅 工位预约排班日历 (Bay Schedule Calendar)</h5>
-            <span class="text-white-50 small">按预约日期与具体时间点自动归类排序</span>
+      <!-- 1. 预约日历 (Booking Calendar) - 支持每日/每周/每月视图切换 -->
+      <div class="dark-panel p-3 mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3 pb-2 border-bottom border-secondary">
+          <div>
+            <h5 class="fw-bold text-white mb-0">📅 预约日历 / Booking Calendar</h5>
+            <small class="text-white-50">查看每日、每周、每月客户预约情况，支持直接修改预约项目与检查完成状态 (View daily, weekly, monthly schedules & edit bookings)</small>
           </div>
-          <div class="calendar-grid" id="calendarGrid"></div>
+          <!-- 视图切换按钮组 -->
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-sm btn-outline-light" id="filter-day" onclick="setCalendarRange('day')">
+              每日视图 / Daily (Today)
+            </button>
+            <button type="button" class="btn btn-sm btn-danger active fw-bold" id="filter-week" onclick="setCalendarRange('week')">
+              每周视图 / Weekly (7 Days)
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-light" id="filter-month" onclick="setCalendarRange('month')">
+              每月视图 / Monthly (30 Days)
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-info" id="filter-all" onclick="setCalendarRange('all')">
+              全部已预约日期 / All Booked Dates
+            </button>
+          </div>
         </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </div>
 
-        <div class="dark-panel p-3">
-          <h5 class="fw-bold text-white mb-3">📋 全部客户预约登记表 / Full Appointment Records</h5>
-          <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0">
-              <thead>
-              <tr>
-                <th>预约日期 & 时间 (Date & Time)</th>
-                <th>客户姓名 / 电话 / 邮箱</th>
-                <th>车型 & 车牌号 (Vehicle)</th>
-                <th>预约项目 & 备注 (Service & Notes)</th>
-                <th>状态 (Status)</th>
-                <th>操作 (Action)</th>
-              </tr>
-              </thead>
-              <tbody id="adminBookingsTable"></tbody>
-            </table>
+      <!-- 2. 全部预约登记与检查列表 (Full Booking Inspection & Edit Table) -->
+      <div class="dark-panel p-3">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <h5 class="fw-bold text-white mb-0">📋 预约明细与完成检查表 / Booking Records & Completion Check</h5>
+          <div class="d-flex gap-2">
+            <select class="form-select form-select-sm form-select-dark" id="statusFilterSelect" onchange="refreshAllAdminData()" style="width: 240px;">
+              <option value="ALL">全部状态 / All Statuses</option>
+              <option value="PENDING">⏳ 仅看未完成 / Pending Only</option>
+              <option value="COMPLETED">✓ 仅看已完成 / Completed Only</option>
+            </select>
           </div>
         </div>
-      </section>
-
-      <!-- 2. 员工注册审批中心 (仅经理/老板可见) -->
-      <section id="tab-staff" style="display:none;">
-        <h4 class="fw-bold text-white mb-3">👔 员工工位注册审批中心 / Staff Approval (Manager & Owner Only)</h4>
-        <div class="dark-panel p-3 mb-4 border-warning">
-          <h6 class="fw-bold text-warning mb-3">待审批员工申请 / Pending Staff Applications</h6>
-          <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0">
-              <thead>
-              <tr>
-                <th>姓名 (Name)</th>
-                <th>邮箱 (Email)</th>
-                <th>工位号 (Station)</th>
-                <th>申请时间 (Applied At)</th>
-                <th>审批操作 (Action)</th>
-              </tr>
-              </thead>
-              <tbody id="pendingStaffTable"></tbody>
-            </table>
-          </div>
+        <div class="table-responsive">
+          <table class="table table-dark table-hover align-middle mb-0">
+            <thead>
+            <tr>
+              <th>预约日期 & 时间<br><small class="text-white-50">Date & Time</small></th>
+              <th>客户信息<br><small class="text-white-50">Customer Info</small></th>
+              <th>车辆型号 & 车牌<br><small class="text-white-50">Vehicle & Plate</small></th>
+              <th>预约项目 & 备注<br><small class="text-white-50">Booked Service & Notes</small></th>
+              <th>完成状态检查<br><small class="text-white-50">Completion Status</small></th>
+              <th>管理操作 (修改 / 状态切换)<br><small class="text-white-50">Actions (Edit / Toggle)</small></th>
+            </tr>
+            </thead>
+            <tbody id="adminBookingsTable"></tbody>
+          </table>
         </div>
-
-        <div class="dark-panel p-3">
-          <h6 class="fw-bold text-info mb-3">已批准在职员工列表 / Approved Active Staff</h6>
-          <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0">
-              <thead>
-              <tr>
-                <th>员工姓名 (Name)</th>
-                <th>登录邮箱 (Email)</th>
-                <th>所属工位 (Station)</th>
-                <th>状态 (Status)</th>
-                <th>操作 (Action)</th>
-              </tr>
-              </thead>
-              <tbody id="approvedStaffTable"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+      </div>
 
     </main>
+  </div>
+</div>
+
+<!-- 修改预约内容弹窗 (Edit Booking Modal - 中英双语) -->
+<div class="modal fade notranslate" id="editBookingModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content dark-panel border-primary shadow-lg">
+      <div class="modal-header border-bottom border-secondary">
+        <h5 class="modal-title fw-bold text-white">✏️ 修改客户预约内容 / Edit Customer Booking</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form onsubmit="handleSaveEditedBooking(event)">
+        <div class="modal-body p-4">
+          <input type="hidden" id="editBookingId">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label small fw-bold text-white">客户姓名 / Customer Name *</label>
+              <input type="text" class="form-control form-control-dark" id="editCustName" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold text-white">联系电话 / Phone Number *</label>
+              <input type="tel" class="form-control form-control-dark" id="editCustPhone" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold text-white">电子邮箱 / Email Address *</label>
+              <input type="email" class="form-control form-control-dark" id="editCustEmail" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label small fw-bold text-white">车辆型号 / Vehicle Model *</label>
+              <input type="text" class="form-control form-control-dark" id="editCarModel" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label small fw-bold text-white">车牌号 / License Plate *</label>
+              <input type="text" class="form-control form-control-dark" id="editCarPlate" required>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label small fw-bold text-warning">更换或修改预约项目 / Change Booked Service or Pass *</label>
+              <select class="form-select form-select-dark" id="editServicePkg" required>
+                <optgroup label="Regular Hand Car Wash (标准纯手工洗车)">
+                  <option value="Regular Wash - A: Compact Car ($48)">Tier A: Compact Car ($48)</option>
+                  <option value="Regular Wash - B: Regular Sedan ($55)">Tier B: Regular Sedan ($55)</option>
+                  <option value="Regular Wash - C: Large Sedan / Small SUV ($63)">Tier C: Large Sedan / Small SUV ($63)</option>
+                  <option value="Regular Wash - D: Mid SUV / Mini Van ($76)">Tier D: High-End Sedan / Mid SUV / Mini Van ($76)</option>
+                  <option value="Regular Wash - E: Large SUV / Small Pick Up ($88)">Tier E: Large SUV / Small Pick Up ($88)</option>
+                  <option value="Regular Wash - F: Full-size SUV / Pick Up ($108)">Tier F: Full-size SUV / Pick Up ($108)</option>
+                  <option value="Regular Wash - G: Oversize ($128)">Tier G: Oversize ($128)</option>
+                </optgroup>
+                <optgroup label="Detailing Packages (汽车深度美容套餐)">
+                  <option value="Interior Steam Shampoo ($228 - $498)">Interior Steam Shampoo 车厢蒸汽清洗 ($228–$498)</option>
+                  <option value="Hand Wax ($228 - $498)">Wax 打蜡 ($228–$498)</option>
+                  <option value="Polish & Wax ($398 - $898)">Polish & Wax 抛光及打蜡 ($398–$898)</option>
+                  <option value="Full Detailing Package ($598 - $1298)">Full Detailing 美容套餐 ($598–$1298)</option>
+                  <option value="Ceramic Coating ($1998 - $4998)">Ceramic Coating 镀晶 ($1998–$4998)</option>
+                </optgroup>
+                <optgroup label="Other Services (其他专项服务)">
+                  <option value="Rim Cleaning ($49/each)">Rim Cleaning 轮圈清洁 ($49/each)</option>
+                  <option value="Engine Bay Cleaning (from $99)">Engine Bay Cleaning 引擎仓清洗 (from $99)</option>
+                  <option value="Leather Conditioning (from $199)">Leather Conditioning 皮革护理 (from $199)</option>
+                  <option value="Rim Repair ($298/each)">Rim Repair 轮圈维修 ($298/each)</option>
+                  <option value="Rim Protector (from $498)">Rim Protector 轮圈保护圈 (from $498)</option>
+                  <option value="Water Repellent Treatment (from $199)">Water Repellent 玻璃防泼水处理 (from $199)</option>
+                  <option value="Window Tinting (from $498)">Window Tinting 玻璃防晒膜 (from $498)</option>
+                </optgroup>
+                <optgroup label="Car Washing Passes (洗车套票办理)">
+                  <option value="10+1 Times Car Wash Pass ($480 - $1280)">10+1 Times Pass 买10送1次卡 ($480–$1280)</option>
+                  <option value="1 Month Unlimited Pass ($150 - $350)">1 Month Unlimited Pass 单月套票 ($150–$350)</option>
+                  <option value="3 Months Unlimited Pass ($338 - $798)">3 Months Unlimited Pass 三月套票 ($338–$798)</option>
+                  <option value="1 Year Unlimited Pass ($1098 - $2598)">1 Year Unlimited Pass 全年套票 ($1098–$2598)</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label small fw-bold text-white">预约日期 / Date *</label>
+              <input type="date" class="form-control form-control-dark" id="editBookingDate" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold text-white">预约时间 / Time (HH:MM) *</label>
+              <input type="text" class="form-control form-control-dark" id="editBookingTime" placeholder="10:30" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold text-white">完成状态 / Completion Status *</label>
+              <select class="form-select form-select-dark" id="editBookingStatus">
+                <option value="PENDING">⏳ 待施工 / Pending</option>
+                <option value="COMPLETED">✓ 已完成 / Completed</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-bold text-white">附加备注 (脚垫/特殊车况) / Additional Notes</label>
+              <input type="text" class="form-control form-control-dark" id="editBookingNotes" placeholder="e.g. Added 4 rubber mats ($12), customer changed from Regular to Steam...">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-top border-secondary">
+          <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">取消 / Cancel</button>
+          <button type="submit" class="btn btn-primary fw-bold">💾 保存修改 / Save Changes</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -145,25 +236,21 @@
 <script src="app.js"></script>
 <script>
   let currentUser = null;
+  let currentRange = 'week'; // 'day', 'week', 'month', 'all'
 
   document.addEventListener('DOMContentLoaded', () => {
     injectFavicon();
     currentUser = JSON.parse(localStorage.getItem('apex_user'));
-    if (!currentUser || (currentUser.role !== 'ADMIN' && currentUser.role !== 'STAFF')) {
-      alert('⚠️ Access Denied: Staff or Owner login required!');
+    if (!currentUser || currentUser.role !== 'ADMIN') {
+      alert('⚠️ 权限不足：仅限门店经理或老板登录访问！\nAccess Denied: Manager or Owner login required!');
       window.location.href = 'index.html';
       return;
     }
 
-    const isOwner = (currentUser.role === 'ADMIN');
     document.getElementById('adminBadge').innerHTML = `
             <div class="text-white">👤 <strong>${currentUser.name}</strong></div>
-            <div class="text-danger fw-bold small">${isOwner ? '👑 老板 / 经理 (Owner/Manager)' : `🛠️ 认证员工 (${currentUser.station || 'Staff'})`}</div>
+            <div class="text-danger fw-bold small">👑 授权管理权限 / Authorized Admin</div>
         `;
-
-    if (isOwner) {
-      document.getElementById('ownerApprovalTab').style.display = 'block';
-    }
 
     refreshAllAdminData();
   });
@@ -173,58 +260,125 @@
     window.location.href = 'index.html';
   }
 
-  function switchTab(tabId) {
-    if (tabId === 'staff' && currentUser.role !== 'ADMIN') return;
-    document.getElementById('tab-bookings').style.display = (tabId === 'bookings') ? 'block' : 'none';
-    document.getElementById('tab-staff').style.display = (tabId === 'staff') ? 'block' : 'none';
-    document.querySelectorAll('.sidebar .nav-link').forEach(link => link.classList.remove('active'));
-    document.getElementById('tab-btn-' + tabId).classList.add('active');
+  function setCalendarRange(range) {
+    currentRange = range;
+    ['day', 'week', 'month', 'all'].forEach(r => {
+      const btn = document.getElementById('filter-' + r);
+      if (r === range) {
+        btn.className = 'btn btn-sm btn-danger active fw-bold';
+      } else {
+        btn.className = 'btn btn-sm btn-outline-light';
+      }
+    });
     refreshAllAdminData();
   }
 
   function refreshAllAdminData() {
-    const todayStr = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
+
+    // 计算本周起止与本月前缀
+    const weekEnd = new Date(now);
+    weekEnd.setDate(now.getDate() + 6);
+    const weekEndStr = weekEnd.toISOString().split('T')[0];
+    const currentMonthPrefix = todayStr.slice(0, 7); // YYYY-MM
+
     const bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
     bookings.sort((a, b) => (`${a.date} ${a.time}`).localeCompare(`${b.date} ${b.time}`));
 
-    const todayBookings = bookings.filter(b => b.date === todayStr);
-    const doneToday = todayBookings.filter(b => b.status === 'COMPLETED').length;
-    const pendingAll = bookings.filter(b => b.status !== 'COMPLETED').length;
+    // 统计今日、本周、本月数据
+    const todayList = bookings.filter(b => b.date === todayStr);
+    const weekList = bookings.filter(b => b.date >= todayStr && b.date <= weekEndStr);
+    const monthList = bookings.filter(b => b.date && b.date.startsWith(currentMonthPrefix));
+    const pendingAllCount = bookings.filter(b => b.status !== 'COMPLETED').length;
 
-    document.getElementById('statTodayBookings').innerText = `${todayBookings.length} 单`;
-    document.getElementById('statPendingBookings').innerText = `${pendingAll} 单`;
-    document.getElementById('statCompletedBookings').innerText = `${doneToday} 单`;
+    document.getElementById('statTodayBookings').innerText = `${todayList.length} 单 / Bookings`;
+    document.getElementById('statTodayDone').innerText = `${todayList.filter(b => b.status === 'COMPLETED').length} 已完成 / Completed`;
 
-    // 渲染底部明细表格
+    document.getElementById('statWeekBookings').innerText = `${weekList.length} 单 / Bookings`;
+    document.getElementById('statWeekDone').innerText = `${weekList.filter(b => b.status === 'COMPLETED').length} 已完成 / Completed`;
+
+    document.getElementById('statMonthBookings').innerText = `${monthList.length} 单 / Bookings`;
+    document.getElementById('statMonthDone').innerText = `${monthList.filter(b => b.status === 'COMPLETED').length} 已完成 / Completed`;
+
+    document.getElementById('statPendingAll').innerText = `${pendingAllCount} 单 / Pending`;
+
+    // 1. 渲染底部完整检查与编辑表格
+    const statusFilter = document.getElementById('statusFilterSelect').value;
+    const filteredTableBookings = bookings.filter(b => {
+      if (statusFilter === 'PENDING') return b.status !== 'COMPLETED';
+      if (statusFilter === 'COMPLETED') return b.status === 'COMPLETED';
+      return true;
+    });
+
     const tbody = document.getElementById('adminBookingsTable');
-    if (bookings.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-white-50">暂无客户预约记录 / No bookings yet</td></tr>`;
+    if (filteredTableBookings.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-white-50">暂无符合条件的预约记录 / No matching booking records</td></tr>`;
     } else {
-      tbody.innerHTML = bookings.map(b => `
+      tbody.innerHTML = filteredTableBookings.map(b => {
+        const isDone = b.status === 'COMPLETED';
+        return `
                 <tr>
-                    <td><strong class="text-info">📅 ${b.date}</strong><br><span class="badge bg-danger">⏰ ${b.time}</span></td>
-                    <td><strong>${b.name}</strong><br><small>📞 ${b.phone}</small><br><small class="text-white-50">✉️ ${b.email}</small></td>
-                    <td><span class="badge bg-secondary">🚗 ${b.carModel}</span><br><code class="text-warning fw-bold">${b.carPlate}</code></td>
-                    <td><strong>${b.pkg}</strong>${b.notes ? `<br><small class="text-warning">📝 备注: ${b.notes}</small>` : ''}</td>
-                    <td><span class="badge ${b.status === 'COMPLETED' ? 'bg-secondary' : 'bg-primary'}">${b.status === 'COMPLETED' ? '✓ 已完成' : '⏳ 待到店'}</span></td>
                     <td>
-                        ${b.status !== 'COMPLETED' ? `<button class="btn btn-success btn-sm" onclick="completeBooking(${b.id})">标记完成</button>` : `<button class="btn btn-sm btn-outline-secondary" disabled>已归档</button>`}
+                        <strong class="text-info">📅 ${b.date}</strong><br>
+                        <span class="badge bg-danger">⏰ ${b.time}</span>
                     </td>
-                </tr>
-            `).join('');
+                    <td>
+                        <strong>${b.name}</strong><br>
+                        <small>📞 ${b.phone}</small><br>
+                        <small class="text-white-50">✉️ ${b.email}</small>
+                    </td>
+                    <td>
+                        <span class="badge bg-secondary">🚗 ${b.carModel}</span><br>
+                        <code class="text-warning fw-bold">${b.carPlate}</code>
+                    </td>
+                    <td>
+                        <strong class="text-white">${b.pkg}</strong>
+                        ${b.notes ? `<br><small class="text-warning">📝 备注/Notes: ${b.notes}</small>` : ''}
+                    </td>
+                    <td>
+                        <span class="badge ${isDone ? 'bg-success' : 'bg-warning text-dark'} fs-6">
+                            ${isDone ? '✓ 已完成 / Completed' : '⏳ 未完成 / Pending'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-outline-info btn-sm fw-bold" onclick="openEditBookingModal(${b.id})">
+                                ✏️ 修改预约 / Edit
+                            </button>
+                            <button class="btn ${isDone ? 'btn-outline-warning' : 'btn-success'} btn-sm fw-bold" onclick="toggleBookingStatus(${b.id})">
+                                ${isDone ? '↺ 设为未完成 / Mark Pending' : '✓ 标记完成 / Mark Done'}
+                            </button>
+                        </div>
+                    </td>
+                </tr>`;
+      }).join('');
     }
 
-    // 渲染排班日历
+    // 2. 根据每日/每周/每月视图生成预约日历日期列表
     const dateSet = new Set();
-    for (let i = 0; i < 7; i++) {
-      const d = new Date();
-      d.setDate(d.getDate() + i);
-      dateSet.add(d.toISOString().split('T')[0]);
+    if (currentRange === 'day') {
+      dateSet.add(todayStr);
+    } else if (currentRange === 'week') {
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(now);
+        d.setDate(now.getDate() + i);
+        dateSet.add(d.toISOString().split('T')[0]);
+      }
+    } else if (currentRange === 'month') {
+      for (let i = 0; i < 30; i++) {
+        const d = new Date(now);
+        d.setDate(now.getDate() + i);
+        dateSet.add(d.toISOString().split('T')[0]);
+      }
+    } else if (currentRange === 'all') {
+      bookings.forEach(b => { if (b.date) dateSet.add(b.date); });
+      if (dateSet.size === 0) dateSet.add(todayStr);
     }
-    bookings.forEach(b => { if (b.date) dateSet.add(b.date); });
-    const sortedDates = Array.from(dateSet).sort();
 
+    const sortedDates = Array.from(dateSet).sort();
     const grid = document.getElementById('calendarGrid');
+
     grid.innerHTML = sortedDates.map(dateStr => {
       const dayBookings = bookings.filter(b => b.date === dateStr);
       const isToday = (dateStr === todayStr);
@@ -232,93 +386,100 @@
       return `
                 <div class="calendar-day-col">
                     <div class="fw-bold border-bottom border-secondary pb-2 mb-2 text-center ${isToday ? 'bg-danger text-white rounded py-1' : 'text-info'}">
-                        📅 ${dateStr} ${isToday ? '(Today)' : ''}
+                        📅 ${dateStr} ${isToday ? '(今日 / Today)' : ''}
                         <span class="badge bg-dark ms-1">${dayBookings.length} 单</span>
                     </div>
-                    ${dayBookings.length === 0 ? '<div class="text-white-50 text-center small mt-5">空闲工位 (No Bookings)</div>' : dayBookings.map(b => `
-                        <div class="cal-booking-item ${b.status === 'COMPLETED' ? 'cal-booking-done' : ''}">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="badge bg-danger">⏰ ${b.time}</span>
-                                <span class="badge ${b.status === 'COMPLETED' ? 'bg-secondary' : 'bg-primary'}">${b.status === 'COMPLETED' ? '✓ 已完成' : '待施工'}</span>
-                            </div>
-                            <div><strong>👤 客户:</strong> ${b.name}</div>
-                            <div><strong>📞 电话:</strong> ${b.phone}</div>
-                            <div><strong>🚗 车辆:</strong> ${b.carModel} (<code class="text-warning">${b.carPlate}</code>)</div>
-                            <div><strong>🧽 项目:</strong> ${b.pkg}</div>
-                            ${b.notes ? `<div class="text-warning"><strong>📝 备注:</strong> ${b.notes}</div>` : ''}
-                            ${b.status !== 'COMPLETED' ? `<button class="btn btn-success btn-sm w-100 mt-2 py-0" onclick="completeBooking(${b.id})">✓ 标记完成 (Done)</button>` : ''}
-                        </div>
-                    `).join('')}
+                    ${dayBookings.length === 0
+              ? '<div class="text-white-50 text-center small mt-5">暂无预约 / No Bookings</div>'
+              : dayBookings.map(b => {
+                const isDone = b.status === 'COMPLETED';
+                return `
+                            <div class="cal-booking-item ${isDone ? 'cal-booking-done' : ''}">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span class="badge bg-danger">⏰ ${b.time}</span>
+                                    <span class="badge ${isDone ? 'bg-success' : 'bg-warning text-dark'}">
+                                        ${isDone ? '✓ 已完成 / Done' : '⏳ 待施工 / Pending'}
+                                    </span>
+                                </div>
+                                <div><strong>👤 客户 / Name:</strong> ${b.name}</div>
+                                <div><strong>📞 电话 / Tel:</strong> ${b.phone}</div>
+                                <div><strong>🚗 车辆 / Car:</strong> ${b.carModel} (<code class="text-warning">${b.carPlate}</code>)</div>
+                                <div><strong>🧽 项目 / Service:</strong> ${b.pkg}</div>
+                                ${b.notes ? `<div class="text-warning"><strong>📝 备注 / Notes:</strong> ${b.notes}</div>` : ''}
+                                <div class="d-flex gap-1 mt-2">
+                                    <button class="btn btn-info btn-sm flex-fill py-0 text-dark fw-bold" onclick="openEditBookingModal(${b.id})">
+                                        ✏️ 修改 / Edit
+                                    </button>
+                                    <button class="btn ${isDone ? 'btn-outline-secondary text-white' : 'btn-success'} btn-sm flex-fill py-0 fw-bold" onclick="toggleBookingStatus(${b.id})">
+                                        ${isDone ? '↺ 还原 / Undo' : '✓ 完成 / Done'}
+                                    </button>
+                                </div>
+                            </div>`;
+              }).join('')
+      }
                 </div>
             `;
     }).join('');
-
-    if (currentUser && currentUser.role === 'ADMIN') renderStaffApprovalModule();
   }
 
-  function completeBooking(bookingId) {
+  // 切换预约完成/未完成状态
+  function toggleBookingStatus(bookingId) {
     let bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
     const target = bookings.find(b => b.id === bookingId);
     if (target) {
-      target.status = 'COMPLETED';
+      target.status = (target.status === 'COMPLETED') ? 'PENDING' : 'COMPLETED';
       localStorage.setItem('apex_bookings', JSON.stringify(bookings));
       refreshAllAdminData();
     }
   }
 
-  function renderStaffApprovalModule() {
-    const pending = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
-    const approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
-    document.getElementById('pendingStaffBadge').innerText = pending.length;
+  // 打开修改预约弹窗
+  function openEditBookingModal(bookingId) {
+    const bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
+    const target = bookings.find(b => b.id === bookingId);
+    if (!target) return;
 
-    document.getElementById('pendingStaffTable').innerHTML = pending.length === 0
-            ? `<tr><td colspan="5" class="text-center text-white-50 py-3">暂无待审批的员工申请</td></tr>`
-            : pending.map(s => `
-                <tr>
-                    <td class="fw-bold">${s.name}</td>
-                    <td>${s.email}</td>
-                    <td><span class="badge bg-warning text-dark">${s.station}</span></td>
-                    <td><small class="text-white-50">${s.appliedAt}</small></td>
-                    <td>
-                        <button class="btn btn-success btn-sm me-2" onclick="approveStaff(${s.id})">Approve (批准)</button>
-                        <button class="btn btn-outline-danger btn-sm" onclick="rejectStaff(${s.id})">Reject (拒绝)</button>
-                    </td>
-                </tr>`).join('');
+    document.getElementById('editBookingId').value = target.id;
+    document.getElementById('editCustName').value = target.name || '';
+    document.getElementById('editCustPhone').value = target.phone || '';
+    document.getElementById('editCustEmail').value = target.email || '';
+    document.getElementById('editCarModel').value = target.carModel || '';
+    document.getElementById('editCarPlate').value = target.carPlate || '';
+    document.getElementById('editServicePkg').value = target.pkg || 'Regular Wash - C: Large Sedan / Small SUV ($63)';
+    document.getElementById('editBookingDate').value = target.date || '';
+    document.getElementById('editBookingTime').value = target.time || '10:00';
+    document.getElementById('editBookingStatus').value = target.status || 'PENDING';
+    document.getElementById('editBookingNotes').value = target.notes || '';
 
-    document.getElementById('approvedStaffTable').innerHTML = approved.length === 0
-            ? `<tr><td colspan="5" class="text-center text-white-50 py-3">尚未添加正式员工</td></tr>`
-            : approved.map(s => `
-                <tr>
-                    <td class="fw-bold">${s.name}</td>
-                    <td>${s.email}</td>
-                    <td><span class="badge bg-info text-dark">${s.station}</span></td>
-                    <td><span class="badge bg-success">Active / 在职</span></td>
-                    <td><button class="btn btn-outline-danger btn-sm" onclick="removeApprovedStaff('${s.email}')">注销 (Revoke)</button></td>
-                </tr>`).join('');
+    new bootstrap.Modal(document.getElementById('editBookingModal')).show();
   }
 
-  function approveStaff(staffId) {
-    let pending = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
-    let approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
-    const idx = pending.findIndex(s => s.id === staffId);
+  // 保存修改后的预约内容
+  function handleSaveEditedBooking(event) {
+    event.preventDefault();
+    const id = Number(document.getElementById('editBookingId').value);
+    let bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
+    const idx = bookings.findIndex(b => b.id === id);
+
     if (idx !== -1) {
-      approved.push(pending.splice(idx, 1)[0]);
-      localStorage.setItem('apex_pending_staff', JSON.stringify(pending));
-      localStorage.setItem('apex_approved_staff', JSON.stringify(approved));
+      bookings[idx] = {
+        ...bookings[idx],
+        name: document.getElementById('editCustName').value.trim(),
+        phone: document.getElementById('editCustPhone').value.trim(),
+        email: document.getElementById('editCustEmail').value.trim(),
+        carModel: document.getElementById('editCarModel').value.trim(),
+        carPlate: document.getElementById('editCarPlate').value.trim(),
+        pkg: document.getElementById('editServicePkg').value,
+        date: document.getElementById('editBookingDate').value,
+        time: document.getElementById('editBookingTime').value.trim(),
+        status: document.getElementById('editBookingStatus').value,
+        notes: document.getElementById('editBookingNotes').value.trim()
+      };
+      localStorage.setItem('apex_bookings', JSON.stringify(bookings));
+      bootstrap.Modal.getInstance(document.getElementById('editBookingModal')).hide();
       refreshAllAdminData();
+      alert('✅ 预约信息修改已保存！\nBooking details updated successfully!');
     }
-  }
-
-  function rejectStaff(staffId) {
-    let pending = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
-    localStorage.setItem('apex_pending_staff', JSON.stringify(pending.filter(s => s.id !== staffId)));
-    refreshAllAdminData();
-  }
-
-  function removeApprovedStaff(email) {
-    let approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
-    localStorage.setItem('apex_approved_staff', JSON.stringify(approved.filter(s => s.email !== email)));
-    refreshAllAdminData();
   }
 </script>
 </body>

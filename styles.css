@@ -17,7 +17,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* 顶部导航栏：黑底红蓝流光边 */
+/* 顶部导航栏 */
 .navbar-custom {
     background-color: #05070b;
     border-bottom: 2px solid var(--pl-red);
@@ -36,7 +36,7 @@ body {
     padding: 7px 15px !important;
     border-radius: 20px;
     transition: all 0.2s ease;
-    color: rgba(255, 255, 255, 0.82) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
     text-decoration: none;
     white-space: nowrap;
     display: inline-block;
@@ -53,15 +53,27 @@ body {
     box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
 }
 
-/* 首页滚动横幅 */
+/* 首页滚动横幅：严格固定高度与宽度，确保 3 个广告切换时页面绝不跳动 */
+#heroCarousel {
+    width: 100%;
+    overflow: hidden;
+}
+
 .hero-slide {
-    min-height: 460px;
-    padding: 75px 0;
+    width: 100%;
+    height: 480px;
     display: flex;
     align-items: center;
     border-bottom: 3px solid var(--pl-blue-light);
     background-size: cover;
     background-position: center;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .hero-slide {
+        height: 540px;
+    }
 }
 
 .hero-slide-1 {
@@ -81,9 +93,9 @@ body {
 
 .hero-pill {
     display: inline-block;
-    background: rgba(220, 38, 38, 0.2);
+    background: rgba(220, 38, 38, 0.22);
     border: 1px solid #ef4444;
-    color: #fca5a5;
+    color: #ffffff;
     padding: 6px 16px;
     border-radius: 30px;
     font-size: 0.85rem;
@@ -91,7 +103,7 @@ body {
     margin-bottom: 16px;
 }
 
-/* 深色卡片系统 (黑红蓝搭配) */
+/* 深色卡片系统 */
 .dark-panel {
     background-color: var(--pl-panel-black);
     border: 1px solid var(--pl-border);
@@ -149,7 +161,7 @@ body {
     border-left: 5px solid var(--pl-red);
 }
 
-/* 价目表专属红蓝表格样式 (复刻店内展板) */
+/* 价目表红底、蓝底、黄（金）底矩阵：强制纯白文字 (#ffffff) 与醒目底色 */
 .tier-badge {
     display: inline-flex;
     align-items: center;
@@ -157,7 +169,7 @@ body {
     width: 42px;
     height: 42px;
     background: linear-gradient(135deg, #b91c1c, #dc2626);
-    color: #fff;
+    color: #ffffff;
     font-size: 1.35rem;
     font-weight: 900;
     border-radius: 8px;
@@ -170,69 +182,87 @@ body {
     font-size: 1.45rem;
 }
 
-.table-matrix {
-    color: #ffffff;
+.matrix-table {
+    width: 100%;
     border-collapse: separate;
-    border-spacing: 3px;
+    border-spacing: 4px;
+    color: #ffffff !important;
 }
 
-.table-matrix th, .table-matrix td {
-    padding: 12px 10px;
+.matrix-table th,
+.matrix-table td {
+    padding: 14px 10px;
     text-align: center;
     vertical-align: middle;
-    border: none;
-    border-radius: 4px;
+    border: none !important;
+    border-radius: 6px;
+    color: #ffffff !important;
+}
+
+.matrix-table th small,
+.matrix-table td small {
+    color: #ffffff !important;
+    opacity: 0.92;
 }
 
 .col-tier-name {
-    background-color: #161c2d;
+    background-color: #161f33 !important;
+    color: #ffffff !important;
     text-align: left !important;
     font-weight: 700;
+    padding-left: 14px !important;
     border-left: 4px solid var(--pl-red) !important;
 }
 
+/* 蓝底白字列 */
 .col-blue-head {
-    background: linear-gradient(180deg, #1e40af, #1d4ed8);
-    color: #ffffff;
+    background: linear-gradient(180deg, #1e40af, #1d4ed8) !important;
+    color: #ffffff !important;
+    font-weight: 800;
 }
 
 .col-blue-cell {
-    background-color: #172554;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #93c5fd;
+    background-color: #0255a5 !important;
+    color: #ffffff !important;
+    font-weight: 800;
+    font-size: 1.18rem;
 }
 
+/* 红底白字列 */
 .col-red-head {
-    background: linear-gradient(180deg, #991b1b, #dc2626);
-    color: #ffffff;
+    background: linear-gradient(180deg, #991b1b, #dc2626) !important;
+    color: #ffffff !important;
+    font-weight: 800;
 }
 
 .col-red-cell {
-    background-color: #450a0a;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #fca5a5;
+    background-color: #a32222 !important;
+    color: #ffffff !important;
+    font-weight: 800;
+    font-size: 1.18rem;
 }
 
+/* 黄/金底白字列 */
 .col-gold-head {
-    background: linear-gradient(180deg, #92400e, #b45309);
-    color: #ffffff;
+    background: linear-gradient(180deg, #b45309, #d97706) !important;
+    color: #ffffff !important;
+    font-weight: 800;
 }
 
 .col-gold-cell {
-    background-color: #3b180c;
+    background-color: #c25e1a !important;
+    color: #ffffff !important;
     font-weight: 800;
-    font-size: 1.1rem;
-    color: #fcd34d;
+    font-size: 1.18rem;
 }
 
 .other-service-box {
-    background-color: #0f172a;
-    border: 1px solid #1e3a8a;
-    border-left: 4px solid #3b82f6;
+    background-color: #0f294a;
+    border: 1px solid #1d4ed8;
+    border-left: 4px solid #38bdf8;
     border-radius: 8px;
     padding: 12px 16px;
+    color: #ffffff;
 }
 
 /* 深色输入框与表单 */
@@ -260,7 +290,7 @@ body {
 }
 
 .sidebar .nav-link {
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.8);
     margin-bottom: 6px;
     border-radius: 8px;
     font-weight: 500;
@@ -274,31 +304,30 @@ body {
 
 .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 14px;
 }
 
 .calendar-day-col {
-    min-height: 260px;
+    min-height: 250px;
     background: var(--pl-card-black);
     border: 1px solid var(--pl-border);
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px;
 }
 
 .cal-booking-item {
-    font-size: 0.82rem;
-    border-radius: 6px;
-    padding: 8px;
-    margin-bottom: 8px;
+    font-size: 0.84rem;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
     border-left: 4px solid var(--pl-red);
     background: #1e293b;
-    color: #f8fafc;
+    color: #ffffff;
 }
 
 .cal-booking-done {
     background: #0f172a !important;
-    border-left-color: #475569 !important;
-    color: #64748b !important;
-    text-decoration: line-through;
+    border-left-color: #22c55e !important;
+    color: #94a3b8 !important;
 }

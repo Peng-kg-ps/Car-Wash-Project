@@ -1,4 +1,4 @@
-// 1. 店内商标高清矢量 SVG（纯英文字符，移除中文注释防止编码报错）
+// 1. 店内商标高清矢量 SVG
 const PIT_LANE_LOGO_SVG = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 64" width="68" height="40" style="border-radius:6px; border:1px solid #dc2626; background:#050505; flex-shrink:0;">
     <line x1="34" y1="30" x2="54" y2="6" stroke="#e2e8f0" stroke-width="2.2"/>
@@ -31,7 +31,6 @@ const PIT_LANE_LOGO_SVG = `
     <circle cx="76" cy="49" r="4" fill="#94a3b8"/>
 </svg>`;
 
-// 2. 安全注入浏览器标签页图标 (Favicon)
 function injectFavicon() {
     try {
         let link = document.querySelector("link[rel~='icon']");
@@ -51,7 +50,6 @@ function isZh() {
     return localStorage.getItem('pl_lang') === 'zh';
 }
 
-// 3. 渲染公共导航栏、页脚、内部员工/管理员登录弹窗及招工弹窗
 function initSharedLayout(activePage) {
     injectFavicon();
 
@@ -82,7 +80,7 @@ function initSharedLayout(activePage) {
                             <a class="nav-link-custom" href="services.html#passes-section" data-zh="无限次洗车套票">Car Wash Passes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link-custom" href="services.html#booking-section" data-zh="在线预约工位">Book a Bay</a>
+                            <a class="nav-link-custom" href="services.html#booking-section" data-zh="预约项目">Book a Service</a>
                         </li>
                         <li class="nav-item ms-lg-2 notranslate">
                             <button class="btn btn-outline-primary btn-sm fw-bold px-3 py-1 text-white border-primary" onclick="toggleLanguage()" id="langToggleBtn">
@@ -118,71 +116,30 @@ function initSharedLayout(activePage) {
 
     const modalsContainer = document.createElement('div');
     modalsContainer.innerHTML = `
-    <!-- 内部员工 / 经理 / 老板专用登录窗口 (Staff & Admin Portal Only) -->
+    <!-- 经理与老板专用后台登录窗口 (Manager & Owner Login Only) -->
     <div class="modal fade notranslate" id="authModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content dark-panel border-danger shadow-lg">
-                <div class="modal-header border-bottom border-secondary pb-2">
-                    <ul class="nav nav-pills w-100 justify-content-center gap-2">
-                        <li class="nav-item">
-                            <button class="nav-link active fw-bold px-3 py-1 bg-danger text-white" data-bs-toggle="pill" data-bs-target="#login-pane">
-                                🔒 Staff / Admin Login (内部登录)
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link fw-bold px-3 py-1 text-info border border-primary" data-bs-toggle="pill" data-bs-target="#employee-pane">
-                                👔 New Staff Apply (员工工位申请)
-                            </button>
-                        </li>
-                    </ul>
-                    <button type="button" class="btn-close btn-close-white ms-0" data-bs-dismiss="modal"></button>
+                <div class="modal-header border-bottom border-secondary">
+                    <h5 class="modal-title fw-bold text-white">🔒 Admin Portal Login / 经理与老板后台登录</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="login-pane">
-                            <p class="text-white-50 small text-center mb-3">
-                                Internal portal for Pit Lane Owner, Manager & Approved Staff Only.<br>
-                                仅限车行老板、经理及已授权员工登录管理预约日历。
-                            </p>
-                            <form onsubmit="handleStaffLogin(event)">
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-white">Staff / Admin Email (工作邮箱)</label>
-                                    <input type="email" class="form-control form-control-dark" id="loginEmail" placeholder="boss@pitlane.ca" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-white">Password / Station Password (登录密码)</label>
-                                    <input type="password" class="form-control form-control-dark" id="loginPassword" placeholder="••••••••" required>
-                                </div>
-                                <button type="submit" class="btn btn-danger w-100 fw-bold py-2">Enter Admin Portal / 进入管理后台</button>
-                            </form>
+                    <p class="text-white-50 small text-center mb-3">
+                        Authorized access for Pit Lane Manager & Owner only.<br>
+                        仅限门店经理与老板登录查看及修改每日/每周/每月预约日历。
+                    </p>
+                    <form onsubmit="handleAdminLogin(event)">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-white">Manager / Owner Email (管理员邮箱)</label>
+                            <input type="email" class="form-control form-control-dark" id="loginEmail" placeholder="boss@pitlane.ca / manager@pitlane.ca" required>
                         </div>
-
-                        <div class="tab-pane fade" id="employee-pane">
-                            <div class="alert bg-primary bg-opacity-25 text-info border-primary py-2 small mb-3">
-                                ℹ️ <strong>Employee Only / 员工须知:</strong><br>
-                                Submit your station number and password. Once approved by the Owner/Manager, you can log in to manage daily bay bookings.
-                            </div>
-                            <form onsubmit="handleEmployeeRegister(event)">
-                                <div class="mb-2">
-                                    <label class="form-label small fw-bold text-white">Staff Full Name / 员工姓名</label>
-                                    <input type="text" class="form-control form-control-dark" id="empName" placeholder="e.g. Yuanpeng" required>
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label small fw-bold text-white">Staff Email / 员工邮箱</label>
-                                    <input type="email" class="form-control form-control-dark" id="empEmail" placeholder="staff@pitlane.ca" required>
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label small fw-bold text-white">Station Number / 工位编号</label>
-                                    <input type="text" class="form-control form-control-dark" id="empStation" placeholder="e.g. Bay-01" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label small fw-bold text-white">Station Password / 工位登录密码</label>
-                                    <input type="password" class="form-control form-control-dark" id="empPassword" placeholder="••••••••" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100 fw-bold py-2">Submit Staff Application / 提交员工申请</button>
-                            </form>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-white">Password (登录密码)</label>
+                            <input type="password" class="form-control form-control-dark" id="loginPassword" placeholder="••••••••" required>
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-danger w-100 fw-bold py-2">Enter Booking Calendar / 进入预约管理后台</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -281,73 +238,34 @@ function checkCurrentUser() {
     const authArea = document.getElementById('authNavArea');
     if (!authArea) return;
 
-    if (user && (user.role === 'ADMIN' || user.role === 'STAFF')) {
+    if (user && user.role === 'ADMIN') {
         authArea.innerHTML = `
             <div class="d-flex align-items-center gap-2">
-                <a href="admin.html" class="btn btn-danger btn-sm fw-bold px-3">🛠️ Admin (${user.name})</a>
+                <a href="admin.html" class="btn btn-danger btn-sm fw-bold px-3">📅 预约后台 / Admin</a>
                 <button class="btn btn-outline-secondary btn-sm text-white" onclick="handleLogout()">Logout</button>
             </div>
         `;
     } else {
         authArea.innerHTML = `
             <button class="btn btn-danger btn-sm fw-bold px-3 py-1 text-white shadow-sm" data-bs-toggle="modal" data-bs-target="#authModal">
-                🔒 Staff Login
+                🔒 Admin Login
             </button>
         `;
     }
 }
 
-function handleStaffLogin(event) {
+function handleAdminLogin(event) {
     event.preventDefault();
-    const email = document.getElementById('loginEmail').value.trim();
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
     const pwd = document.getElementById('loginPassword').value.trim();
 
-    let userObj = null;
     if ((email === 'boss@pitlane.ca' || email === 'manager@pitlane.ca' || email === 'boss@kingsautospa.ca') && pwd === '123456') {
-        userObj = { name: "Owner / Manager", email, role: "ADMIN" };
-    } else {
-        const staffList = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
-        const staff = staffList.find(s => s.email === email && s.password === pwd);
-        if (staff) {
-            userObj = { name: staff.name, email: staff.email, station: staff.station, role: "STAFF" };
-        } else {
-            const pendingStaff = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
-            if (pendingStaff.some(s => s.email === email)) {
-                alert('⏳ Your staff account is pending Manager/Owner approval!\n您的员工账号仍在等待经理或老板批准中！');
-                return;
-            }
-        }
-    }
-
-    if (userObj) {
-        localStorage.setItem('apex_user', JSON.stringify(userObj));
+        const roleTitle = email.startsWith('manager') ? 'Manager (门店经理)' : 'Owner (老板)';
+        localStorage.setItem('apex_user', JSON.stringify({ name: roleTitle, email, role: "ADMIN" }));
         window.location.href = "admin.html";
     } else {
-        alert('Invalid Staff/Admin credentials! / 内部邮箱或密码错误！');
+        alert('Invalid Manager/Owner credentials! / 经理或老板账号密码错误！');
     }
-}
-
-function handleEmployeeRegister(event) {
-    event.preventDefault();
-    const name = document.getElementById('empName').value.trim();
-    const email = document.getElementById('empEmail').value.trim();
-    const station = document.getElementById('empStation').value.trim();
-    const pwd = document.getElementById('empPassword').value.trim();
-
-    let pending = JSON.parse(localStorage.getItem('apex_pending_staff') || "[]");
-    let approved = JSON.parse(localStorage.getItem('apex_approved_staff') || "[]");
-
-    if (pending.some(s => s.email === email) || approved.some(s => s.email === email)) {
-        alert('This employee email has already been submitted or registered!');
-        return;
-    }
-
-    pending.push({ id: Date.now(), name, email, station, password: pwd, appliedAt: new Date().toLocaleString() });
-    localStorage.setItem('apex_pending_staff', JSON.stringify(pending));
-
-    alert(`✅ Staff application submitted for [${station}]!\nOnce approved by the Manager/Owner, you can log in.`);
-    bootstrap.Modal.getInstance(document.getElementById('authModal')).hide();
-    event.target.reset();
 }
 
 function handleLogout() {
