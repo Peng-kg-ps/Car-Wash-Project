@@ -11,7 +11,7 @@
 
 <div id="sharedNavbar"></div>
 
-<!-- 1. 顶部滚动横幅 (固定长宽高，切换不跳动) -->
+<!-- 1. 顶部滚动横幅 (三个广告统一深暗背景、统一按钮配色、手机自适应字体) -->
 <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
@@ -19,79 +19,79 @@
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
     </div>
     <div class="carousel-inner">
-        <!-- 轮播 1：门店介绍 -->
+        <!-- 广告 1：门店介绍 -->
         <div class="carousel-item active">
-            <div class="hero-slide hero-slide-1 text-white">
-                <div class="container">
-                    <div class="col-lg-8">
-                        <div class="hero-pill" data-zh="King's Auto Spa 旗下分店 · 纯手工精洗 · 室内车间 · 七天营业">
+            <div class="hero-slide-unified">
+                <div class="container px-4">
+                    <div class="col-lg-9">
+                        <div class="hero-pill-unified" data-zh="King's Auto Spa 旗下分店 · 纯手工精洗 · 室内车间 · 七天营业">
                             Sister Shop of King's Auto Spa · 100% Hand Wash · Indoor Shop · Open 7 Days
                         </div>
-                        <h1 class="display-5 fw-bold mb-3" data-zh="PIT LANE 纯手工精洗与汽车美容">PIT LANE Hand Car Wash & Detailing</h1>
-                        <h4 class="fw-normal text-info mb-3" data-zh="内外纯手工精洗 $48 起 · 车厢高温蒸汽清洗 · 镜面抛光与纳米镀晶">
+                        <h1 class="hero-title" data-zh="PIT LANE 纯手工精洗与汽车美容">PIT LANE Hand Car Wash & Detailing</h1>
+                        <div class="hero-subtitle" data-zh="内外纯手工精洗 $48 起 · 车厢高温蒸汽清洗 · 镜面抛光与纳米镀晶">
                             Regular Hand Car Wash from $48 · Interior Steam Shampoo · Polish, Wax & Ceramic Coating
-                        </h4>
-                        <p class="lead text-white-50 mb-4" data-zh="位于列治文 Unit 195 - 4551 No. 3 Road。包含全车外观纯手工精洗、车厢吸尘、车窗及中控台清洁。绝不使用伤漆机器滚刷，20 至 30 分钟高效交车。">
+                        </div>
+                        <p class="hero-desc" data-zh="位于列治文 Unit 195 - 4551 No. 3 Road。包含全车外观纯手工精洗、车厢吸尘、车窗及中控台清洁。绝不使用伤漆机器滚刷，20 至 30 分钟高效交车。">
                             Located at Unit 195 - 4551 No. 3 Road in Richmond. Every regular wash includes exterior hand wash, interior vacuum, clean windows and dash. No harsh brush machines.
                         </p>
-                        <div class="d-flex flex-wrap gap-3">
-                            <a href="services.html#booking-section" class="btn btn-danger btn-lg fw-bold px-4" data-zh="立即预约项目 →">Book a Service →</a>
-                            <a href="services.html" class="btn btn-primary btn-lg fw-bold px-4" data-zh="查看完整价格表 (A-G)">View Full Price List</a>
-                            <a href="services.html#passes-section" class="btn btn-outline-light btn-lg fw-bold px-4" data-zh="无限次洗车套票">Car Wash Passes</a>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="services.html#booking-section" class="btn-hero-primary" data-zh="立即预约项目 →">Book a Service →</a>
+                            <a href="services.html" class="btn-hero-secondary" data-zh="查看完整价格表 (A-G)">View Price List</a>
+                            <a href="services.html#passes-section" class="btn-hero-secondary" data-zh="无限次洗车套票">Car Wash Passes</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 轮播 2：Indeed 招聘信息 -->
+        <!-- 广告 2：Indeed 招聘信息 -->
         <div class="carousel-item">
-            <div class="hero-slide hero-slide-2 text-white">
-                <div class="container">
-                    <div class="col-lg-8">
-                        <div class="hero-pill" data-zh="📢 团队诚聘中 · 全职与兼职均可 · 提供带薪培训">
+            <div class="hero-slide-unified">
+                <div class="container px-4">
+                    <div class="col-lg-9">
+                        <div class="hero-pill-unified" data-zh="📢 团队诚聘中 · 全职与兼职均可 · 提供带薪培训">
                             📢 WE ARE HIRING · Full-Time & Part-Time · Training Provided
                         </div>
-                        <h1 class="display-5 fw-bold mb-3" data-zh="诚聘：洗车与汽美技师 (Car Wash Attendant)">
+                        <h1 class="hero-title" data-zh="诚聘：洗车与汽美技师 (Car Wash Attendant)">
                             Join Our Team: Car Wash Attendant
                         </h1>
-                        <h4 class="fw-normal text-warning mb-3" data-zh="起薪 $19.00 / 小时 · 每周约 40 小时 · 免费停车与员工折扣">
+                        <div class="hero-subtitle" data-zh="起薪 $19.00 / 小时 · 每周约 40 小时 · 免费停车与员工折扣">
                             Pay: From $19.00 / hr · Expected 40.0 hrs/week · On-Site Parking & Store Discount
-                        </h4>
-                        <p class="lead text-white-50 mb-4" data-zh="我们正在寻找友好、注重细节且可靠的伙伴加入 Pit Lane 团队！无需相关经验，店内提供完整培训。欢迎到店或致电 (604) 303-8885 应聘！">
+                        </div>
+                        <p class="hero-desc" data-zh="我们正在寻找友好、注重细节且可靠的伙伴加入 Pit Lane 团队！无需相关经验，店内提供完整培训。欢迎到店或致电 (604) 303-8885 应聘！">
                             We are seeking a friendly, detail-oriented, and reliable Car Wash Attendant to join our team. Prior experience is not required — full training is provided!
                         </p>
-                        <div class="d-flex flex-wrap gap-3">
-                            <button class="btn btn-danger btn-lg fw-bold px-4" data-bs-toggle="modal" data-bs-target="#hiringModal" data-zh="查看完整招聘要求 →">
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn-hero-primary" data-bs-toggle="modal" data-bs-target="#hiringModal" data-zh="查看完整招聘要求 →">
                                 View Full Job Description →
                             </button>
-                            <a href="#location-section" class="btn btn-outline-light btn-lg fw-bold px-4" data-zh="查看门店地址">Apply In Person</a>
+                            <a href="#location-section" class="btn-hero-secondary" data-zh="查看门店地址">Apply In Person</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 轮播 3：无限次洗车套票与 10+1 次卡 -->
+        <!-- 广告 3：无限次洗车套票与 10+1 次卡 -->
         <div class="carousel-item">
-            <div class="hero-slide hero-slide-3 text-white">
-                <div class="container">
-                    <div class="col-lg-8">
-                        <div class="hero-pill" data-zh="洗车套票特惠 · 1个月 / 3个月 / 1年无限次 & 10送1次卡">
+            <div class="hero-slide-unified">
+                <div class="container px-4">
+                    <div class="col-lg-9">
+                        <div class="hero-pill-unified" data-zh="洗车套票特惠 · 1个月 / 3个月 / 1年无限次 & 10送1次卡">
                             Car Washing Pass · 1 Month / 3 Months / 1 Year Unlimited & 10+1 Pass
                         </div>
-                        <h1 class="display-5 fw-bold mb-3" data-zh="无限次洗车套票 & 买 10 送 1 次卡">
+                        <h1 class="hero-title" data-zh="无限次洗车套票 & 买 10 送 1 次卡">
                             Unlimited Car Wash Passes & 10+1 Pass
                         </h1>
-                        <h4 class="fw-normal text-info mb-3" data-zh="单月无限次 $150 起 · 3个月无限次 $338 起 · 10+1次卡同级别多车通用">
+                        <div class="hero-subtitle" data-zh="单月无限次 $150 起 · 3个月无限次 $338 起 · 10+1次卡同级别多车通用">
                             1-Month Pass from $150 · 3-Month Pass from $338 · 10+1 Pass valid for multiple vehicles in same tier
-                        </h4>
-                        <p class="lead text-white-50 mb-4" data-zh="每次均包含外观手洗、车内吸尘、擦拭车窗与仪表台！让您的爱车在温哥华全年保持展厅级洁净。">
+                        </div>
+                        <p class="hero-desc" data-zh="每次均包含外观手洗、车内吸尘、擦拭车窗与仪表台！让您的爱车在温哥华全年保持展厅级洁净。">
                             Every pass wash includes exterior hand wash, interior vacuum, clean windows and dash. Keep your car spotless all year round!
                         </p>
-                        <div class="d-flex flex-wrap gap-3">
-                            <a href="services.html#passes-section" class="btn btn-primary btn-lg fw-bold px-4" data-zh="查看 A-G 套票价格表 →">View Pass Pricing Table →</a>
-                            <a href="services.html#booking-section" class="btn btn-danger btn-lg fw-bold px-4" data-zh="立即预约项目 →">Book a Service →</a>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="services.html#booking-section" class="btn-hero-primary" data-zh="立即预约项目 →">Book a Service →</a>
+                            <a href="services.html#passes-section" class="btn-hero-secondary" data-zh="查看 A-G 套票价格表">View Pass Pricing</a>
                         </div>
                     </div>
                 </div>
@@ -102,248 +102,244 @@
     <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
 </div>
 
-<div class="container my-5">
-    <!-- 2. 品牌介绍：King's Auto Spa 官方分店 -->
-    <section class="p-4 p-md-5 dark-panel mb-5">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-6">
-                <span class="badge bg-danger px-3 py-2 mb-2" data-zh="品牌渊源 · 双店联动">OUR HERITAGE & SISTER LOCATION</span>
-                <h2 class="fw-bold mb-3 text-white" data-zh="源自 King's Auto Spa 的匠心品质，列治文 3 号路双店直营">
-                    Backed by King's Auto Spa Ltd — Two Locations, One Uncompromising Standard
-                </h2>
-                <p class="text-white-50" data-zh="Pit Lane Hand Car Wash & Detailing (Unit 195 - 4551 No. 3 Rd) 是列治文知名汽美中心 King's Auto Spa Ltd (#220 - 4451 No. 3 Rd) 旗下的官方直营分店。我们共享同一支资深技师团队与严苛的纯手工交车标准。">
-                    Pit Lane Hand Car Wash & Detailing (Unit 195 - 4551 No. 3 Rd) operates as the proud sister branch of <strong>King's Auto Spa Ltd</strong> (#220 - 4451 No. 3 Rd). Managed by the same ownership and master detailing technicians, both locations uphold a strict hand-wash-only philosophy.
-                </p>
-                <p class="text-white-50 mb-4" data-zh="无论是 $48 起的标准内外精洗、车厢高温蒸汽杀菌、轮圈修复，还是全车镜面抛光与顶级纳米镀晶，我们都严格按照 A–G 车型透明定价，施工前明码标价。">
-                    From our $48+ regular hand car wash (including interior vacuum, windows & dash) to full interior steam shampoo, wheel repair, and ceramic coating, every vehicle is priced transparently by category (A–G).
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="services.html" class="btn btn-danger fw-bold" data-zh="查看完整价格表">Full Pricing & Categories</a>
-                    <button class="btn btn-outline-info fw-bold" data-bs-toggle="modal" data-bs-target="#hiringModal" data-zh="📢 门店招聘详情 ($19+/hr)">📢 We're Hiring ($19+/hr)</button>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    <div class="col-6">
-                        <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3 border border-danger" style="height:240px; width:100%; object-fit:cover;" alt="Hand Wash">
-                    </div>
-                    <div class="col-6">
-                        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3 border border-primary" style="height:240px; width:100%; object-fit:cover;" alt="Polishing">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. 四大主打业务 -->
-    <section class="mb-5">
-        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
-            <div>
-                <span class="text-danger fw-bold text-uppercase small" data-zh="核心业务与透明定价">OUR CORE SERVICES</span>
-                <h2 class="fw-bold mb-0 text-white" data-zh="全方位纯手工洗护与汽车美容">Complete Hand Car Wash & Detailing</h2>
-            </div>
-            <a href="services.html" class="btn btn-outline-primary text-white fw-bold btn-sm" data-zh="查看全部车型报价矩阵 →">View Full Pricing Matrix →</a>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-3 col-sm-6">
-                <div class="dark-card h-100 overflow-hidden d-flex flex-column">
-                    <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=500&q=80" class="service-img-top" alt="Regular Wash">
-                    <div class="p-3 d-flex flex-column flex-grow-1">
-                        <span class="badge bg-danger align-self-start mb-2" data-zh="$48 - $128 (按车型 A-G)">$48 – $128 (Tiers A–G)</span>
-                        <h5 class="fw-bold text-white" data-zh="标准内外纯手工精洗">Regular Hand Car Wash</h5>
-                        <p class="text-white-50 small flex-grow-1" data-zh="包含全车外观两桶水手洗、车内吸尘、清洁车窗玻璃及中控仪表台。可加选胶垫 ($3/块) 或毛毯垫 ($5/块) 清洗。">
-                            Includes exterior hand wash, interior vacuum, clean windows and dash. Rubber mat $3 each, Carpet $5 each.
-                        </p>
-                        <a href="services.html#booking-section" class="fw-bold text-info text-decoration-none small" data-zh="预约此项目 →">Book This Service →</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="dark-card dark-card-blue h-100 overflow-hidden d-flex flex-column">
-                    <img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=500&q=80" class="service-img-top" style="border-bottom-color:#2563eb;" alt="Interior Steam">
-                    <div class="p-3 d-flex flex-column flex-grow-1">
-                        <span class="badge bg-primary align-self-start mb-2" data-zh="$228 - $498">From $228 – $498</span>
-                        <h5 class="fw-bold text-white" data-zh="车厢高温蒸汽清洗 & 打蜡">Steam Shampoo & Wax</h5>
-                        <p class="text-white-50 small flex-grow-1" data-zh="地毯、座椅与顶棚高温蒸汽深层抽洗除味 ($228起)，或全车专业手工打蜡护理 ($228起)。">
-                            Deep high-temp interior steam shampoo ($228–$498) or hand-applied paint protection wax ($228–$498).
-                        </p>
-                        <a href="services.html#detailing-matrix" class="fw-bold text-info text-decoration-none small" data-zh="查看车型报价 →">View Matrix →</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="dark-card h-100 overflow-hidden d-flex flex-column">
-                    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=500&q=80" class="service-img-top" alt="Full Detailing">
-                    <div class="p-3 d-flex flex-column flex-grow-1">
-                        <span class="badge bg-danger align-self-start mb-2" data-zh="抛光 $398起 · 全套美容 $598起">Polish $398+ · Full $598+</span>
-                        <h5 class="fw-bold text-white" data-zh="抛光打蜡 & 全套美容套餐">Polish & Full Detailing</h5>
-                        <p class="text-white-50 small flex-grow-1" data-zh="机器镜面抛光及打蜡 ($398–$898)，或内外彻底翻新的全套美容套餐 Full Detailing ($598–$1298)。">
-                            Machine Polish & Wax ($398–$898) or complete inside-and-out Full Detailing package ($598–$1298).
-                        </p>
-                        <a href="services.html#detailing-matrix" class="fw-bold text-info text-decoration-none small" data-zh="查看车型报价 →">View Matrix →</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="dark-card dark-card-blue h-100 overflow-hidden d-flex flex-column">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=500&q=80" class="service-img-top" style="border-bottom-color:#2563eb;" alt="Ceramic & Other">
-                    <div class="p-3 d-flex flex-column flex-grow-1">
-                        <span class="badge bg-warning text-dark align-self-start mb-2" data-zh="镀晶 $1998起 · 专项服务 $49起">Ceramic $1998+ · Extras $49+</span>
-                        <h5 class="fw-bold text-white" data-zh="顶级镀晶、贴膜与轮圈修复">Ceramic, Tint & Rim Repair</h5>
-                        <p class="text-white-50 small flex-grow-1" data-zh="殿堂级车漆镀晶 ($1998–$4998)、玻璃防晒膜 ($498起)、轮圈维修 ($298/个)、引擎仓清洗 ($99起) 及皮革护理 ($199起)。">
-                            Ceramic Coating ($1998–$4998), Window Tinting ($498+), Rim Repair ($298/ea), Engine Bay ($99+) & Leather Care ($199+).
-                        </p>
-                        <a href="services.html#detailing-matrix" class="fw-bold text-info text-decoration-none small" data-zh="查看专项报价 →">View Details →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. 洗车与美容效果实拍展示 -->
-    <section class="mb-5">
-        <div class="text-center mb-4">
-            <span class="badge bg-primary px-3 py-1 mb-2" data-zh="施工效果实拍">DETAILING SHOWCASE</span>
-            <h2 class="fw-bold text-white" data-zh="洗车与深度美容效果展示">Spotless Results Under Shop Lighting</h2>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="dark-card overflow-hidden h-100">
-                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" class="showcase-img" alt="Paint Correction">
-                    <div class="p-3">
-                        <span class="badge bg-danger mb-2" data-zh="抛光与镀晶还原">Polish & Ceramic Coating</span>
-                        <h6 class="fw-bold text-white" data-zh="镜面漆面还原与长效防泼水">Mirror Gloss & Hydrophobic Shield</h6>
-                        <p class="text-white-50 small mb-0" data-zh="彻底消除太阳纹与氧化层，让黑车更深邃、白车更透亮。">Eliminates swirl marks and oxidation for a deep, wet-look showroom reflection.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="dark-card dark-card-blue overflow-hidden h-100">
-                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" class="showcase-img" alt="Interior Steam">
-                    <div class="p-3">
-                        <span class="badge bg-primary mb-2" data-zh="车厢蒸汽清洗 & 皮革护理">Interior Steam & Leather</span>
-                        <h6 class="fw-bold text-white" data-zh="高温杀菌除味与真皮滋养">Sanitized Cabin & Matte Leather</h6>
-                        <p class="text-white-50 small mb-0" data-zh="深层抽洗地毯与座椅污渍，配合 $199 起的专业皮革护理，恢复新车触感。">Deep steam extraction paired with professional leather conditioning.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="dark-card overflow-hidden h-100">
-                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80" class="showcase-img" alt="Wheel Repair">
-                    <div class="p-3">
-                        <span class="badge bg-danger mb-2" data-zh="轮圈清洁 ($49) & 轮圈维修 ($298)">Rim Cleaning & Repair</span>
-                        <h6 class="fw-bold text-white" data-zh="轮毂深度去铁粉与路沿刮痕修复">Decontamination & Curb Rash Fix</h6>
-                        <p class="text-white-50 small mb-0" data-zh="提供每个 $49 的轮圈深度清洁、$298 的轮圈刮蹭维修及 $498 起的轮圈保护圈安装。">Rim cleaning ($49/ea), alloy curb rash repair ($298/ea) and rim protectors ($498+).</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. 服务宗旨 (01-04) 与原则 -->
-    <section class="py-5 px-4 dark-panel mb-5">
-        <div class="text-center mb-5">
-            <span class="badge bg-danger px-3 py-2 mb-2" data-zh="我们的服务宗旨">WHY CHOOSE PIT LANE</span>
-            <h2 class="fw-bold text-white" data-zh="一家依然坚持纯手工匠心施工的车行">A Shop That Still Does The Work By Hand</h2>
-        </div>
-        <div class="row g-4 mb-4">
-            <div class="col-md-3 col-sm-6">
-                <span class="craft-number" data-zh="01. 坚持纯手工">01. HAND WORK ONLY</span>
-                <h5 class="fw-bold text-white" data-zh="拒绝机器滚刷伤漆">No Brush Machines</h5>
-                <p class="text-white-50 small" data-zh="每台车均采用中性洗车香波与超细纤维手套纯手工擦洗，保护原厂清漆。">Every vehicle is washed by hand with pH-neutral foam and microfiber mitts.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <span class="craft-number" data-zh="02. 车型分级明码标价">02. CLEAR TIER PRICING</span>
-                <h5 class="fw-bold text-white" data-zh="A-G 七级透明报价">Upfront A–G Pricing</h5>
-                <p class="text-white-50 small" data-zh="严格按车型大小（A 至 G 级）与车况在施工前当面确认价格，绝无隐形消费。">Clear pricing by vehicle size (A to G). Special conditions quoted upfront before work starts.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <span class="craft-number" data-zh="03. 高效准时交车">03. FAST TURNAROUND</span>
-                <h5 class="fw-bold text-white" data-zh="标准精洗含吸尘与擦窗">Complete Regular Wash</h5>
-                <p class="text-white-50 small" data-zh="每次常规洗车均包含外观手洗、车内吸尘、擦净车窗与仪表台，高效交车。">Regular wash includes exterior hand wash, interior vacuum, clean windows and dash.</p>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <span class="craft-number" data-zh="04. 中英双语服务">04. BILINGUAL TEAM</span>
-                <h5 class="fw-bold text-white" data-zh="English & 中文无障碍沟通">English & 中文 Service</h5>
-                <p class="text-white-50 small" data-zh="支持全程中英文沟通，清楚交代每一项美容细节与套票规则。">Speak with our team in English or Chinese with clear quotes and explanations.</p>
-            </div>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="dont-do-card p-4 h-100">
-                    <h5 class="fw-bold text-danger mb-2" data-zh="✗ 我们绝不在未深度清洁的车漆上直接抛光">✗ We will not polish a dirty car</h5>
-                    <p class="text-white-50 small mb-0" data-zh="在彻底清除漆面铁粉、树胶与柏油之前，绝不直接上抛光机或打蜡镀晶，防止二次划伤车漆。">Nothing gets polished, waxed or coated until the paint is fully decontaminated.</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="dont-do-card p-4 h-100" style="border-left-color:#2563eb;">
-                    <h5 class="fw-bold text-info mb-2" data-zh="✗ 施工前严格检查车况与异物">✗ Safety & Honest Inspection First</h5>
-                    <p class="text-white-50 small mb-0" data-zh="若车内发现玻璃渣、铁钉、针头等危险异物，我们保留拒绝服务权利以保障技师安全；重度宠物毛发或异味均在施工前透明沟通。">We inspect every vehicle upfront and prioritize safe, honest workmanship.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Google Maps 车主五星好评 -->
-    <section class="mb-5">
-        <div class="text-center mb-4">
-            <span class="badge bg-primary px-3 py-1 mb-2" data-zh="Google Maps 真实口碑">GOOGLE MAPS VERIFIED REVIEWS</span>
-            <h2 class="fw-bold text-white" data-zh="列治文车主的五星好评 ★★★★★">What Richmond Drivers Say About Us</h2>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="dark-card p-4 h-100 d-flex flex-column">
-                    <div class="text-warning mb-2">★★★★★ <span class="text-white-50 small ms-1">Google Review</span></div>
-                    <p class="text-white-50 small flex-grow-1" data-zh="“列治文 3 号路最认真的纯手工洗车店！连吸尘、擦玻璃和中控台都包含在常规洗车里，墙上的 A 到 G 车型价格表写得清清楚楚，没有任何隐形推销！”">
-                        "Best hand car wash on No. 3 Road! Regular wash already includes interior vacuum, windows, and dash. Their A-to-G pricing board on the wall is super transparent."
+<!-- 2. 白色清爽背景区：品牌介绍与四大核心业务 -->
+<div class="section-light">
+    <div class="container">
+        <!-- 品牌介绍卡片 -->
+        <section class="p-4 p-md-5 light-card mb-5">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <span class="badge bg-danger px-3 py-2 mb-2" data-zh="品牌渊源 · 双店联动">OUR HERITAGE & SISTER LOCATION</span>
+                    <h2 class="fw-bold mb-3" data-zh="源自 King's Auto Spa 的匠心品质，列治文 3 号路双店直营">
+                        Backed by King's Auto Spa Ltd — Two Locations, One Uncompromising Standard
+                    </h2>
+                    <p class="text-secondary" data-zh="Pit Lane Hand Car Wash & Detailing (Unit 195 - 4551 No. 3 Rd) 是列治文知名汽美中心 King's Auto Spa Ltd (#220 - 4451 No. 3 Rd) 旗下的官方直营分店。我们共享同一支资深技师团队与严苛的纯手工交车标准。">
+                        Pit Lane Hand Car Wash & Detailing (Unit 195 - 4551 No. 3 Rd) operates as the proud sister branch of <strong>King's Auto Spa Ltd</strong> (#220 - 4451 No. 3 Rd). Managed by the same ownership and master detailing technicians, both locations uphold a strict hand-wash-only philosophy.
                     </p>
-                    <div class="fw-bold small text-white mt-2">— Michael C. <span class="text-info fw-normal">(BMW X5 · Tier D)</span></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="dark-card dark-card-blue p-4 h-100 d-flex flex-column">
-                    <div class="text-warning mb-2">★★★★★ <span class="text-white-50 small ms-1">Google Review</span></div>
-                    <p class="text-white-50 small flex-grow-1" data-zh="“家里两台同级别的 SUV 办了一张 10+1 次卡，可以多台同级别车共用，一年有效期特别划算！和 King's Auto Spa 是一家人，洗车手艺非常稳！”">
-                        "Bought the 10+1 Car Wash Pass since it can be shared between our two small SUVs in the same category. Great value and top-notch hand wash quality!"
+                    <p class="text-secondary mb-4" data-zh="无论是 $48 起的标准内外精洗、车厢高温蒸汽杀菌、轮圈修复，还是全车镜面抛光与顶级纳米镀晶，我们都严格按照 A–G 车型透明定价，施工前明码标价。">
+                        From our $48+ regular hand car wash (including interior vacuum, windows & dash) to full interior steam shampoo, wheel repair, and ceramic coating, every vehicle is priced transparently by category (A–G).
                     </p>
-                    <div class="fw-bold small text-white mt-2">— Jason L. <span class="text-info fw-normal">(Model Y & RAV4 · Tier C)</span></div>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="services.html" class="btn btn-danger fw-bold" data-zh="查看完整价格表">Full Pricing & Categories</a>
+                        <button class="btn btn-outline-dark fw-bold" data-bs-toggle="modal" data-bs-target="#hiringModal" data-zh="📢 门店招聘详情 ($19+/hr)">📢 We're Hiring ($19+/hr)</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3 shadow-sm" style="height:230px; width:100%; object-fit:cover;" alt="Hand Wash">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded-3 shadow-sm" style="height:230px; width:100%; object-fit:cover;" alt="Polishing">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="dark-card p-4 h-100 d-flex flex-column">
-                    <div class="text-warning mb-2">★★★★★ <span class="text-white-50 small ms-1">Google Review</span></div>
-                    <p class="text-white-50 small flex-grow-1" data-zh="“做了 $298 的车厢高温蒸汽清洗和轮圈翻新，原本座椅上的污渍和异味彻底没了，轮毂路沿刮痕也修得跟原厂一模一样，强烈推荐！”">
-                        "Did the Interior Steam Shampoo and Rim Repair here. The cabin smells brand new and the curb rash on my alloy wheel is completely invisible now!"
-                    </p>
-                    <div class="fw-bold small text-white mt-2">— Sarah W. <span class="text-info fw-normal">(Porsche Macan · Tier C)</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 7. 门店地址与地图 -->
-    <section id="location-section" class="p-4 dark-panel">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-5">
-                <span class="text-danger fw-bold small text-uppercase" data-zh="欢迎莅临门店">VISIT OUR LOCATION</span>
-                <h3 class="fw-bold mb-3 text-white" data-zh="📍 门店地址与联系方式">📍 Location & Contact</h3>
-                <p class="mb-2"><strong class="text-info" data-zh="门店名称：">Shop:</strong> <span>PIT LANE Hand Car Wash & Detailing</span></p>
-                <p class="mb-2"><strong class="text-info" data-zh="总店关联：">Sister Shop:</strong> <span>King's Auto Spa Ltd (#220 - 4451 No. 3 Rd)</span></p>
-                <p class="mb-2"><strong class="text-info" data-zh="详细地址：">Address:</strong> <span>Unit 195 - 4551 No. 3 Road, Richmond, B.C. V6X 2C3</span></p>
-                <p class="mb-2"><strong class="text-info" data-zh="电话 & 传真：">Tel & Fax:</strong> <span>Tel: (604) 303-8885 | Fax: (604) 303-8887</span></p>
-                <p class="mb-3"><strong class="text-info" data-zh="营业时间：">Hours:</strong> <span data-zh="七天营业 · 周一至周日 9:00 AM – 6:00 PM">Open 7 Days · 9:00 AM – 6:00 PM</span></p>
-                <div class="d-flex flex-wrap gap-2">
-                    <a href="https://maps.google.com/?q=4551+Number+3+Rd+%23195,+Richmond,+BC+V6X+2C3" target="_blank" class="btn btn-primary fw-bold" data-zh="在 Google Maps 中导航">Open in Google Maps</a>
-                    <a href="services.html#booking-section" class="btn btn-danger fw-bold" data-zh="立即预约项目 →">Book a Service →</a>
+        <!-- 四大主打业务 (清爽白卡) -->
+        <section>
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+                <div>
+                    <span class="text-danger fw-bold text-uppercase small" data-zh="核心业务与透明定价">OUR CORE SERVICES</span>
+                    <h2 class="fw-bold mb-0" data-zh="全方位纯手工洗护与汽车美容">Complete Hand Car Wash & Detailing</h2>
+                </div>
+                <a href="services.html" class="btn btn-dark fw-bold btn-sm" data-zh="查看全部车型报价矩阵 →">View Full Pricing Matrix →</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="light-card h-100 overflow-hidden d-flex flex-column">
+                        <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=500&q=80" class="service-img-top" alt="Regular Wash">
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-danger align-self-start mb-2" data-zh="$48 - $128 (按车型 A-G)">$48 – $128 (Tiers A–G)</span>
+                            <h5 class="fw-bold" data-zh="标准内外纯手工精洗">Regular Hand Car Wash</h5>
+                            <p class="text-secondary small flex-grow-1" data-zh="包含全车外观两桶水手洗、车内吸尘、清洁车窗玻璃及中控仪表台。可加选胶垫 ($3/块) 或毛毯垫 ($5/块) 清洗。">
+                                Includes exterior hand wash, interior vacuum, clean windows and dash. Rubber mat $3 each, Carpet $5 each.
+                            </p>
+                            <a href="services.html#booking-section" class="fw-bold text-danger text-decoration-none small" data-zh="预约此项目 →">Book This Service →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="light-card h-100 overflow-hidden d-flex flex-column">
+                        <img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=500&q=80" class="service-img-top" alt="Interior Steam">
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-primary align-self-start mb-2" data-zh="$228 - $498">From $228 – $498</span>
+                            <h5 class="fw-bold" data-zh="车厢高温蒸汽清洗 & 打蜡">Steam Shampoo & Wax</h5>
+                            <p class="text-secondary small flex-grow-1" data-zh="地毯、座椅与顶棚高温蒸汽深层抽洗除味 ($228起)，或全车专业手工打蜡护理 ($228起)。">
+                                Deep high-temp interior steam shampoo ($228–$498) or hand-applied paint protection wax ($228–$498).
+                            </p>
+                            <a href="services.html#detailing-matrix" class="fw-bold text-primary text-decoration-none small" data-zh="查看车型报价 →">View Matrix →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="light-card h-100 overflow-hidden d-flex flex-column">
+                        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=500&q=80" class="service-img-top" alt="Full Detailing">
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-danger align-self-start mb-2" data-zh="抛光 $398起 · 全套美容 $598起">Polish $398+ · Full $598+</span>
+                            <h5 class="fw-bold" data-zh="抛光打蜡 & 全套美容套餐">Polish & Full Detailing</h5>
+                            <p class="text-secondary small flex-grow-1" data-zh="机器镜面抛光及打蜡 ($398–$898)，或内外彻底翻新的全套美容套餐 Full Detailing ($598–$1298)。">
+                                Machine Polish & Wax ($398–$898) or complete inside-and-out Full Detailing package ($598–$1298).
+                            </p>
+                            <a href="services.html#detailing-matrix" class="fw-bold text-danger text-decoration-none small" data-zh="查看车型报价 →">View Matrix →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="light-card h-100 overflow-hidden d-flex flex-column">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=500&q=80" class="service-img-top" alt="Ceramic & Other">
+                        <div class="p-3 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-dark align-self-start mb-2" data-zh="镀晶 $1998起 · 专项服务 $49起">Ceramic $1998+ · Extras $49+</span>
+                            <h5 class="fw-bold" data-zh="顶级镀晶、贴膜与轮圈修复">Ceramic, Tint & Rim Repair</h5>
+                            <p class="text-secondary small flex-grow-1" data-zh="殿堂级车漆镀晶 ($1998–$4998)、玻璃防晒膜 ($498起)、轮圈维修 ($298/个)、引擎仓清洗 ($99起) 及皮革护理 ($199起)。">
+                                Ceramic Coating ($1998–$4998), Window Tinting ($498+), Rim Repair ($298/ea), Engine Bay ($99+) & Leather Care ($199+).
+                            </p>
+                            <a href="services.html#detailing-matrix" class="fw-bold text-primary text-decoration-none small" data-zh="查看专项报价 →">View Details →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-7">
-                <div class="ratio ratio-16x9 rounded overflow-hidden border border-secondary">
-                    <iframe src="https://maps.google.com/maps?q=4551+Number+3+Rd+%23195,+Richmond,+BC+V6X+2C3&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </section>
+    </div>
+</div>
+
+<!-- 3. 深海青蓝背景区 (仿 King's Auto Spa 质感)：施工效果展示与服务宗旨 -->
+<div class="section-teal-dark">
+    <div class="container">
+        <section class="mb-5">
+            <div class="text-center mb-4">
+                <span class="badge bg-primary px-3 py-1 mb-2" data-zh="施工效果实拍">DETAILING SHOWCASE</span>
+                <h2 class="fw-bold text-white" data-zh="洗车与深度美容效果展示">Spotless Results Under Shop Lighting</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="teal-card overflow-hidden h-100">
+                        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" class="showcase-img" alt="Paint Correction">
+                        <div class="p-3">
+                            <span class="badge bg-danger mb-2" data-zh="抛光与镀晶还原">Polish & Ceramic Coating</span>
+                            <h6 class="fw-bold text-white" data-zh="镜面漆面还原与长效防泼水">Mirror Gloss & Hydrophobic Shield</h6>
+                            <p class="text-white-50 small mb-0" data-zh="彻底消除太阳纹与氧化层，让黑车更深邃、白车更透亮。">Eliminates swirl marks and oxidation for a deep, wet-look showroom reflection.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="teal-card overflow-hidden h-100">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" class="showcase-img" alt="Interior Steam">
+                        <div class="p-3">
+                            <span class="badge bg-primary mb-2" data-zh="车厢蒸汽清洗 & 皮革护理">Interior Steam & Leather</span>
+                            <h6 class="fw-bold text-white" data-zh="高温杀菌除味与真皮滋养">Sanitized Cabin & Matte Leather</h6>
+                            <p class="text-white-50 small mb-0" data-zh="深层抽洗地毯与座椅污渍，配合 $199 起的专业皮革护理，恢复新车触感。">Deep steam extraction paired with professional leather conditioning.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="teal-card overflow-hidden h-100">
+                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80" class="showcase-img" alt="Wheel Repair">
+                        <div class="p-3">
+                            <span class="badge bg-danger mb-2" data-zh="轮圈清洁 ($49) & 轮圈维修 ($298)">Rim Cleaning & Repair</span>
+                            <h6 class="fw-bold text-white" data-zh="轮毂深度去铁粉与路沿刮痕修复">Decontamination & Curb Rash Fix</h6>
+                            <p class="text-white-50 small mb-0" data-zh="提供每个 $49 的轮圈深度清洁、$298 的轮圈刮蹭维修及 $498 起的轮圈保护圈安装。">Rim cleaning ($49/ea), alloy curb rash repair ($298/ea) and rim protectors ($498+).</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- 01-04 服务宗旨 -->
+        <section class="p-4 p-md-5 teal-card">
+            <div class="text-center mb-4">
+                <span class="badge bg-danger px-3 py-2 mb-2" data-zh="我们的服务宗旨">WHY CHOOSE PIT LANE</span>
+                <h3 class="fw-bold text-white" data-zh="一家依然坚持纯手工匠心施工的车行">A Shop That Still Does The Work By Hand</h3>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number" data-zh="01. 坚持纯手工">01. HAND WORK ONLY</span>
+                    <h6 class="fw-bold text-white" data-zh="拒绝机器滚刷伤漆">No Brush Machines</h6>
+                    <p class="text-white-50 small mb-0" data-zh="每台车均采用中性洗车香波与超细纤维手套纯手工擦洗，保护原厂清漆。">Every vehicle is washed by hand with pH-neutral foam and microfiber mitts.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number" data-zh="02. 车型分级明码标价">02. CLEAR TIER PRICING</span>
+                    <h6 class="fw-bold text-white" data-zh="A-G 七级透明报价">Upfront A–G Pricing</h6>
+                    <p class="text-white-50 small mb-0" data-zh="严格按车型大小（A 至 G 级）与车况在施工前当面确认价格，绝无隐形消费。">Clear pricing by vehicle size (A to G). Special conditions quoted upfront before work starts.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number" data-zh="03. 高效准时交车">03. FAST TURNAROUND</span>
+                    <h6 class="fw-bold text-white" data-zh="标准精洗含吸尘与擦窗">Complete Regular Wash</h6>
+                    <p class="text-white-50 small mb-0" data-zh="每次常规洗车均包含外观手洗、车内吸尘、擦净车窗与仪表台，高效交车。">Regular wash includes exterior hand wash, interior vacuum, clean windows and dash.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <span class="craft-number" data-zh="04. 中英双语服务">04. BILINGUAL TEAM</span>
+                    <h6 class="fw-bold text-white" data-zh="English & 中文无障碍沟通">English & 中文 Service</h6>
+                    <p class="text-white-50 small mb-0" data-zh="支持全程中英文沟通，清楚交代每一项美容细节与套票规则。">Speak with our team in English or Chinese with clear quotes and explanations.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- 4. 清爽白色背景区：Google 五星好评与门店地图 -->
+<div class="section-light">
+    <div class="container">
+        <section class="mb-5">
+            <div class="text-center mb-4">
+                <span class="badge bg-success px-3 py-1 mb-2" data-zh="Google Maps 真实口碑">GOOGLE MAPS VERIFIED REVIEWS</span>
+                <h2 class="fw-bold" data-zh="列治文车主的五星好评 ★★★★★">What Richmond Drivers Say About Us</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="light-card p-4 h-100 d-flex flex-column">
+                        <div class="text-warning mb-2">★★★★★ <span class="text-muted small ms-1">Google Review</span></div>
+                        <p class="text-secondary small flex-grow-1" data-zh="“列治文 3 号路最认真的纯手工洗车店！连吸尘、擦玻璃和中控台都包含在常规洗车里，墙上的 A 到 G 车型价格表写得清清楚楚，没有任何隐形推销！”">
+                            "Best hand car wash on No. 3 Road! Regular wash already includes interior vacuum, windows, and dash. Their A-to-G pricing board on the wall is super transparent."
+                        </p>
+                        <div class="fw-bold small mt-2">— Michael C. <span class="text-primary fw-normal">(BMW X5 · Tier D)</span></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="light-card p-4 h-100 d-flex flex-column">
+                        <div class="text-warning mb-2">★★★★★ <span class="text-muted small ms-1">Google Review</span></div>
+                        <p class="text-secondary small flex-grow-1" data-zh="“家里两台同级别的 SUV 办了一张 10+1 次卡，可以多台同级别车共用，一年有效期特别划算！和 King's Auto Spa 是一家人，洗车手艺非常稳！”">
+                            "Bought the 10+1 Car Wash Pass since it can be shared between our two small SUVs in the same category. Great value and top-notch hand wash quality!"
+                        </p>
+                        <div class="fw-bold small mt-2">— Jason L. <span class="text-primary fw-normal">(Model Y & RAV4 · Tier C)</span></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="light-card p-4 h-100 d-flex flex-column">
+                        <div class="text-warning mb-2">★★★★★ <span class="text-muted small ms-1">Google Review</span></div>
+                        <p class="text-secondary small flex-grow-1" data-zh="“做了 $298 的车厢高温蒸汽清洗和轮圈翻新，原本座椅上的污渍和异味彻底没了，轮毂路沿刮痕也修得跟原厂一模一样，强烈推荐！”">
+                            "Did the Interior Steam Shampoo and Rim Repair here. The cabin smells brand new and the curb rash on my alloy wheel is completely invisible now!"
+                        </p>
+                        <div class="fw-bold small mt-2">— Sarah W. <span class="text-primary fw-normal">(Porsche Macan · Tier C)</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location-section" class="p-4 light-card">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <span class="text-danger fw-bold small text-uppercase" data-zh="欢迎莅临门店">VISIT OUR LOCATION</span>
+                    <h3 class="fw-bold mb-3" data-zh="📍 门店地址与联系方式">📍 Location & Contact</h3>
+                    <p class="mb-2"><strong data-zh="门店名称：">Shop:</strong> <span>PIT LANE Hand Car Wash & Detailing</span></p>
+                    <p class="mb-2"><strong data-zh="总店关联：">Sister Shop:</strong> <span>King's Auto Spa Ltd (#220 - 4451 No. 3 Rd)</span></p>
+                    <p class="mb-2"><strong data-zh="详细地址：">Address:</strong> <span>Unit 195 - 4551 No. 3 Road, Richmond, B.C. V6X 2C3</span></p>
+                    <p class="mb-2"><strong data-zh="电话 & 传真：">Tel & Fax:</strong> <span>Tel: (604) 303-8885 | Fax: (604) 303-8887</span></p>
+                    <p class="mb-3"><strong data-zh="营业时间：">Hours:</strong> <span data-zh="七天营业 · 周一至周日 9:00 AM – 6:00 PM">Open 7 Days · 9:00 AM – 6:00 PM</span></p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="https://maps.google.com/?q=4551+Number+3+Rd+%23195,+Richmond,+BC+V6X+2C3" target="_blank" class="btn btn-dark fw-bold" data-zh="在 Google Maps 中导航">Open in Google Maps</a>
+                        <a href="services.html#booking-section" class="btn btn-danger fw-bold" data-zh="立即预约项目 →">Book a Service →</a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="ratio ratio-16x9 rounded overflow-hidden border">
+                        <iframe src="https://maps.google.com/maps?q=4551+Number+3+Rd+%23195,+Richmond,+BC+V6X+2C3&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
 
 <div id="sharedFooter"></div>

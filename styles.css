@@ -1,27 +1,26 @@
 :root {
-    --pl-bg-black: #080a0f;
-    --pl-panel-black: #111520;
-    --pl-card-black: #161b2a;
+    --pl-navy-dark: #090e17;
+    --pl-teal-dark: #0f1e32;
+    --pl-teal-card: #162842;
+    --pl-light-bg: #f4f7fb;
+    --pl-white: #ffffff;
     --pl-red: #dc2626;
-    --pl-red-dark: #991b1b;
     --pl-blue: #1d4ed8;
-    --pl-blue-light: #2563eb;
-    --pl-border: #262f45;
-    --pl-text: #f1f5f9;
-    --pl-muted: #94a3b8;
+    --pl-border-dark: #233856;
+    --pl-border-light: #e2e8f0;
 }
 
 body {
-    background-color: var(--pl-bg-black);
-    color: var(--pl-text);
+    background-color: var(--pl-light-bg);
+    color: #0f172a;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
 }
 
-/* 顶部导航栏 */
+/* 顶部导航栏：沉稳暗夜黑 */
 .navbar-custom {
-    background-color: #05070b;
+    background-color: #070b12;
     border-bottom: 2px solid var(--pl-red);
-    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.18);
 }
 
 .brand-title-red {
@@ -31,9 +30,9 @@ body {
 }
 
 .nav-link-custom {
-    font-size: 0.94rem;
+    font-size: 0.92rem;
     font-weight: 600;
-    padding: 7px 15px !important;
+    padding: 6px 14px !important;
     border-radius: 20px;
     transition: all 0.2s ease;
     color: rgba(255, 255, 255, 0.85) !important;
@@ -44,144 +43,220 @@ body {
 
 .nav-link-custom:hover {
     color: #ffffff !important;
-    background-color: rgba(37, 99, 235, 0.25);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-link-custom.nav-active {
     color: #ffffff !important;
-    background: linear-gradient(135deg, var(--pl-red) 0%, var(--pl-blue) 100%) !important;
-    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
+    background-color: var(--pl-red) !important;
 }
 
-/* 首页滚动横幅：严格固定高度与宽度，确保 3 个广告切换时页面绝不跳动 */
+/* ==================== 首页滚动广告：统一深暗背景 + 手机端自适应 ==================== */
 #heroCarousel {
     width: 100%;
-    overflow: hidden;
+    background-color: #070a10;
 }
 
-.hero-slide {
+.hero-slide-unified {
     width: 100%;
-    height: 480px;
+    height: 440px;
     display: flex;
     align-items: center;
-    border-bottom: 3px solid var(--pl-blue-light);
+    /* 三个广告统一使用极暗哑光遮罩，沉稳不刺眼 */
+    background-image: linear-gradient(180deg, rgba(7, 10, 16, 0.93) 0%, rgba(12, 20, 34, 0.95) 100%),
+    url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80');
     background-size: cover;
     background-position: center;
-    overflow: hidden;
+    border-bottom: 2px solid #1e293b;
 }
 
+/* 统一低调胶囊标签 */
+.hero-pill-unified {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: clamp(0.72rem, 1.5vw, 0.84rem);
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+/* 响应式标题与正文：电脑端大气，手机端自动缩小不撑破屏幕 */
+.hero-title {
+    font-size: clamp(1.45rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.92rem, 2vw, 1.22rem);
+    font-weight: 500;
+    color: #93c5fd; /* 统一柔和浅蓝副标题 */
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.hero-desc {
+    font-size: clamp(0.82rem, 1.5vw, 1rem);
+    color: #94a3b8;
+    line-height: 1.55;
+    margin-bottom: 22px;
+    max-width: 680px;
+}
+
+/* 统一滚动广告按钮颜色 */
+.btn-hero-primary {
+    background-color: var(--pl-red);
+    border: 1px solid var(--pl-red);
+    color: #ffffff !important;
+    font-weight: 700;
+    padding: 10px 22px;
+    font-size: clamp(0.84rem, 1.5vw, 1rem);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-hero-primary:hover {
+    background-color: #b91c1c;
+}
+
+.btn-hero-secondary {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 10px 20px;
+    font-size: clamp(0.84rem, 1.5vw, 1rem);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-hero-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+/* 手机端专属适配：高度与间距紧凑化 */
 @media (max-width: 768px) {
-    .hero-slide {
-        height: 540px;
+    .hero-slide-unified {
+        height: 380px;
+        padding: 20px 10px;
+    }
+    .hero-pill-unified {
+        padding: 4px 10px;
+        margin-bottom: 10px;
+    }
+    .hero-desc {
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .btn-hero-primary, .btn-hero-secondary {
+        padding: 7px 14px;
     }
 }
 
-.hero-slide-1 {
-    background-image: linear-gradient(135deg, rgba(8,10,15,0.94) 0%, rgba(29,78,216,0.55) 100%),
-    url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80');
+/* ==================== 穿插背景系统：深青蓝 (King's Auto Spa 风格) vs 清爽纯白 ==================== */
+.section-teal-dark {
+    background-color: var(--pl-teal-dark);
+    color: #f8fafc;
+    padding: 60px 0;
 }
 
-.hero-slide-2 {
-    background-image: linear-gradient(135deg, rgba(8,10,15,0.94) 0%, rgba(185,28,28,0.6) 100%),
-    url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1600&q=80');
+.section-light {
+    background-color: var(--pl-light-bg);
+    color: #0f172a;
+    padding: 60px 0;
 }
 
-.hero-slide-3 {
-    background-image: linear-gradient(135deg, rgba(8,10,15,0.95) 0%, rgba(30,58,138,0.65) 100%),
-    url('https://images.unsplash.com/photo-1552930294-6b595f4c2974?auto=format&fit=crop&w=1600&q=80');
+.section-white {
+    background-color: #ffffff;
+    color: #0f172a;
+    padding: 60px 0;
+    border-top: 1px solid var(--pl-border-light);
+    border-bottom: 1px solid var(--pl-border-light);
 }
 
-.hero-pill {
-    display: inline-block;
-    background: rgba(220, 38, 38, 0.22);
-    border: 1px solid #ef4444;
-    color: #ffffff;
-    padding: 6px 16px;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
-/* 深色卡片系统 */
-.dark-panel {
-    background-color: var(--pl-panel-black);
-    border: 1px solid var(--pl-border);
-    border-radius: 14px;
-    color: var(--pl-text);
-}
-
-.dark-card {
-    background-color: var(--pl-card-black);
-    border: 1px solid var(--pl-border);
+/* 白色背景上的清爽卡片 */
+.light-card {
+    background-color: #ffffff;
+    border: 1px solid var(--pl-border-light);
     border-radius: 12px;
-    color: var(--pl-text);
-    transition: all 0.22s ease;
+    color: #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+    transition: all 0.2s ease;
 }
 
-.dark-card:hover {
-    border-color: var(--pl-red);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.2);
+.light-card:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.09);
 }
 
-.dark-card-blue:hover {
-    border-color: var(--pl-blue-light);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+/* 青蓝背景上的深色卡片 */
+.teal-card {
+    background-color: var(--pl-teal-card);
+    border: 1px solid var(--pl-border-dark);
+    border-radius: 12px;
+    color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.teal-card:hover {
+    border-color: #38bdf8;
+    transform: translateY(-2px);
 }
 
 .service-img-top {
-    height: 180px;
+    height: 175px;
     object-fit: cover;
     width: 100%;
-    border-bottom: 2px solid var(--pl-red);
 }
 
 .showcase-img {
-    height: 220px;
+    height: 210px;
     object-fit: cover;
     width: 100%;
-    border-bottom: 2px solid var(--pl-blue-light);
 }
 
 .craft-number {
     font-size: 0.85rem;
     font-weight: 800;
-    color: #ef4444;
+    color: var(--pl-red);
     letter-spacing: 1px;
     display: block;
     margin-bottom: 6px;
 }
 
-.dont-do-card {
-    background: linear-gradient(135deg, #131826 0%, #1e1118 100%);
-    color: #ffffff;
-    border-radius: 14px;
-    border: 1px solid #3b1d26;
-    border-left: 5px solid var(--pl-red);
-}
-
-/* 价目表红底、蓝底、黄（金）底矩阵：强制纯白文字 (#ffffff) 与醒目底色 */
+/* ==================== 价目表专属样式 ==================== */
 .tier-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    background: linear-gradient(135deg, #b91c1c, #dc2626);
+    width: 40px;
+    height: 40px;
+    background-color: var(--pl-red);
     color: #ffffff;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 900;
     border-radius: 8px;
     flex-shrink: 0;
 }
 
 .price-tag-red {
-    color: #f87171;
+    color: var(--pl-red);
     font-weight: 800;
-    font-size: 1.45rem;
+    font-size: 1.4rem;
 }
 
+/* 蓝底、红底、金黄底矩阵表：强制纯白字 (#ffffff) */
 .matrix-table {
     width: 100%;
     border-collapse: separate;
@@ -191,7 +266,7 @@ body {
 
 .matrix-table th,
 .matrix-table td {
-    padding: 14px 10px;
+    padding: 13px 10px;
     text-align: center;
     vertical-align: middle;
     border: none !important;
@@ -206,7 +281,7 @@ body {
 }
 
 .col-tier-name {
-    background-color: #161f33 !important;
+    background-color: #162842 !important;
     color: #ffffff !important;
     text-align: left !important;
     font-weight: 700;
@@ -214,7 +289,6 @@ body {
     border-left: 4px solid var(--pl-red) !important;
 }
 
-/* 蓝底白字列 */
 .col-blue-head {
     background: linear-gradient(180deg, #1e40af, #1d4ed8) !important;
     color: #ffffff !important;
@@ -225,10 +299,9 @@ body {
     background-color: #0255a5 !important;
     color: #ffffff !important;
     font-weight: 800;
-    font-size: 1.18rem;
+    font-size: 1.15rem;
 }
 
-/* 红底白字列 */
 .col-red-head {
     background: linear-gradient(180deg, #991b1b, #dc2626) !important;
     color: #ffffff !important;
@@ -239,10 +312,9 @@ body {
     background-color: #a32222 !important;
     color: #ffffff !important;
     font-weight: 800;
-    font-size: 1.18rem;
+    font-size: 1.15rem;
 }
 
-/* 黄/金底白字列 */
 .col-gold-head {
     background: linear-gradient(180deg, #b45309, #d97706) !important;
     color: #ffffff !important;
@@ -253,22 +325,29 @@ body {
     background-color: #c25e1a !important;
     color: #ffffff !important;
     font-weight: 800;
-    font-size: 1.18rem;
+    font-size: 1.15rem;
 }
 
 .other-service-box {
-    background-color: #0f294a;
-    border: 1px solid #1d4ed8;
+    background-color: #162842;
+    border: 1px solid #2b4c7e;
     border-left: 4px solid #38bdf8;
     border-radius: 8px;
-    padding: 12px 16px;
+    padding: 11px 15px;
     color: #ffffff;
 }
 
-/* 深色输入框与表单 */
+/* ==================== 弹窗与管理后台兼容样式 ==================== */
+.dark-panel {
+    background-color: var(--pl-teal-dark);
+    border: 1px solid var(--pl-border-dark);
+    border-radius: 14px;
+    color: #ffffff;
+}
+
 .form-control-dark, .form-select-dark {
-    background-color: #0c101a !important;
-    border: 1px solid #2e3a54 !important;
+    background-color: #0b1524 !important;
+    border: 1px solid #2b456b !important;
     color: #ffffff !important;
 }
 
@@ -276,17 +355,11 @@ body {
     color: #64748b !important;
 }
 
-.form-control-dark:focus, .form-select-dark:focus {
-    border-color: var(--pl-blue-light) !important;
-    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25) !important;
-}
-
-/* 管理后台日历样式 */
 .sidebar {
     min-height: 100vh;
-    background-color: #05070b;
+    background-color: #070b12;
     color: white;
-    border-right: 1px solid var(--pl-border);
+    border-right: 1px solid var(--pl-border-dark);
 }
 
 .sidebar .nav-link {
@@ -298,7 +371,7 @@ body {
 
 .sidebar .nav-link.active, .sidebar .nav-link:hover {
     color: #ffffff;
-    background: linear-gradient(135deg, var(--pl-red), var(--pl-blue));
+    background-color: var(--pl-red);
     font-weight: 700;
 }
 
@@ -310,8 +383,8 @@ body {
 
 .calendar-day-col {
     min-height: 250px;
-    background: var(--pl-card-black);
-    border: 1px solid var(--pl-border);
+    background: var(--pl-teal-card);
+    border: 1px solid var(--pl-border-dark);
     border-radius: 10px;
     padding: 12px;
 }
@@ -322,12 +395,12 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     border-left: 4px solid var(--pl-red);
-    background: #1e293b;
+    background: #0f1c2e;
     color: #ffffff;
 }
 
 .cal-booking-done {
-    background: #0f172a !important;
+    background: #09111c !important;
     border-left-color: #22c55e !important;
     color: #94a3b8 !important;
 }
