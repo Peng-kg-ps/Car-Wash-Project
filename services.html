@@ -6,12 +6,62 @@
     <title>Pricing, Passes & Booking | PIT LANE Hand Car Wash & Detailing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 多选服务项目面板样式 */
+        .service-check-group {
+            background-color: #0b1524;
+            border: 1px solid #2b456b;
+            border-radius: 10px;
+            padding: 14px;
+            max-height: 360px;
+            overflow-y: auto;
+        }
+        .service-cat-title {
+            color: #38bdf8;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #1e3a5f;
+            padding-bottom: 5px;
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+        .service-cat-title:first-child {
+            margin-top: 0;
+        }
+        .service-check-item {
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+        .service-check-item:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+        .service-check-item input[type="checkbox"] {
+            width: 1.15em;
+            height: 1.15em;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #dc2626;
+        }
+        .service-check-item label {
+            color: #f1f5f9;
+            font-size: 0.92rem;
+            cursor: pointer;
+            margin-bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
 <div id="sharedNavbar"></div>
 
-<!-- ==================== 1. 清爽白色背景区：常规手洗 A-G 车型与价格表 (复刻店内白板价格牌) ==================== -->
+<!-- ==================== 1. 清爽白色背景区：常规手洗 A-G 车型与价格表 ==================== -->
 <div class="section-light">
     <div class="container">
         <div class="text-center mb-4">
@@ -32,7 +82,7 @@
                             <p class="text-secondary small mb-0">Fiat 500, Fit, Miata, Mirage, Rio 5, Smart, etc...</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - A: Compact Car ($48)')" data-zh="预约此项目 →">Book This Service →</button>
+                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - A: Compact Car ($48)')" data-zh="勾选并预约 →">Select & Book →</button>
                 </div>
             </div>
             <div class="col-12">
@@ -44,7 +94,7 @@
                             <p class="text-secondary small mb-0">A3-5, BMW 2-4, A/C-Class, Civic, Corolla, Elantra, Fiat 500-L, Golf, Impreza, Mazda 3, Model 3, etc...</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - B: Regular Sedan ($55)')" data-zh="预约此项目 →">Book This Service →</button>
+                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - B: Regular Sedan ($55)')" data-zh="勾选并预约 →">Select & Book →</button>
                 </div>
             </div>
             <div class="col-12">
@@ -56,7 +106,7 @@
                             <p class="text-secondary small mb-0">A6-8, BMW 5-8/GT-Series, AMG GT, CLS/E/S-Class, Cadillac CT, Chrysler 300, Crown, LS, Model S, Panamera, Polestar, Taycan, XF, XJ, XK; bZ, Compass, Corolla-Cross, Corsair, Countryman, Crosstrek, CRV, CX-5, CX-30/50, E-Pace, Envista, Equinox, Escape, EV6, Evoque, Forester, GLA/B/C, GV60/70, HRV, I-Pace, ID.4, Ioniq 5, Kicks, Kona, LBX, Macan, Mach-E, Mazda 5, Model Y, Niro, NX, Outback, Outlander, Patriot, Q3-5, Qashqai, QX30/50, RAV4, RDX, Renegade, Rogue, RVR, Seltos, Sportage, Stelvio, Taos, Tiguan, Trailblazer, Tucson, UX, Venue, Venza, X1-4, XC40, XT4/5, etc...</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - C: Large Sedan / Small SUV ($63)')" data-zh="预约此项目 →">Book This Service →</button>
+                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - C: Large Sedan / Small SUV ($63)')" data-zh="勾选并预约 →">Select & Book →</button>
                 </div>
             </div>
             <div class="col-12">
@@ -68,7 +118,7 @@
                             <p class="text-secondary small mb-0"><strong class="text-dark">Bentley cars, Rolls-Royce cars;</strong> Ariya, Ascent, Atlas, Cayenne, Caravan, Carnival, Cherokee, CX-70, Discovery, Durango, Edge, Enclave, EQE, EV9, Explorer, F-Pace, 4Runner, GLE, GV80, Highlander, iX, Optiq, Lyriq, MDX, Model X, Murano, Odyssey, Pacifica, Palisade, Passport, Pathfinder, Prologue, Q7/8, QX60, Range Rover, RX, RZ, SantaFe, Sorento, Sienna, Signia, Telluride, Terrain, Touareg, Velar, X5, X6, XC60, XT6, etc...</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - D: Mid SUV / Mini Van ($76)')" data-zh="预约此项目 →">Book This Service →</button>
+                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - D: Mid SUV / Mini Van ($76)')" data-zh="勾选并预约 →">Select & Book →</button>
                 </div>
             </div>
             <div class="col-12">
@@ -80,7 +130,7 @@
                             <p class="text-secondary small mb-0">Armada, Aviator, Bentayga, Bronco, Cullinan, CX-90, Defender, EQS, FJ, G-Class, GLS, Grand Cherokee-L, Grand Highlander, GX, ID.Buzz, Land Cruiser, LX, Pilot, QX80, Range Rover-L, Vistiq, Wagoneer, Wrangler, X7, XM, XC90; Frontier, Gladiator, Maverick, Ranger, Ridgeline, Santa Cruz, Tacoma, etc...</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - E: Large SUV / Small Pick Up ($88)')" data-zh="预约此项目 →">Book This Service →</button>
+                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - E: Large SUV / Small Pick Up ($88)')" data-zh="勾选并预约 →">Select & Book →</button>
                 </div>
             </div>
             <div class="col-12">
@@ -92,7 +142,7 @@
                             <p class="text-secondary small mb-0">Avalanche, Canyon, Cargo van, Colorado, Escalade, Excursion, Expedition, F150/250, RAM 1500/2500, Rivian, Metris, Navigator, Sequoia, Sierra, Silverado, Sprinter, Suburban, Tahoe, Titan, Tundra, TX, Yukon, etc...</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - F: Full-size SUV / Pick Up ($108)')" data-zh="预约此项目 →">Book This Service →</button>
+                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - F: Full-size SUV / Pick Up ($108)')" data-zh="勾选并预约 →">Select & Book →</button>
                 </div>
             </div>
             <div class="col-12">
@@ -104,7 +154,7 @@
                             <p class="text-secondary small mb-0">G550, Cybertruck, Escalade-L, F250/350/450+, G-Class 4x4, Hummer, RAM 3500+, etc...</p>
                         </div>
                     </div>
-                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - G: Oversize ($128)')" data-zh="预约此项目 →">Book This Service →</button>
+                    <button class="btn btn-outline-danger btn-sm fw-bold text-nowrap" onclick="selectServiceAndScroll('Regular Wash - G: Oversize ($128)')" data-zh="勾选并预约 →">Select & Book →</button>
                 </div>
             </div>
         </div>
@@ -134,7 +184,7 @@
         <div class="text-center mb-4">
             <span class="badge bg-primary px-3 py-1 mb-2" data-zh="专业汽车美容中心">PROFESSIONAL AUTO DETAILING</span>
             <h2 class="fw-bold text-white" data-zh="汽车深度美容套餐与专项服务价格表 (Detailing Services)">Detailing Services Pricing Matrix</h2>
-            <p class="text-white-50" data-zh="所有价格均需另加税 · All prices + tax">All prices + tax</p>
+            <p class="text-white-50" data-zh="可在下方预约表中同时勾选多项服务 · All prices + tax">Multiple services can be selected together in the booking form below · All prices + tax</p>
         </div>
 
         <div class="row g-4">
@@ -216,31 +266,31 @@
                         Other Services / 其他专项服务
                     </h5>
                     <div class="d-flex flex-column gap-2">
-                        <div class="other-service-box d-flex justify-content-between align-items-center">
+                        <div class="other-service-box d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="selectServiceAndScroll('Rim Cleaning ($49/each)')">
                             <div><div class="fw-bold text-white">Rim Cleaning</div><small class="text-white">轮圈清洁 (each / 每个)</small></div>
                             <span class="fs-5 fw-bold text-white">$49</span>
                         </div>
-                        <div class="other-service-box d-flex justify-content-between align-items-center">
+                        <div class="other-service-box d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="selectServiceAndScroll('Engine Bay Cleaning (from $99)')">
                             <div><div class="fw-bold text-white">Engine Bay Cleaning</div><small class="text-white">引擎仓清洗</small></div>
                             <span class="fs-5 fw-bold text-white"><small class="fs-6 fw-normal">from</small> $99 <small class="fs-6 fw-normal">起</small></span>
                         </div>
-                        <div class="other-service-box d-flex justify-content-between align-items-center">
+                        <div class="other-service-box d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="selectServiceAndScroll('Leather Conditioning (from $199)')">
                             <div><div class="fw-bold text-white">Leather Conditioning</div><small class="text-white">皮革护理</small></div>
                             <span class="fs-5 fw-bold text-white"><small class="fs-6 fw-normal">from</small> $199 <small class="fs-6 fw-normal">起</small></span>
                         </div>
-                        <div class="other-service-box d-flex justify-content-between align-items-center">
+                        <div class="other-service-box d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="selectServiceAndScroll('Rim Repair ($298/each)')">
                             <div><div class="fw-bold text-white">Rim Repair</div><small class="text-white">轮圈维修 (each / 每个)</small></div>
                             <span class="fs-5 fw-bold text-white">$298</span>
                         </div>
-                        <div class="other-service-box d-flex justify-content-between align-items-center">
+                        <div class="other-service-box d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="selectServiceAndScroll('Rim Protector (from $498)')">
                             <div><div class="fw-bold text-white">Rim Protector</div><small class="text-white">轮圈保护圈</small></div>
                             <span class="fs-5 fw-bold text-white"><small class="fs-6 fw-normal">from</small> $498 <small class="fs-6 fw-normal">起</small></span>
                         </div>
-                        <div class="other-service-box d-flex justify-content-between align-items-center">
+                        <div class="other-service-box d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="selectServiceAndScroll('Water Repellent Treatment (from $199)')">
                             <div><div class="fw-bold text-white">Water Repellent Treatment</div><small class="text-white">玻璃防泼水处理</small></div>
                             <span class="fs-5 fw-bold text-white"><small class="fs-6 fw-normal">from</small> $199 <small class="fs-6 fw-normal">起</small></span>
                         </div>
-                        <div class="other-service-box d-flex justify-content-between align-items-center">
+                        <div class="other-service-box d-flex justify-content-between align-items-center" style="cursor:pointer;" onclick="selectServiceAndScroll('Window Tinting (from $498)')">
                             <div><div class="fw-bold text-white">Window Tinting</div><small class="text-white">玻璃防晒膜</small></div>
                             <span class="fs-5 fw-bold text-white"><small class="fs-6 fw-normal">from</small> $498 <small class="fs-6 fw-normal">起</small></span>
                         </div>
@@ -333,7 +383,7 @@
             </table>
         </div>
 
-        <!-- 套票重要规则与条款 (清爽白底卡片) -->
+        <!-- 套票重要规则与条款 -->
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="light-card p-4 h-100" style="border-top: 4px solid #dc2626;">
@@ -365,15 +415,15 @@
     </div>
 </div>
 
-<!-- ==================== 4. 深海青蓝背景区：预约项目表单 (Book a Service) ==================== -->
+<!-- ==================== 4. 深海青蓝背景区：支持勾选多个项目的预约表单 ==================== -->
 <div id="booking-section" class="section-teal-dark">
     <div class="container">
-        <div class="p-4 p-md-5 teal-card shadow-lg mx-auto" style="max-width: 860px;">
+        <div class="p-4 p-md-5 teal-card shadow-lg mx-auto" style="max-width: 900px;">
             <div class="text-center mb-4">
-                <span class="badge bg-danger mb-2" data-zh="在线预约项目">BOOK A SERVICE ONLINE</span>
-                <h2 class="fw-bold text-white" data-zh="填写您的车辆与预约项目">Schedule Your Wash or Detailing Service</h2>
-                <p class="text-white-50" data-zh="无需在线预付，到店看车确认后再付款。提交后将立即同步至店内预约日历！">
-                    No prepayment required. Pay in-store after inspection. Instant booking sync with our shop calendar!
+                <span class="badge bg-danger mb-2" data-zh="在线预约项目（支持多选）">BOOK SERVICES ONLINE (MULTI-SELECT)</span>
+                <h2 class="fw-bold text-white" data-zh="填写您的车辆并勾选预约项目">Schedule Your Wash or Detailing Services</h2>
+                <p class="text-white-50" data-zh="您可以同时勾选多个想要体验的项目！无需在线预付，到店看车确认后再付款。">
+                    You can check multiple services below! No prepayment required — pay in-store after inspection.
                 </p>
             </div>
 
@@ -399,44 +449,178 @@
                         <label class="form-label fw-bold text-white" data-zh="车牌号码 *">License Plate *</label>
                         <input type="text" class="form-control form-control-dark" id="custPlate" placeholder="e.g. BC-PL888" data-ph-zh="例如：BC-PL888" required>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label fw-bold text-white" data-zh="选择预约项目或套票 *">Select Service or Pass *</label>
-                        <select class="form-select form-select-dark" id="servicePackageSelect" required>
-                            <optgroup label="Regular Hand Car Wash (标准纯手工洗车)">
-                                <option value="Regular Wash - A: Compact Car ($48)">Tier A: Compact Car ($48)</option>
-                                <option value="Regular Wash - B: Regular Sedan ($55)">Tier B: Regular Sedan ($55)</option>
-                                <option value="Regular Wash - C: Large Sedan / Small SUV ($63)" selected>Tier C: Large Sedan / Small SUV ($63)</option>
-                                <option value="Regular Wash - D: Mid SUV / Mini Van ($76)">Tier D: High-End Sedan / Mid SUV / Mini Van ($76)</option>
-                                <option value="Regular Wash - E: Large SUV / Small Pick Up ($88)">Tier E: Large SUV / Small Pick Up ($88)</option>
-                                <option value="Regular Wash - F: Full-size SUV / Pick Up ($108)">Tier F: Full-size SUV / Pick Up ($108)</option>
-                                <option value="Regular Wash - G: Oversize ($128)">Tier G: Oversize ($128)</option>
-                            </optgroup>
-                            <optgroup label="Detailing Packages (汽车深度美容套餐)">
-                                <option value="Interior Steam Shampoo ($228 - $498)">Interior Steam Shampoo 车厢蒸汽清洗 ($228–$498)</option>
-                                <option value="Hand Wax ($228 - $498)">Wax 打蜡 ($228–$498)</option>
-                                <option value="Polish & Wax ($398 - $898)">Polish & Wax 抛光及打蜡 ($398–$898)</option>
-                                <option value="Full Detailing Package ($598 - $1298)">Full Detailing 美容套餐 ($598–$1298)</option>
-                                <option value="Ceramic Coating ($1998 - $4998)">Ceramic Coating 镀晶 ($1998–$4998)</option>
-                            </optgroup>
-                            <optgroup label="Other Services (其他专项服务)">
-                                <option value="Rim Cleaning ($49/each)">Rim Cleaning 轮圈清洁 ($49/each)</option>
-                                <option value="Engine Bay Cleaning (from $99)">Engine Bay Cleaning 引擎仓清洗 (from $99)</option>
-                                <option value="Leather Conditioning (from $199)">Leather Conditioning 皮革护理 (from $199)</option>
-                                <option value="Rim Repair ($298/each)">Rim Repair 轮圈维修 ($298/each)</option>
-                                <option value="Rim Protector (from $498)">Rim Protector 轮圈保护圈 (from $498)</option>
-                                <option value="Water Repellent Treatment (from $199)">Water Repellent 玻璃防泼水处理 (from $199)</option>
-                                <option value="Window Tinting (from $498)">Window Tinting 玻璃防晒膜 (from $498)</option>
-                            </optgroup>
-                            <optgroup label="Car Washing Passes (洗车套票办理)">
-                                <option value="10+1 Times Car Wash Pass ($480 - $1280)">10+1 Times Pass 买10送1次卡 ($480–$1280)</option>
-                                <option value="1 Month Unlimited Pass ($150 - $350)">1 Month Unlimited Pass 单月套票 ($150–$350)</option>
-                                <option value="3 Months Unlimited Pass ($338 - $798)">3 Months Unlimited Pass 三月套票 ($338–$798)</option>
-                                <option value="1 Year Unlimited Pass ($1098 - $2598)">1 Year Unlimited Pass 全年套票 ($1098–$2598)</option>
-                            </optgroup>
-                        </select>
+
+                    <!-- 多选预约项目勾选区 -->
+                    <div class="col-12 mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label fw-bold text-warning mb-0" data-zh="✅ 勾选想要预约的项目（可同时勾选多项）*">
+                                ✅ Check Desired Services or Passes (Multiple Selection Allowed) *
+                            </label>
+                            <span class="badge bg-danger" id="selectedCountBadge">已选 1 项 / 1 Selected</span>
+                        </div>
+
+                        <div class="service-check-group" id="bookingServiceCheckboxes">
+                            <!-- 类别 1：常规手洗 -->
+                            <div class="service-cat-title" data-zh="1. 标准纯手工洗车 (Regular Hand Car Wash)">1. Regular Hand Car Wash</div>
+                            <div class="row g-1">
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - A: Compact Car ($48)" id="srv_a" onchange="updateSelectedCount()">
+                                        <label for="srv_a" data-zh="A级：微型/小型轿车 ($48)">Tier A: Compact Car ($48)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - B: Regular Sedan ($55)" id="srv_b" onchange="updateSelectedCount()">
+                                        <label for="srv_b" data-zh="B级：标准四门轿车 ($55)">Tier B: Regular Sedan ($55)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - C: Large Sedan / Small SUV ($63)" id="srv_c" checked onchange="updateSelectedCount()">
+                                        <label for="srv_c" data-zh="C级：大型轿车 / 小型 SUV ($63)">Tier C: Large Sedan / Small SUV ($63)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - D: Mid SUV / Mini Van ($76)" id="srv_d" onchange="updateSelectedCount()">
+                                        <label for="srv_d" data-zh="D级：豪车 / 中型 SUV / 商务车 ($76)">Tier D: High-End Sedan / Mid SUV / Mini Van ($76)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - E: Large SUV / Small Pick Up ($88)" id="srv_e" onchange="updateSelectedCount()">
+                                        <label for="srv_e" data-zh="E级：大型 SUV / 小型皮卡 ($88)">Tier E: Large SUV / Small Pick Up ($88)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - F: Full-size SUV / Pick Up ($108)" id="srv_f" onchange="updateSelectedCount()">
+                                        <label for="srv_f" data-zh="F级：全尺寸 SUV / 标准皮卡 ($108)">Tier F: Full-size SUV / Pick Up ($108)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - G: Oversize ($128)" id="srv_g" onchange="updateSelectedCount()">
+                                        <label for="srv_g" data-zh="G级：超大型车 Cybertruck / 重型皮卡 ($128)">Tier G: Oversize ($128)</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 类别 2：深度美容套餐 -->
+                            <div class="service-cat-title" data-zh="2. 汽车深度美容套餐 (Detailing Packages)">2. Detailing Packages</div>
+                            <div class="row g-1">
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Interior Steam Shampoo ($228 - $498)" id="srv_steam" onchange="updateSelectedCount()">
+                                        <label for="srv_steam" data-zh="车厢高温蒸汽清洗 ($228–$498)">Interior Steam Shampoo ($228–$498)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Hand Wax ($228 - $498)" id="srv_wax" onchange="updateSelectedCount()">
+                                        <label for="srv_wax" data-zh="全车手工打蜡 ($228–$498)">Wax ($228–$498)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Polish & Wax ($398 - $898)" id="srv_polish" onchange="updateSelectedCount()">
+                                        <label for="srv_polish" data-zh="机器抛光及打蜡 ($398–$898)">Polish & Wax ($398–$898)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Full Detailing Package ($598 - $1298)" id="srv_full" onchange="updateSelectedCount()">
+                                        <label for="srv_full" data-zh="全套美容套餐 Full Detailing ($598–$1298)">Full Detailing Package ($598–$1298)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Ceramic Coating ($1998 - $4998)" id="srv_ceramic" onchange="updateSelectedCount()">
+                                        <label for="srv_ceramic" data-zh="顶级车漆镀晶 Ceramic Coating ($1998–$4998)">Ceramic Coating ($1998–$4998)</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 类别 3：其他专项服务 -->
+                            <div class="service-cat-title" data-zh="3. 其他专项服务 (Other Services - 可任意叠加)">3. Other Services (Add-Ons)</div>
+                            <div class="row g-1">
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Rim Cleaning ($49/each)" id="srv_rimclean" onchange="updateSelectedCount()">
+                                        <label for="srv_rimclean" data-zh="轮圈清洁 Rim Cleaning ($49/每个)">Rim Cleaning ($49/each)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Engine Bay Cleaning (from $99)" id="srv_engine" onchange="updateSelectedCount()">
+                                        <label for="srv_engine" data-zh="引擎仓清洗 Engine Bay Cleaning ($99起)">Engine Bay Cleaning (from $99)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Leather Conditioning (from $199)" id="srv_leather" onchange="updateSelectedCount()">
+                                        <label for="srv_leather" data-zh="真皮座椅皮革护理 Leather Conditioning ($199起)">Leather Conditioning (from $199)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Rim Repair ($298/each)" id="srv_rimrepair" onchange="updateSelectedCount()">
+                                        <label for="srv_rimrepair" data-zh="轮圈刮蹭维修 Rim Repair ($298/每个)">Rim Repair ($298/each)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Rim Protector (from $498)" id="srv_rimprot" onchange="updateSelectedCount()">
+                                        <label for="srv_rimprot" data-zh="轮圈保护圈安装 Rim Protector ($498起)">Rim Protector (from $498)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Water Repellent Treatment (from $199)" id="srv_water" onchange="updateSelectedCount()">
+                                        <label for="srv_water" data-zh="玻璃防泼水处理 Water Repellent ($199起)">Water Repellent Treatment (from $199)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="Window Tinting (from $498)" id="srv_tint" onchange="updateSelectedCount()">
+                                        <label for="srv_tint" data-zh="玻璃防晒隔热膜 Window Tinting ($498起)">Window Tinting (from $498)</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 类别 4：洗车套票办理 -->
+                            <div class="service-cat-title" data-zh="4. 洗车套票办理 (Car Washing Passes)">4. Car Washing Passes</div>
+                            <div class="row g-1">
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="10+1 Times Car Wash Pass ($480 - $1280)" id="srv_pass10" onchange="updateSelectedCount()">
+                                        <label for="srv_pass10" data-zh="买 10 送 1 次卡 ($480–$1280)">10+1 Times Car Wash Pass ($480–$1280)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="1 Month Unlimited Pass ($150 - $350)" id="srv_pass1m" onchange="updateSelectedCount()">
+                                        <label for="srv_pass1m" data-zh="1 个月无限次洗车套票 ($150–$350)">1 Month Unlimited Pass ($150–$350)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="3 Months Unlimited Pass ($338 - $798)" id="srv_pass3m" onchange="updateSelectedCount()">
+                                        <label for="srv_pass3m" data-zh="3 个月无限次洗车套票 ($338–$798)">3 Months Unlimited Pass ($338–$798)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="service-check-item">
+                                        <input type="checkbox" name="serviceItem" value="1 Year Unlimited Pass ($1098 - $2598)" id="srv_pass1y" onchange="updateSelectedCount()">
+                                        <label for="srv_pass1y" data-zh="1 全年无限次洗车套票 ($1098–$2598)">1 Year Unlimited Pass ($1098–$2598)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-3">
                         <label class="form-label fw-bold text-white d-flex justify-content-between align-items-center">
                             <span data-zh="预约日期与具体时间 *">Appointment Date & Time *</span>
                             <span class="badge bg-secondary fw-normal" data-zh="年-月-日">YYYY-MM-DD</span>
@@ -463,8 +647,9 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-md-6 mt-3">
                         <label class="form-label fw-bold text-white" data-zh="脚垫清洗或额外备注 (选填)">Mat Cleaning / Additional Notes (Optional)</label>
+                        <span class="small text-white-50 d-block" data-zh="🧽 橡胶垫 $3/块 · 毛毯垫 $5/块">🧽 Rubber mat $3/ea · Carpet mat $5/ea</span>
                         <input type="text" class="form-control form-control-dark" id="custNotes" placeholder="e.g. Wash 4 rubber mats ($3 each), pet hair removal..." data-ph-zh="例如：需清洗 4 块橡胶脚垫 ($3/块)、宠物毛发清理等...">
                     </div>
 
@@ -488,16 +673,40 @@
         const dateInput = document.getElementById('bookingDate');
         dateInput.setAttribute('min', today);
         dateInput.value = today;
+        updateSelectedCount();
     });
 
+    function updateSelectedCount() {
+        const checked = document.querySelectorAll('input[name="serviceItem"]:checked');
+        const badge = document.getElementById('selectedCountBadge');
+        if (badge) {
+            badge.innerText = `已选 ${checked.length} 项 / ${checked.length} Selected`;
+            badge.className = checked.length > 0 ? 'badge bg-danger' : 'badge bg-secondary';
+        }
+    }
+
     function selectServiceAndScroll(val) {
-        const sel = document.getElementById('servicePackageSelect');
-        if (sel) sel.value = val;
+        const checkboxes = document.querySelectorAll('input[name="serviceItem"]');
+        checkboxes.forEach(cb => {
+            if (cb.value === val) {
+                cb.checked = true;
+            }
+        });
+        updateSelectedCount();
         document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
     }
 
     function handleBookingSubmit(event) {
         event.preventDefault();
+        const checkedBoxes = Array.from(document.querySelectorAll('input[name="serviceItem"]:checked'));
+        if (checkedBoxes.length === 0) {
+            alert(isZh() ? '⚠️ 请至少勾选一项需要预约的服务项目！' : '⚠️ Please check at least one service item to book!');
+            return;
+        }
+
+        const selectedList = checkedBoxes.map(cb => cb.value);
+        const combinedServices = selectedList.join(' + ');
+
         const newBooking = {
             id: Date.now(),
             name: document.getElementById('custName').value.trim(),
@@ -505,7 +714,8 @@
             email: document.getElementById('custEmail').value.trim(),
             carModel: document.getElementById('custCarModel').value.trim(),
             carPlate: document.getElementById('custPlate').value.trim(),
-            pkg: document.getElementById('servicePackageSelect').value,
+            pkg: combinedServices,
+            pkgs: selectedList,
             date: document.getElementById('bookingDate').value,
             time: `${document.getElementById('bookingHour').value}:${document.getElementById('bookingMinute').value}`,
             notes: document.getElementById('custNotes').value.trim(),
@@ -517,8 +727,8 @@
         localStorage.setItem('apex_bookings', JSON.stringify(bookings));
 
         alert(isZh()
-            ? `✅ 预约项目已提交成功！\n\n客户姓名：${newBooking.name}\n预约时间：${newBooking.date} ${newBooking.time}\n车辆信息：${newBooking.carModel} (${newBooking.carPlate})\n预约项目：${newBooking.pkg}\n门店地址：Unit 195 - 4551 No. 3 Rd, Richmond`
-            : `✅ Service Booking Confirmed!\n\nName: ${newBooking.name}\nDate & Time: ${newBooking.date} at ${newBooking.time}\nVehicle: ${newBooking.carModel} (${newBooking.carPlate})\nService: ${newBooking.pkg}\nLocation: Unit 195 - 4551 No. 3 Rd, Richmond`
+            ? `✅ 预约项目已提交成功！\n\n客户姓名：${newBooking.name}\n预约时间：${newBooking.date} ${newBooking.time}\n车辆信息：${newBooking.carModel} (${newBooking.carPlate})\n已选项目 (${selectedList.length}项)：\n• ${selectedList.join('\n• ')}\n\n门店地址：Unit 195 - 4551 No. 3 Rd, Richmond`
+            : `✅ Service Booking Confirmed!\n\nName: ${newBooking.name}\nDate & Time: ${newBooking.date} at ${newBooking.time}\nVehicle: ${newBooking.carModel} (${newBooking.carPlate})\nBooked Services (${selectedList.length}):\n• ${selectedList.join('\n• ')}\n\nLocation: Unit 195 - 4551 No. 3 Rd, Richmond`
         );
 
         event.target.reset();

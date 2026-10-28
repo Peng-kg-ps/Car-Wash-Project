@@ -6,6 +6,38 @@
   <title>Booking Calendar & Admin | PIT LANE Hand Car Wash & Detailing</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-check-box {
+      max-height: 250px;
+      overflow-y: auto;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .admin-check-item {
+      display: flex;
+      align-items: center;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    .admin-check-item:hover {
+      background: #e2e8f0;
+    }
+    .admin-check-item input {
+      width: 1.1em;
+      height: 1.1em;
+      margin-right: 8px;
+      accent-color: #dc2626;
+      cursor: pointer;
+    }
+    .admin-check-item label {
+      font-size: 0.88rem;
+      cursor: pointer;
+      margin-bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 
@@ -38,10 +70,10 @@
       </ul>
     </nav>
 
-    <!-- 右侧主内容区 (白底黑字高对比度样式) -->
+    <!-- 右侧主内容区 (白底黑字) -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 admin-main-light">
 
-      <!-- 顶部：每日 / 每周 / 每月 统计卡片 (白底黑字) -->
+      <!-- 顶部：每日 / 每周 / 每月 统计卡片 -->
       <div class="row g-3 mb-4">
         <div class="col-md-3 col-sm-6">
           <div class="admin-light-panel p-3" style="border-left: 5px solid #dc2626;">
@@ -73,14 +105,13 @@
         </div>
       </div>
 
-      <!-- 1. 预约日历 (白底黑字) - 支持每日/每周/每月视图切换 -->
+      <!-- 1. 预约日历 (支持每日/每周/每月视图切换) -->
       <div class="admin-light-panel p-4 mb-4">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3 pb-3 border-bottom">
           <div>
             <h5 class="fw-bold text-dark mb-1">📅 预约日历 / Booking Calendar</h5>
-            <small class="text-secondary">查看每日、每周、每月客户预约情况，支持直接修改预约项目与检查完成状态 (View daily, weekly, monthly schedules & edit bookings)</small>
+            <small class="text-secondary">查看每日、每周、每月客户预约情况，支持直接修改多项服务、检查完成状态或删除测试单</small>
           </div>
-          <!-- 视图切换按钮组 -->
           <div class="btn-group" role="group">
             <button type="button" class="btn btn-sm btn-outline-dark" id="filter-day" onclick="setCalendarRange('day')">
               每日视图 / Daily (Today)
@@ -99,7 +130,7 @@
         <div class="calendar-grid" id="calendarGrid"></div>
       </div>
 
-      <!-- 2. 全部预约登记与检查列表 (白底黑字表格) -->
+      <!-- 2. 全部预约登记与检查列表 -->
       <div class="admin-light-panel p-4">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
           <h5 class="fw-bold text-dark mb-0">📋 预约明细与完成检查表 / Booking Records & Completion Check</h5>
@@ -118,9 +149,9 @@
               <th class="text-dark">预约日期 & 时间<br><small class="text-secondary">Date & Time</small></th>
               <th class="text-dark">客户信息<br><small class="text-secondary">Customer Info</small></th>
               <th class="text-dark">车辆型号 & 车牌<br><small class="text-secondary">Vehicle & Plate</small></th>
-              <th class="text-dark">预约项目 & 备注<br><small class="text-secondary">Booked Service & Notes</small></th>
+              <th class="text-dark">已选预约项目 & 备注<br><small class="text-secondary">Booked Services & Notes</small></th>
               <th class="text-dark">完成状态检查<br><small class="text-secondary">Completion Status</small></th>
-              <th class="text-dark">管理操作 (修改 / 状态切换)<br><small class="text-secondary">Actions (Edit / Toggle)</small></th>
+              <th class="text-dark">管理操作 (修改 / 完成 / 删除)<br><small class="text-secondary">Actions</small></th>
             </tr>
             </thead>
             <tbody id="adminBookingsTable"></tbody>
@@ -132,7 +163,7 @@
   </div>
 </div>
 
-<!-- 修改预约内容弹窗 (白底黑字) -->
+<!-- 修改预约内容弹窗 (支持勾选/取消多个项目) -->
 <div class="modal fade notranslate" id="editBookingModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content bg-white text-dark border shadow-lg">
@@ -165,41 +196,49 @@
               <input type="text" class="form-control" id="editCarPlate" required>
             </div>
 
-            <div class="col-md-12">
-              <label class="form-label small fw-bold text-danger">更换或修改预约项目 / Change Booked Service or Pass *</label>
-              <select class="form-select border-danger" id="editServicePkg" required>
-                <optgroup label="Regular Hand Car Wash (标准纯手工洗车)">
-                  <option value="Regular Wash - A: Compact Car ($48)">Tier A: Compact Car ($48)</option>
-                  <option value="Regular Wash - B: Regular Sedan ($55)">Tier B: Regular Sedan ($55)</option>
-                  <option value="Regular Wash - C: Large Sedan / Small SUV ($63)">Tier C: Large Sedan / Small SUV ($63)</option>
-                  <option value="Regular Wash - D: Mid SUV / Mini Van ($76)">Tier D: High-End Sedan / Mid SUV / Mini Van ($76)</option>
-                  <option value="Regular Wash - E: Large SUV / Small Pick Up ($88)">Tier E: Large SUV / Small Pick Up ($88)</option>
-                  <option value="Regular Wash - F: Full-size SUV / Pick Up ($108)">Tier F: Full-size SUV / Pick Up ($108)</option>
-                  <option value="Regular Wash - G: Oversize ($128)">Tier G: Oversize ($128)</option>
-                </optgroup>
-                <optgroup label="Detailing Packages (汽车深度美容套餐)">
-                  <option value="Interior Steam Shampoo ($228 - $498)">Interior Steam Shampoo 车厢蒸汽清洗 ($228–$498)</option>
-                  <option value="Hand Wax ($228 - $498)">Wax 打蜡 ($228–$498)</option>
-                  <option value="Polish & Wax ($398 - $898)">Polish & Wax 抛光及打蜡 ($398–$898)</option>
-                  <option value="Full Detailing Package ($598 - $1298)">Full Detailing 美容套餐 ($598–$1298)</option>
-                  <option value="Ceramic Coating ($1998 - $4998)">Ceramic Coating 镀晶 ($1998–$4998)</option>
-                </optgroup>
-                <optgroup label="Other Services (其他专项服务)">
-                  <option value="Rim Cleaning ($49/each)">Rim Cleaning 轮圈清洁 ($49/each)</option>
-                  <option value="Engine Bay Cleaning (from $99)">Engine Bay Cleaning 引擎仓清洗 (from $99)</option>
-                  <option value="Leather Conditioning (from $199)">Leather Conditioning 皮革护理 (from $199)</option>
-                  <option value="Rim Repair ($298/each)">Rim Repair 轮圈维修 ($298/each)</option>
-                  <option value="Rim Protector (from $498)">Rim Protector 轮圈保护圈 (from $498)</option>
-                  <option value="Water Repellent Treatment (from $199)">Water Repellent 玻璃防泼水处理 (from $199)</option>
-                  <option value="Window Tinting (from $498)">Window Tinting 玻璃防晒膜 (from $498)</option>
-                </optgroup>
-                <optgroup label="Car Washing Passes (洗车套票办理)">
-                  <option value="10+1 Times Car Wash Pass ($480 - $1280)">10+1 Times Pass 买10送1次卡 ($480–$1280)</option>
-                  <option value="1 Month Unlimited Pass ($150 - $350)">1 Month Unlimited Pass 单月套票 ($150–$350)</option>
-                  <option value="3 Months Unlimited Pass ($338 - $798)">3 Months Unlimited Pass 三月套票 ($338–$798)</option>
-                  <option value="1 Year Unlimited Pass ($1098 - $2598)">1 Year Unlimited Pass 全年套票 ($1098–$2598)</option>
-                </optgroup>
-              </select>
+            <!-- 多选预约项目修改区 -->
+            <div class="col-12">
+              <label class="form-label small fw-bold text-danger">✅ 勾选或更换预约项目 (可多选) / Check Booked Services (Multi-Select) *</label>
+              <div class="admin-check-box" id="editServiceCheckboxes">
+                <div class="fw-bold text-primary small mb-1">1. Regular Hand Car Wash (标准纯手工洗车)</div>
+                <div class="row g-1 mb-2">
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Regular Wash - A: Compact Car ($48)" id="ed_a"><label for="ed_a">Tier A: Compact Car ($48)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Regular Wash - B: Regular Sedan ($55)" id="ed_b"><label for="ed_b">Tier B: Regular Sedan ($55)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Regular Wash - C: Large Sedan / Small SUV ($63)" id="ed_c"><label for="ed_c">Tier C: Large Sedan / Small SUV ($63)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Regular Wash - D: Mid SUV / Mini Van ($76)" id="ed_d"><label for="ed_d">Tier D: Mid SUV / Mini Van ($76)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Regular Wash - E: Large SUV / Small Pick Up ($88)" id="ed_e"><label for="ed_e">Tier E: Large SUV / Small Pick Up ($88)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Regular Wash - F: Full-size SUV / Pick Up ($108)" id="ed_f"><label for="ed_f">Tier F: Full-size SUV / Pick Up ($108)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Regular Wash - G: Oversize ($128)" id="ed_g"><label for="ed_g">Tier G: Oversize ($128)</label></div></div>
+                </div>
+
+                <div class="fw-bold text-primary small mb-1">2. Detailing Packages (深度美容套餐)</div>
+                <div class="row g-1 mb-2">
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Interior Steam Shampoo ($228 - $498)" id="ed_steam"><label for="ed_steam">Interior Steam Shampoo 车厢蒸汽 ($228–$498)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Hand Wax ($228 - $498)" id="ed_wax"><label for="ed_wax">Wax 打蜡 ($228–$498)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Polish & Wax ($398 - $898)" id="ed_polish"><label for="ed_polish">Polish & Wax 抛光及打蜡 ($398–$898)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Full Detailing Package ($598 - $1298)" id="ed_full"><label for="ed_full">Full Detailing 美容套餐 ($598–$1298)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Ceramic Coating ($1998 - $4998)" id="ed_ceramic"><label for="ed_ceramic">Ceramic Coating 镀晶 ($1998–$4998)</label></div></div>
+                </div>
+
+                <div class="fw-bold text-primary small mb-1">3. Other Services (其他专项服务)</div>
+                <div class="row g-1 mb-2">
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Rim Cleaning ($49/each)" id="ed_rc"><label for="ed_rc">Rim Cleaning 轮圈清洁 ($49/ea)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Engine Bay Cleaning (from $99)" id="ed_eb"><label for="ed_eb">Engine Bay 引擎仓清洗 ($99+)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Leather Conditioning (from $199)" id="ed_lc"><label for="ed_lc">Leather 皮革护理 ($199+)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Rim Repair ($298/each)" id="ed_rr"><label for="ed_rr">Rim Repair 轮圈维修 ($298/ea)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Rim Protector (from $498)" id="ed_rp"><label for="ed_rp">Rim Protector 轮圈保护圈 ($498+)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Water Repellent Treatment (from $199)" id="ed_wr"><label for="ed_wr">Water Repellent 玻璃防泼水 ($199+)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="Window Tinting (from $498)" id="ed_wt"><label for="ed_wt">Window Tinting 玻璃防晒膜 ($498+)</label></div></div>
+                </div>
+
+                <div class="fw-bold text-primary small mb-1">4. Car Washing Passes (洗车套票)</div>
+                <div class="row g-1">
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="10+1 Times Car Wash Pass ($480 - $1280)" id="ed_p10"><label for="ed_p10">10+1 Times Pass ($480–$1280)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="1 Month Unlimited Pass ($150 - $350)" id="ed_p1m"><label for="ed_p1m">1 Month Pass ($150–$350)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="3 Months Unlimited Pass ($338 - $798)" id="ed_p3m"><label for="ed_p3m">3 Months Pass ($338–$798)</label></div></div>
+                  <div class="col-md-6"><div class="admin-check-item"><input type="checkbox" name="editSrvItem" value="1 Year Unlimited Pass ($1098 - $2598)" id="ed_p1y"><label for="ed_p1y">1 Year Pass ($1098–$2598)</label></div></div>
+                </div>
+              </div>
             </div>
 
             <div class="col-md-4">
@@ -220,7 +259,7 @@
 
             <div class="col-12">
               <label class="form-label small fw-bold text-dark">附加备注 (脚垫/特殊车况) / Additional Notes</label>
-              <input type="text" class="form-control" id="editBookingNotes" placeholder="e.g. Added 4 rubber mats ($12), customer changed from Regular to Steam...">
+              <input type="text" class="form-control" id="editBookingNotes" placeholder="e.g. Added 4 rubber mats ($12)...">
             </div>
           </div>
         </div>
@@ -279,6 +318,14 @@
     refreshAllAdminData();
   }
 
+  // 格式化展示多项预约服务
+  function formatServicesBadges(b) {
+    const list = Array.isArray(b.pkgs) && b.pkgs.length > 0
+            ? b.pkgs
+            : (b.pkg ? b.pkg.split(' + ') : []);
+    return list.map(item => `<div class="mb-1"><span class="badge bg-primary text-wrap text-start">✓ ${item}</span></div>`).join('');
+  }
+
   function refreshAllAdminData() {
     const now = new Date();
     const todayStr = now.toISOString().split('T')[0];
@@ -307,7 +354,7 @@
 
     document.getElementById('statPendingAll').innerText = `${pendingAllCount} 单 / Pending`;
 
-    // 1. 渲染底部完整检查与编辑表格 (白底黑字)
+    // 1. 渲染底部完整检查与编辑表格
     const statusFilter = document.getElementById('statusFilterSelect').value;
     const filteredTableBookings = bookings.filter(b => {
       if (statusFilter === 'PENDING') return b.status !== 'COMPLETED';
@@ -337,8 +384,8 @@
                         <code class="text-danger fw-bold">${b.carPlate}</code>
                     </td>
                     <td class="text-dark">
-                        <strong>${b.pkg}</strong>
-                        ${b.notes ? `<br><small class="text-danger">📝 备注/Notes: ${b.notes}</small>` : ''}
+                        ${formatServicesBadges(b)}
+                        ${b.notes ? `<small class="text-danger fw-bold">📝 备注/Notes: ${b.notes}</small>` : ''}
                     </td>
                     <td>
                         <span class="badge ${isDone ? 'bg-success' : 'bg-warning text-dark'}">
@@ -346,12 +393,15 @@
                         </span>
                     </td>
                     <td>
-                        <div class="d-flex flex-wrap gap-2">
+                        <div class="d-flex flex-wrap gap-1">
                             <button class="btn btn-outline-primary btn-sm fw-bold" onclick="openEditBookingModal(${b.id})">
-                                ✏️ 修改预约 / Edit
+                                ✏️ 修改 / Edit
                             </button>
                             <button class="btn ${isDone ? 'btn-outline-secondary' : 'btn-success'} btn-sm fw-bold" onclick="toggleBookingStatus(${b.id})">
-                                ${isDone ? '↺ 设为未完成 / Mark Pending' : '✓ 标记完成 / Mark Done'}
+                                ${isDone ? '↺ 还原 / Undo' : '✓ 完成 / Done'}
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm fw-bold" onclick="deleteBooking(${b.id})">
+                                🗑️ 删除 / Delete
                             </button>
                         </div>
                     </td>
@@ -359,7 +409,7 @@
       }).join('');
     }
 
-    // 2. 渲染预约日历 (白底黑字卡片)
+    // 2. 渲染预约日历
     const dateSet = new Set();
     if (currentRange === 'day') {
       dateSet.add(todayStr);
@@ -407,15 +457,19 @@
                                 </div>
                                 <div><strong>👤 客户 / Name:</strong> ${b.name}</div>
                                 <div><strong>📞 电话 / Tel:</strong> ${b.phone}</div>
-                                <div><strong>🚗 车辆 / Car:</strong> ${b.carModel} (<code class="text-danger fw-bold">${b.carPlate}</code>)</div>
-                                <div><strong>🧽 项目 / Service:</strong> ${b.pkg}</div>
+                                <div class="mb-1"><strong>🚗 车辆 / Car:</strong> ${b.carModel} (<code class="text-danger fw-bold">${b.carPlate}</code>)</div>
+                                <div><strong>🧽 项目 / Services:</strong></div>
+                                <div class="mt-1">${formatServicesBadges(b)}</div>
                                 ${b.notes ? `<div class="text-danger"><strong>📝 备注 / Notes:</strong> ${b.notes}</div>` : ''}
                                 <div class="d-flex gap-1 mt-2">
                                     <button class="btn btn-outline-primary btn-sm flex-fill py-0 fw-bold" onclick="openEditBookingModal(${b.id})">
-                                        ✏️ 修改 / Edit
+                                        ✏️ 修改
                                     </button>
                                     <button class="btn ${isDone ? 'btn-outline-secondary' : 'btn-success'} btn-sm flex-fill py-0 fw-bold" onclick="toggleBookingStatus(${b.id})">
-                                        ${isDone ? '↺ 还原 / Undo' : '✓ 完成 / Done'}
+                                        ${isDone ? '↺ 还原' : '✓ 完成'}
+                                    </button>
+                                    <button class="btn btn-outline-danger btn-sm py-0 fw-bold" onclick="deleteBooking(${b.id})" title="Delete">
+                                        🗑️
                                     </button>
                                 </div>
                             </div>`;
@@ -436,6 +490,14 @@
     }
   }
 
+  function deleteBooking(bookingId) {
+    if (!confirm('确定要删除这条预约记录吗？\nAre you sure you want to delete this booking record?')) return;
+    let bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
+    bookings = bookings.filter(b => b.id !== bookingId);
+    localStorage.setItem('apex_bookings', JSON.stringify(bookings));
+    refreshAllAdminData();
+  }
+
   function openEditBookingModal(bookingId) {
     const bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
     const target = bookings.find(b => b.id === bookingId);
@@ -447,17 +509,32 @@
     document.getElementById('editCustEmail').value = target.email || '';
     document.getElementById('editCarModel').value = target.carModel || '';
     document.getElementById('editCarPlate').value = target.carPlate || '';
-    document.getElementById('editServicePkg').value = target.pkg || 'Regular Wash - C: Large Sedan / Small SUV ($63)';
     document.getElementById('editBookingDate').value = target.date || '';
     document.getElementById('editBookingTime').value = target.time || '10:00';
     document.getElementById('editBookingStatus').value = target.status || 'PENDING';
     document.getElementById('editBookingNotes').value = target.notes || '';
+
+    // 还原已勾选的多项服务
+    const selectedList = Array.isArray(target.pkgs) && target.pkgs.length > 0
+            ? target.pkgs
+            : (target.pkg ? target.pkg.split(' + ') : []);
+
+    document.querySelectorAll('input[name="editSrvItem"]').forEach(cb => {
+      cb.checked = selectedList.includes(cb.value);
+    });
 
     new bootstrap.Modal(document.getElementById('editBookingModal')).show();
   }
 
   function handleSaveEditedBooking(event) {
     event.preventDefault();
+    const checkedBoxes = Array.from(document.querySelectorAll('input[name="editSrvItem"]:checked'));
+    if (checkedBoxes.length === 0) {
+      alert('⚠️ 请至少勾选一项预约服务！\nPlease select at least one service!');
+      return;
+    }
+
+    const selectedList = checkedBoxes.map(cb => cb.value);
     const id = Number(document.getElementById('editBookingId').value);
     let bookings = JSON.parse(localStorage.getItem('apex_bookings') || "[]");
     const idx = bookings.findIndex(b => b.id === id);
@@ -470,7 +547,8 @@
         email: document.getElementById('editCustEmail').value.trim(),
         carModel: document.getElementById('editCarModel').value.trim(),
         carPlate: document.getElementById('editCarPlate').value.trim(),
-        pkg: document.getElementById('editServicePkg').value,
+        pkg: selectedList.join(' + '),
+        pkgs: selectedList,
         date: document.getElementById('editBookingDate').value,
         time: document.getElementById('editBookingTime').value.trim(),
         status: document.getElementById('editBookingStatus').value,
