@@ -1,34 +1,79 @@
-// 1. 店内商标高清矢量 SVG
+// 1. 高精度复刻店内方程式赛车+双交叉挥舞旗帜商标 SVG
 const PIT_LANE_LOGO_SVG = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 64" width="68" height="40" style="border-radius:6px; border:1px solid #dc2626; background:#050505; flex-shrink:0;">
-    <line x1="34" y1="30" x2="54" y2="6" stroke="#e2e8f0" stroke-width="2.2"/>
-    <line x1="62" y1="30" x2="42" y2="6" stroke="#e2e8f0" stroke-width="2.2"/>
-    <g transform="translate(20, 5) rotate(-14)">
-        <rect x="0" y="0" width="20" height="13" fill="#ffffff" stroke="#94a3b8" stroke-width="0.6"/>
-        <rect x="0" y="0" width="5" height="4.3" fill="#000000"/>
-        <rect x="10" y="0" width="5" height="4.3" fill="#000000"/>
-        <rect x="5" y="4.3" width="5" height="4.3" fill="#000000"/>
-        <rect x="15" y="4.3" width="5" height="4.3" fill="#000000"/>
-        <rect x="0" y="8.6" width="5" height="4.4" fill="#000000"/>
-        <rect x="10" y="8.6" width="5" height="4.4" fill="#000000"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 120" width="82" height="45" style="border-radius:5px; border:1.5px solid #262626; background:#0b0a09; flex-shrink:0;">
+    <defs>
+        <clipPath id="leftFlagClip">
+            <path d="M48 20 Q68 10 88 16 L100 40 Q80 34 64 45 Q54 34 48 20 Z"/>
+        </clipPath>
+        <clipPath id="rightFlagClip">
+            <path d="M103 22 Q119 24 128 31 L132 48 Q119 42 106 39 Z"/>
+        </clipPath>
+    </defs>
+
+    <!-- 纯黑底板 -->
+    <rect width="220" height="120" fill="#0b0a09"/>
+
+    <!-- 左侧波浪黑白格子旗 -->
+    <g clip-path="url(#leftFlagClip)">
+        <rect x="45" y="8" width="60" height="42" fill="#f8fafc"/>
+        <path d="M45 14 L105 14 M45 21 L105 21 M45 28 L105 28 M45 35 L105 35 M45 42 L105 42" stroke="#0b0a09" stroke-width="3.5" stroke-dasharray="6 6"/>
+        <path d="M48 17.5 L108 17.5 M48 24.5 L108 24.5 M48 31.5 L108 31.5 M48 38.5 L108 38.5" stroke="#0b0a09" stroke-width="3.5" stroke-dasharray="6 6"/>
     </g>
-    <g transform="translate(54, 3) rotate(14)">
-        <rect x="0" y="0" width="20" height="13" fill="#ffffff" stroke="#94a3b8" stroke-width="0.6"/>
-        <rect x="0" y="0" width="5" height="4.3" fill="#000000"/>
-        <rect x="10" y="0" width="5" height="4.3" fill="#000000"/>
-        <rect x="5" y="4.3" width="5" height="4.3" fill="#000000"/>
-        <rect x="15" y="4.3" width="5" height="4.3" fill="#000000"/>
-        <rect x="0" y="8.6" width="5" height="4.4" fill="#000000"/>
-        <rect x="10" y="8.6" width="5" height="4.4" fill="#000000"/>
+    <path d="M48 20 Q68 10 88 16 L100 40 Q80 34 64 45 Q54 34 48 20 Z" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+    <!-- 右侧斜纹挥舞旗 -->
+    <g clip-path="url(#rightFlagClip)">
+        <rect x="100" y="20" width="36" height="32" fill="#f8fafc"/>
+        <path d="M98 26 L120 16 M100 32 L126 20 M102 38 L132 24 M105 44 L136 30 M110 49 L138 36" stroke="#0b0a09" stroke-width="2.6"/>
     </g>
-    <path d="M10 48 L10 35 L22 35 L25 41 L46 36 L60 31 L84 41 L98 44 L100 49 L10 49 Z" fill="#dc2626" stroke="#ffffff" stroke-width="1"/>
-    <path d="M46 36 L54 27 L63 32 Z" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
-    <rect x="8" y="32" width="12" height="4" fill="#b91c1c" stroke="#ffffff" stroke-width="0.8"/>
-    <path d="M84 44 L102 44 L104 49 L84 49 Z" fill="#ef4444" stroke="#ffffff" stroke-width="0.8"/>
-    <circle cx="26" cy="49" r="9" fill="#111827" stroke="#e2e8f0" stroke-width="2"/>
-    <circle cx="26" cy="49" r="4" fill="#94a3b8"/>
-    <circle cx="76" cy="49" r="9" fill="#111827" stroke="#e2e8f0" stroke-width="2"/>
-    <circle cx="76" cy="49" r="4" fill="#94a3b8"/>
+    <path d="M103 22 Q119 24 128 31 L132 48 Q119 42 106 39 Z" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+    <!-- 交叉白色旗杆 -->
+    <line x1="88" y1="16" x2="115" y2="62" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="103" y1="22" x2="94" y2="57" stroke="#f8fafc" stroke-width="2.3" stroke-linecap="round"/>
+    <line x1="103" y1="39" x2="92" y2="53" stroke="#cbd5e1" stroke-width="1.6"/>
+
+    <!-- 右前远端车轮 (车鼻后方) -->
+    <ellipse cx="168" cy="76" rx="16" ry="16" fill="#0f0f0f" stroke="#e2e8f0" stroke-width="1.5"/>
+    <path d="M155 67 A16 15 0 0 1 181 70 L177 64 A15 14 0 0 0 157 63 Z" fill="#f8fafc"/>
+
+    <!-- 左后定风翼 (Rear Wing) -->
+    <path d="M35 53 L47 53 L47 70 L35 70 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
+    <path d="M47 55 L74 55 L72 60 L47 60 Z" fill="#991b1b" stroke="#f8fafc" stroke-width="1.3"/>
+    <path d="M47 62 L68 62 L66 67 L47 67 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.2"/>
+
+    <!-- 左后车轮 (带白色胎面高光与双圈轮毂) -->
+    <path d="M26 64 C19 64 19 95 26 95 L46 95 C52 95 52 64 46 64 Z" fill="#0f0f0f" stroke="#e2e8f0" stroke-width="1.6"/>
+    <path d="M27 64 L46 64 C49 64 50 70 50 74 L35 74 C34 68 31 64 27 64 Z" fill="#f8fafc"/>
+    <ellipse cx="27" cy="79.5" rx="7" ry="12.5" fill="#0f0f0f" stroke="#f8fafc" stroke-width="2.2"/>
+    <ellipse cx="27" cy="79.5" rx="3" ry="5.5" fill="#f8fafc"/>
+
+    <!-- 引擎盖与座舱 (带车身 PIT LANE 字样) -->
+    <path d="M56 70 Q74 56 102 53 L112 63 L74 74 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
+    <text x="70" y="67" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-style="italic" font-size="7.2" letter-spacing="0.2">PIT LANE</text>
+
+    <!-- 车身侧箱 (白红分色 + 黑色散热口) -->
+    <path d="M56 71 L69 71 L68 92 L54 91 Z" fill="#f8fafc" stroke="#f8fafc" stroke-width="1"/>
+    <path d="M69 71 L95 70 L95 93 L68 92 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
+    <rect x="82" y="75" width="5.5" height="13" fill="#0b0a09" stroke="#f8fafc" stroke-width="1"/>
+
+    <!-- 前鼻锥与前定风翼 (红白斜切造型) -->
+    <path d="M118 62 L137 56 L178 83 L165 85 L122 67 Z" fill="#f8fafc" stroke="#f8fafc" stroke-width="1"/>
+    <path d="M122 67 L165 85 L154 90 L119 76 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.3"/>
+    <!-- 前翼左侧端板 -->
+    <path d="M128 76 L154 91 L154 96 L124 96 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
+    <!-- 前翼右侧端板 -->
+    <path d="M180 67 L198 79 L201 93 L176 93 L176 83 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
+    <!-- 前翼横梁 -->
+    <path d="M154 88 L180 88 L180 93 L154 93 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.3"/>
+
+    <!-- 中前主车轮 (3/4 立体视角 + 轮胎字母圈 + 多层轮毂) -->
+    <ellipse cx="109" cy="81" rx="18" ry="19.5" fill="#0f0f0f" stroke="#e2e8f0" stroke-width="1.6"/>
+    <path d="M105 61.5 A18 19.5 0 0 1 126 75 L120 76 A13 14 0 0 0 102 65.5 Z" fill="#f8fafc"/>
+    <ellipse cx="105" cy="82" rx="14" ry="15.5" fill="none" stroke="#f8fafc" stroke-width="1.2" stroke-dasharray="2.2 2.8"/>
+    <ellipse cx="105" cy="82" rx="10.5" ry="12" fill="#1e293b" stroke="#f8fafc" stroke-width="2.4"/>
+    <ellipse cx="105" cy="82" rx="6.5" ry="7.5" fill="#0f0f0f" stroke="#cbd5e1" stroke-width="1.6"/>
+    <ellipse cx="105" cy="82" rx="2.8" ry="3.2" fill="#f8fafc"/>
 </svg>`;
 
 function injectFavicon() {
@@ -116,7 +161,7 @@ function initSharedLayout(activePage) {
 
     const modalsContainer = document.createElement('div');
     modalsContainer.innerHTML = `
-    <!-- 经理与老板专用后台登录窗口 (Manager & Owner Login Only) -->
+    <!-- 经理与老板专用后台登录窗口 -->
     <div class="modal fade notranslate" id="authModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content dark-panel border-danger shadow-lg">
