@@ -11,7 +11,7 @@
 
 <div id="sharedNavbar"></div>
 
-<!-- 1. 顶部滚动横幅 (三个广告统一深暗背景、统一按钮配色、手机自适应字体) -->
+<!-- 1. 顶部滚动横幅 (三个广告拥有不同的背景图，同时保持相同的深暗度与手机端自适应) -->
 <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
@@ -19,9 +19,9 @@
         <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
     </div>
     <div class="carousel-inner">
-        <!-- 广告 1：门店介绍 -->
+        <!-- 广告 1：门店介绍 (背景图 1：漆面抛光与美容) -->
         <div class="carousel-item active">
-            <div class="hero-slide-unified">
+            <div class="hero-slide-unified hero-bg-1">
                 <div class="container px-4">
                     <div class="col-lg-9">
                         <div class="hero-pill-unified" data-zh="King's Auto Spa 旗下分店 · 纯手工精洗 · 室内车间 · 七天营业">
@@ -44,9 +44,9 @@
             </div>
         </div>
 
-        <!-- 广告 2：Indeed 招聘信息 -->
+        <!-- 广告 2：Indeed 招聘信息 (背景图 2：高压泡沫纯手工精洗) -->
         <div class="carousel-item">
-            <div class="hero-slide-unified">
+            <div class="hero-slide-unified hero-bg-2">
                 <div class="container px-4">
                     <div class="col-lg-9">
                         <div class="hero-pill-unified" data-zh="📢 团队诚聘中 · 全职与兼职均可 · 提供带薪培训">
@@ -72,9 +72,9 @@
             </div>
         </div>
 
-        <!-- 广告 3：无限次洗车套票与 10+1 次卡 -->
+        <!-- 广告 3：无限次洗车套票与 10+1 次卡 (背景图 3：展厅级保时捷成品) -->
         <div class="carousel-item">
-            <div class="hero-slide-unified">
+            <div class="hero-slide-unified hero-bg-3">
                 <div class="container px-4">
                     <div class="col-lg-9">
                         <div class="hero-pill-unified" data-zh="洗车套票特惠 · 1个月 / 3个月 / 1年无限次 & 10送1次卡">
@@ -105,7 +105,6 @@
 <!-- 2. 白色清爽背景区：品牌介绍与四大核心业务 -->
 <div class="section-light">
     <div class="container">
-        <!-- 品牌介绍卡片 -->
         <section class="p-4 p-md-5 light-card mb-5">
             <div class="row align-items-center g-4">
                 <div class="col-lg-6">
@@ -137,7 +136,7 @@
             </div>
         </section>
 
-        <!-- 四大主打业务 (清爽白卡) -->
+        <!-- 四大主打业务 -->
         <section>
             <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
                 <div>
@@ -204,7 +203,7 @@
     </div>
 </div>
 
-<!-- 3. 深海青蓝背景区 (仿 King's Auto Spa 质感)：施工效果展示与服务宗旨 -->
+<!-- 3. 深海青蓝背景区：施工效果展示与服务宗旨 -->
 <div class="section-teal-dark">
     <div class="container">
         <section class="mb-5">
@@ -278,7 +277,7 @@
     </div>
 </div>
 
-<!-- 4. 清爽白色背景区：Google 五星好评与门店地图 -->
+<!-- 4. 清爽白色背景区：Google 五星好评与门店联系信息 (Contact) -->
 <div class="section-light">
     <div class="container">
         <section class="mb-5">
@@ -317,10 +316,11 @@
             </div>
         </section>
 
-        <section id="location-section" class="p-4 light-card">
+        <!-- Contact 导航跳转锚点区域 -->
+        <section id="location-section" class="p-4 light-card" style="scroll-margin-top: 80px;">
             <div class="row align-items-center g-4">
                 <div class="col-lg-5">
-                    <span class="text-danger fw-bold small text-uppercase" data-zh="欢迎莅临门店">VISIT OUR LOCATION</span>
+                    <span class="text-danger fw-bold small text-uppercase" data-zh="联系我们 · 欢迎莅临门店">CONTACT US · VISIT OUR LOCATION</span>
                     <h3 class="fw-bold mb-3" data-zh="📍 门店地址与联系方式">📍 Location & Contact</h3>
                     <p class="mb-2"><strong data-zh="门店名称：">Shop:</strong> <span>PIT LANE Hand Car Wash & Detailing</span></p>
                     <p class="mb-2"><strong data-zh="总店关联：">Sister Shop:</strong> <span>King's Auto Spa Ltd (#220 - 4451 No. 3 Rd)</span></p>
@@ -328,6 +328,7 @@
                     <p class="mb-2"><strong data-zh="电话 & 传真：">Tel & Fax:</strong> <span>Tel: (604) 303-8885 | Fax: (604) 303-8887</span></p>
                     <p class="mb-3"><strong data-zh="营业时间：">Hours:</strong> <span data-zh="七天营业 · 周一至周日 9:00 AM – 6:00 PM">Open 7 Days · 9:00 AM – 6:00 PM</span></p>
                     <div class="d-flex flex-wrap gap-2">
+                        <a href="tel:6043038885" class="btn btn-outline-danger fw-bold" data-zh="📞 一键拨打门店电话">📞 Call (604) 303-8885</a>
                         <a href="https://maps.google.com/?q=4551+Number+3+Rd+%23195,+Richmond,+BC+V6X+2C3" target="_blank" class="btn btn-dark fw-bold" data-zh="在 Google Maps 中导航">Open in Google Maps</a>
                         <a href="services.html#booking-section" class="btn btn-danger fw-bold" data-zh="立即预约项目 →">Book a Service →</a>
                     </div>

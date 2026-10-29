@@ -17,6 +17,10 @@ body {
     overflow-x: hidden;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* 顶部导航栏 */
 .navbar-custom {
     background-color: #070b12;
@@ -51,7 +55,7 @@ body {
     background-color: var(--pl-red) !important;
 }
 
-/* ==================== 首页滚动广告：统一深暗背景 + 手机端自适应 ==================== */
+/* ==================== 首页滚动广告：保持相同深暗度 + 三张不同背景图 + 手机自适应 ==================== */
 #heroCarousel {
     width: 100%;
     background-color: #070a10;
@@ -62,11 +66,27 @@ body {
     height: 440px;
     display: flex;
     align-items: center;
-    background-image: linear-gradient(180deg, rgba(7, 10, 16, 0.93) 0%, rgba(12, 20, 34, 0.95) 100%),
-    url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80');
     background-size: cover;
     background-position: center;
     border-bottom: 2px solid #1e293b;
+}
+
+/* 广告 1 背景图：超跑漆面抛光与美容 */
+.hero-bg-1 {
+    background-image: linear-gradient(180deg, rgba(7, 10, 16, 0.90) 0%, rgba(12, 20, 34, 0.93) 100%),
+    url('https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* 广告 2 背景图：室内车间纯手工泡沫精洗 */
+.hero-bg-2 {
+    background-image: linear-gradient(180deg, rgba(7, 10, 16, 0.90) 0%, rgba(12, 20, 34, 0.93) 100%),
+    url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1600&q=80');
+}
+
+/* 广告 3 背景图：展厅级保时捷跑车成品效果 */
+.hero-bg-3 {
+    background-image: linear-gradient(180deg, rgba(7, 10, 16, 0.90) 0%, rgba(12, 20, 34, 0.93) 100%),
+    url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80');
 }
 
 .hero-pill-unified {
@@ -328,14 +348,23 @@ body {
     color: #ffffff;
 }
 
+/* ==================== 深色表单与电脑端白色日历图标修复 ==================== */
 .form-control-dark, .form-select-dark {
     background-color: #0b1524 !important;
     border: 1px solid #2b456b !important;
     color: #ffffff !important;
+    color-scheme: dark;
 }
 
 .form-control-dark::placeholder {
     color: #64748b !important;
+}
+
+/* 强制将电脑端日期选择器的日历小图标反转为纯白色 */
+input[type="date"].form-control-dark::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(100%);
+    cursor: pointer;
+    opacity: 0.95;
 }
 
 /* ==================== 管理后台：左侧深色栏 + 右侧白底黑字样式 ==================== */

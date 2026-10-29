@@ -9,65 +9,40 @@ const PIT_LANE_LOGO_SVG = `
             <path d="M103 22 Q119 24 128 31 L132 48 Q119 42 106 39 Z"/>
         </clipPath>
     </defs>
-
-    <!-- 纯黑底板 -->
     <rect width="220" height="120" fill="#0b0a09"/>
-
-    <!-- 左侧波浪黑白格子旗 -->
     <g clip-path="url(#leftFlagClip)">
         <rect x="45" y="8" width="60" height="42" fill="#f8fafc"/>
         <path d="M45 14 L105 14 M45 21 L105 21 M45 28 L105 28 M45 35 L105 35 M45 42 L105 42" stroke="#0b0a09" stroke-width="3.5" stroke-dasharray="6 6"/>
         <path d="M48 17.5 L108 17.5 M48 24.5 L108 24.5 M48 31.5 L108 31.5 M48 38.5 L108 38.5" stroke="#0b0a09" stroke-width="3.5" stroke-dasharray="6 6"/>
     </g>
     <path d="M48 20 Q68 10 88 16 L100 40 Q80 34 64 45 Q54 34 48 20 Z" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
-
-    <!-- 右侧斜纹挥舞旗 -->
     <g clip-path="url(#rightFlagClip)">
         <rect x="100" y="20" width="36" height="32" fill="#f8fafc"/>
         <path d="M98 26 L120 16 M100 32 L126 20 M102 38 L132 24 M105 44 L136 30 M110 49 L138 36" stroke="#0b0a09" stroke-width="2.6"/>
     </g>
     <path d="M103 22 Q119 24 128 31 L132 48 Q119 42 106 39 Z" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
-
-    <!-- 交叉白色旗杆 -->
     <line x1="88" y1="16" x2="115" y2="62" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round"/>
     <line x1="103" y1="22" x2="94" y2="57" stroke="#f8fafc" stroke-width="2.3" stroke-linecap="round"/>
     <line x1="103" y1="39" x2="92" y2="53" stroke="#cbd5e1" stroke-width="1.6"/>
-
-    <!-- 右前远端车轮 (车鼻后方) -->
     <ellipse cx="168" cy="76" rx="16" ry="16" fill="#0f0f0f" stroke="#e2e8f0" stroke-width="1.5"/>
     <path d="M155 67 A16 15 0 0 1 181 70 L177 64 A15 14 0 0 0 157 63 Z" fill="#f8fafc"/>
-
-    <!-- 左后定风翼 (Rear Wing) -->
     <path d="M35 53 L47 53 L47 70 L35 70 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
     <path d="M47 55 L74 55 L72 60 L47 60 Z" fill="#991b1b" stroke="#f8fafc" stroke-width="1.3"/>
     <path d="M47 62 L68 62 L66 67 L47 67 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.2"/>
-
-    <!-- 左后车轮 (带白色胎面高光与双圈轮毂) -->
     <path d="M26 64 C19 64 19 95 26 95 L46 95 C52 95 52 64 46 64 Z" fill="#0f0f0f" stroke="#e2e8f0" stroke-width="1.6"/>
     <path d="M27 64 L46 64 C49 64 50 70 50 74 L35 74 C34 68 31 64 27 64 Z" fill="#f8fafc"/>
     <ellipse cx="27" cy="79.5" rx="7" ry="12.5" fill="#0f0f0f" stroke="#f8fafc" stroke-width="2.2"/>
     <ellipse cx="27" cy="79.5" rx="3" ry="5.5" fill="#f8fafc"/>
-
-    <!-- 引擎盖与座舱 (带车身 PIT LANE 字样) -->
     <path d="M56 70 Q74 56 102 53 L112 63 L74 74 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
     <text x="70" y="67" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-style="italic" font-size="7.2" letter-spacing="0.2">PIT LANE</text>
-
-    <!-- 车身侧箱 (白红分色 + 黑色散热口) -->
     <path d="M56 71 L69 71 L68 92 L54 91 Z" fill="#f8fafc" stroke="#f8fafc" stroke-width="1"/>
     <path d="M69 71 L95 70 L95 93 L68 92 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
     <rect x="82" y="75" width="5.5" height="13" fill="#0b0a09" stroke="#f8fafc" stroke-width="1"/>
-
-    <!-- 前鼻锥与前定风翼 (红白斜切造型) -->
     <path d="M118 62 L137 56 L178 83 L165 85 L122 67 Z" fill="#f8fafc" stroke="#f8fafc" stroke-width="1"/>
     <path d="M122 67 L165 85 L154 90 L119 76 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.3"/>
-    <!-- 前翼左侧端板 -->
     <path d="M128 76 L154 91 L154 96 L124 96 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
-    <!-- 前翼右侧端板 -->
     <path d="M180 67 L198 79 L201 93 L176 93 L176 83 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.5"/>
-    <!-- 前翼横梁 -->
     <path d="M154 88 L180 88 L180 93 L154 93 Z" fill="#b91c1c" stroke="#f8fafc" stroke-width="1.3"/>
-
-    <!-- 中前主车轮 (3/4 立体视角 + 轮胎字母圈 + 多层轮毂) -->
     <ellipse cx="109" cy="81" rx="18" ry="19.5" fill="#0f0f0f" stroke="#e2e8f0" stroke-width="1.6"/>
     <path d="M105 61.5 A18 19.5 0 0 1 126 75 L120 76 A13 14 0 0 0 102 65.5 Z" fill="#f8fafc"/>
     <ellipse cx="105" cy="82" rx="14" ry="15.5" fill="none" stroke="#f8fafc" stroke-width="1.2" stroke-dasharray="2.2 2.8"/>
@@ -75,6 +50,14 @@ const PIT_LANE_LOGO_SVG = `
     <ellipse cx="105" cy="82" rx="6.5" ry="7.5" fill="#0f0f0f" stroke="#cbd5e1" stroke-width="1.6"/>
     <ellipse cx="105" cy="82" rx="2.8" ry="3.2" fill="#f8fafc"/>
 </svg>`;
+
+// 2. 启动时立即检查并恢复持久化管理员会话（确保电脑关机重启后仍保持登录状态）
+(function restorePersistentAdminSession() {
+    const savedAdmin = localStorage.getItem('apex_persistent_admin');
+    if (savedAdmin && !localStorage.getItem('apex_user')) {
+        localStorage.setItem('apex_user', savedAdmin);
+    }
+})();
 
 function injectFavicon() {
     try {
@@ -98,25 +81,40 @@ function isZh() {
 function initSharedLayout(activePage) {
     injectFavicon();
 
+    // 如果开启了“前台电脑自动进入后台”且不是从后台主动点“返回门店主页”过来的，则自动进入预约后台
+    const params = new URLSearchParams(window.location.search);
+    if (activePage === 'home' && localStorage.getItem('apex_frontdesk_auto') === 'true' && localStorage.getItem('apex_user') && !params.has('viewsite')) {
+        window.location.href = 'admin.html';
+        return;
+    }
+
     const navPlaceholder = document.getElementById('sharedNavbar');
     if (navPlaceholder) {
         navPlaceholder.innerHTML = `
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top py-2">
             <div class="container-fluid px-lg-4">
-                <a class="navbar-brand d-flex align-items-center gap-2 text-white" href="index.html">
+                <a class="navbar-brand d-flex align-items-center gap-2 text-white" href="index.html?viewsite=1">
                     ${PIT_LANE_LOGO_SVG}
                     <div class="lh-1">
                         <div class="brand-title-red fs-4">PIT LANE</div>
                         <small class="text-white-50 fst-italic" style="font-size:0.75rem;" data-zh="纯手工精洗与汽车美容">Hand Car Wash & Detailing</small>
                     </div>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
+                <!-- 手机端顶部直接外显的中英文切换按钮 + 汉堡菜单键 -->
+                <div class="d-flex align-items-center gap-2 ms-auto d-lg-none notranslate">
+                    <button class="btn btn-outline-primary btn-sm fw-bold px-3 py-1 text-white border-primary lang-toggle-btn" onclick="toggleLanguage()">
+                        中文
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto align-items-center gap-2">
+                    <ul class="navbar-nav ms-auto align-items-center gap-2 mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link-custom ${activePage === 'home' ? 'nav-active' : ''}" href="index.html" data-zh="首页">Home</a>
+                            <a class="nav-link-custom ${activePage === 'home' ? 'nav-active' : ''}" href="index.html?viewsite=1" data-zh="首页">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link-custom ${activePage === 'services' ? 'nav-active' : ''}" href="services.html" data-zh="洗车与美容价目表">Wash & Detailing Pricing</a>
@@ -127,8 +125,12 @@ function initSharedLayout(activePage) {
                         <li class="nav-item">
                             <a class="nav-link-custom" href="services.html#booking-section" data-zh="预约项目">Book a Service</a>
                         </li>
-                        <li class="nav-item ms-lg-2 notranslate">
-                            <button class="btn btn-outline-primary btn-sm fw-bold px-3 py-1 text-white border-primary" onclick="toggleLanguage()" id="langToggleBtn">
+                        <li class="nav-item">
+                            <a class="nav-link-custom" href="index.html?viewsite=1#location-section" data-zh="联系我们">Contact</a>
+                        </li>
+                        <!-- 电脑端显示的中英文切换按钮 -->
+                        <li class="nav-item ms-lg-2 d-none d-lg-block notranslate">
+                            <button class="btn btn-outline-primary btn-sm fw-bold px-3 py-1 text-white border-primary lang-toggle-btn" onclick="toggleLanguage()" id="langToggleBtn">
                                 中文
                             </button>
                         </li>
@@ -161,7 +163,7 @@ function initSharedLayout(activePage) {
 
     const modalsContainer = document.createElement('div');
     modalsContainer.innerHTML = `
-    <!-- 经理与老板专用后台登录窗口 -->
+    <!-- 经理与老板专用后台登录窗口 (带保持登录与前台电脑自动进入功能) -->
     <div class="modal fade notranslate" id="authModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content dark-panel border-danger shadow-lg">
@@ -177,11 +179,25 @@ function initSharedLayout(activePage) {
                     <form onsubmit="handleAdminLogin(event)">
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white">Manager / Owner Email (管理员邮箱)</label>
-                            <input type="email" class="form-control form-control-dark" id="loginEmail" placeholder="boss@pitlane.ca / manager@pitlane.ca" required>
+                            <input type="email" class="form-control form-control-dark" id="loginEmail" placeholder="boss@pitlane.ca / manager@pitlane.ca" autocomplete="username" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-white">Password (登录密码)</label>
-                            <input type="password" class="form-control form-control-dark" id="loginPassword" placeholder="••••••••" required>
+                            <input type="password" class="form-control form-control-dark" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="keepLoggedInCheck" checked>
+                            <label class="form-check-label small text-white" for="keepLoggedInCheck">
+                                保持登录状态（电脑关机重启后仍自动登录）<br>
+                                <span class="text-white-50">Keep me logged in even after PC shutdown/restart</span>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="frontDeskAutoOpenCheck">
+                            <label class="form-check-label small text-warning" for="frontDeskAutoOpenCheck">
+                                前台电脑模式：打开网站时直接进入预约日历后台<br>
+                                <span class="text-white-50">Front Desk Mode: Auto-open Admin Calendar on startup</span>
+                            </label>
                         </div>
                         <button type="submit" class="btn btn-danger w-100 fw-bold py-2">Enter Booking Calendar / 进入预约管理后台</button>
                     </form>
@@ -260,8 +276,10 @@ function toggleLanguage() {
 
 function applyCurrentLanguage() {
     const zhMode = isZh();
-    const btn = document.getElementById('langToggleBtn');
-    if (btn) btn.innerText = zhMode ? 'EN' : '中文';
+    // 同步更新电脑端与手机端的语言切换按钮文字
+    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+        btn.innerText = zhMode ? 'EN' : '中文';
+    });
 
     document.querySelectorAll('[data-zh]').forEach(el => {
         if (!el.dataset.en) {
@@ -303,10 +321,26 @@ function handleAdminLogin(event) {
     event.preventDefault();
     const email = document.getElementById('loginEmail').value.trim().toLowerCase();
     const pwd = document.getElementById('loginPassword').value.trim();
+    const keepLoggedIn = document.getElementById('keepLoggedInCheck').checked;
+    const frontDeskAuto = document.getElementById('frontDeskAutoOpenCheck').checked;
 
     if ((email === 'boss@pitlane.ca' || email === 'manager@pitlane.ca' || email === 'boss@kingsautospa.ca') && pwd === '123456') {
         const roleTitle = email.startsWith('manager') ? 'Manager (门店经理)' : 'Owner (老板)';
-        localStorage.setItem('apex_user', JSON.stringify({ name: roleTitle, email, role: "ADMIN" }));
+        const adminData = JSON.stringify({ name: roleTitle, email, role: "ADMIN" });
+
+        localStorage.setItem('apex_user', adminData);
+        if (keepLoggedIn) {
+            localStorage.setItem('apex_persistent_admin', adminData);
+        } else {
+            localStorage.removeItem('apex_persistent_admin');
+        }
+
+        if (frontDeskAuto) {
+            localStorage.setItem('apex_frontdesk_auto', 'true');
+        } else {
+            localStorage.removeItem('apex_frontdesk_auto');
+        }
+
         window.location.href = "admin.html";
     } else {
         alert('Invalid Manager/Owner credentials! / 经理或老板账号密码错误！');
@@ -315,5 +349,7 @@ function handleAdminLogin(event) {
 
 function handleLogout() {
     localStorage.removeItem('apex_user');
-    window.location.href = 'index.html';
+    localStorage.removeItem('apex_persistent_admin');
+    localStorage.removeItem('apex_frontdesk_auto');
+    window.location.href = 'index.html?viewsite=1';
 }
