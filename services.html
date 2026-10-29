@@ -55,6 +55,21 @@
             margin-bottom: 0;
             width: 100%;
         }
+
+        /* 强制将电脑端日期输入框右侧的日历按钮设为高对比度纯白色 SVG 图标 */
+        input[type="date"].form-control-dark {
+            color-scheme: dark;
+            cursor: pointer;
+        }
+        input[type="date"].form-control-dark::-webkit-calendar-picker-indicator {
+            filter: none !important;
+            opacity: 1 !important;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>") !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-size: 18px 18px !important;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -415,7 +430,7 @@
     </div>
 </div>
 
-<!-- ==================== 4. 深海青蓝背景区：支持勾选多个项目的预约表单 ==================== -->
+<!-- ==================== 4. 深海青蓝背景区：支持勾选多个项目的预约表单 (默认 0 勾选 + 纯白日历图标) ==================== -->
 <div id="booking-section" class="section-teal-dark">
     <div class="container">
         <div class="p-4 p-md-5 teal-card shadow-lg mx-auto" style="max-width: 900px;">
@@ -450,13 +465,13 @@
                         <input type="text" class="form-control form-control-dark" id="custPlate" placeholder="e.g. BC-PL888" data-ph-zh="例如：BC-PL888" required>
                     </div>
 
-                    <!-- 多选预约项目勾选区 -->
+                    <!-- 多选预约项目勾选区 (初始全部未勾选) -->
                     <div class="col-12 mt-3">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <label class="form-label fw-bold text-warning mb-0" data-zh="✅ 勾选想要预约的项目（可同时勾选多项）*">
                                 ✅ Check Desired Services or Passes (Multiple Selection Allowed) *
                             </label>
-                            <span class="badge bg-danger" id="selectedCountBadge">已选 1 项 / 1 Selected</span>
+                            <span class="badge bg-secondary" id="selectedCountBadge">已选 0 项 / 0 Selected</span>
                         </div>
 
                         <div class="service-check-group" id="bookingServiceCheckboxes">
@@ -477,7 +492,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="service-check-item">
-                                        <input type="checkbox" name="serviceItem" value="Regular Wash - C: Large Sedan / Small SUV ($63)" id="srv_c" checked onchange="updateSelectedCount()">
+                                        <input type="checkbox" name="serviceItem" value="Regular Wash - C: Large Sedan / Small SUV ($63)" id="srv_c" onchange="updateSelectedCount()">
                                         <label for="srv_c" data-zh="C级：大型轿车 / 小型 SUV ($63)">Tier C: Large Sedan / Small SUV ($63)</label>
                                     </div>
                                 </div>
@@ -628,7 +643,7 @@
                         <div class="row g-2">
                             <div class="col-6">
                                 <span class="small text-white-50 d-block" data-zh="📅 选择日期">📅 Date</span>
-                                <input type="date" class="form-control form-control-dark" id="bookingDate" required>
+                                <input type="date" class="form-control form-control-dark" id="bookingDate" onclick="this.showPicker && this.showPicker()" required>
                             </div>
                             <div class="col-3">
                                 <span class="small text-white-50 d-block" data-zh="⏰ 小时">⏰ Hour</span>
@@ -732,6 +747,7 @@
         );
 
         event.target.reset();
+        updateSelectedCount();
         window.location.href = 'index.html';
     }
 </script>
